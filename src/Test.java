@@ -24,7 +24,7 @@ public class Test {
         // Barometer test
         System.out.println("Barometer test:");
         for (int i = 0; i < testBarometer.length - 1; i++) {
-            double barometer = ValueConverter.barometer((short) testBarometer[i]);
+            double barometer = ValueConverter.airPressure((short) testBarometer[i]);
             System.out.println("Output: "+barometer + ", Input:" + testBarometer[i]);
         }
         reader.next();
@@ -52,7 +52,8 @@ public class Test {
         // UvIndex test
         System.out.println("UVIndex test:");
         for (int i = 0; i < testUvIndex.length - 1; i++) {
-            double UvIndex = ValueConverter.uvindex((short) testUvIndex[i]);
+            double UvIndex = ValueConverter.uvIndex(
+                    (short) testUvIndex[i]);
             System.out.println("Output: "+UvIndex + ", Input:" + testUvIndex[i]);
         }
         reader.next();
@@ -66,7 +67,7 @@ public class Test {
         // Humidity test
         System.out.println("Humidity test:");
         for (int i = 0; i < testHumidity.length - 1; i++) {
-            double humidity = ValueConverter.humidity((short) testHumidity[i]);
+            int humidity = ValueConverter.humidity((short) testHumidity[i]);
             System.out.println("Output: "+humidity + ", Input:" + testHumidity[i]);
         }
         reader.next();
