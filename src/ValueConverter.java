@@ -35,7 +35,7 @@ public class ValueConverter {
     }
 
     public static int windDirection(short rawValue) {
-        int result = rawValue;
+        int result = rawValue ;
         return result;
     }
 
