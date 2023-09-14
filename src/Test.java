@@ -19,6 +19,7 @@ public class Test {
         int[] testBatteryLevel = {0, 30, -30, 500, -500, 1000, -1000, 50000, -50000};
         int[] testHumidity = {0, 50, -50, 100, -100, 1000, -1000};
 
+
         // For-loop testArray's
         // Barometer test
         System.out.println("Barometer test:");
