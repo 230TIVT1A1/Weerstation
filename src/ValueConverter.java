@@ -8,6 +8,10 @@ public class ValueConverter {
         System.out.println("Luchtvochtigheid: " + humidity((short) 65));
         System.out.println("Windsnelheid: " + windSpeed((short) 34));
         System.out.println("Windrichting: " + windDirection((short) 72));
+        System.out.println("regensnelheid " + rainRate((short) 300));
+        System.out.println("batterylevel " + batteryLevel((short) 193));
+        System.out.println("Sunrise: "  + sunrise((short) 2202));
+        System.out.println("sunset: "  + sunrise((short) 2202));
     }
 
     public static double airPressure(short rawValue) {
@@ -39,5 +43,41 @@ public class ValueConverter {
         return result;
     }
 
+    public static double rainRate(short rawValue) {
+        double rate = (rawValue / 100) * 25.40;
+        Double result = new BigDecimal(rate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return result;
 
+    }
+
+    public static double uvIndex(short rawValue) {
+        double uv = rawValue / 10;
+        return uv;
+
+    }
+
+    public static double batteryLevel(short rawValue) {
+        double level = 1.0*((rawValue * 300) / 512) / 100;
+        return level;
+    }
+
+    public static String sunrise(short rawValue) {
+        int inputTime = rawValue;
+
+        int hours = inputTime / 100;
+        int minutes = inputTime % 100;
+
+        String formattedTime = String.format(" %d:%02d", hours, minutes);
+        return formattedTime;
+    }
+
+    public static String sunset(short rawValue) {
+        int inputTime = rawValue;
+
+        int hours = inputTime / 100;
+        int minutes = inputTime % 100;
+
+        String formattedTime = String.format(" %d:%02d", hours, minutes);
+        return formattedTime;
+    }
 }
