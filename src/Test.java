@@ -18,7 +18,9 @@ public class Test {
         int[] testUvIndex = {0, 10, -10, 20, -20, 80, -80, 300, -300};
         int[] testBatteryLevel = {0, 30, -30, 500, -500, 1000, -1000, 50000, -50000};
         int[] testHumidity = {0, 50, -50, 100, -100, 1000, -1000};
-
+        int[] testSunrise = {0, 500, -500, 1000, -1000, 10000, -10000};
+        int[] testSunset = {0, 500, -500, 1000, -1000, 10000, -10000};
+        int[] testWindDirection = {0, 100, -100, 360, -360, 1000, -1000};
 
         // For-loop testArray's
         // Barometer test
@@ -69,6 +71,27 @@ public class Test {
         for (int i = 0; i < testHumidity.length - 1; i++) {
             int humidity = ValueConverter.humidity((short) testHumidity[i]);
             System.out.println("Output: "+humidity + ", Input:" + testHumidity[i]);
+        }
+        reader.next();
+        // Sunrise test
+        System.out.println("Sunrise test:");
+        for (int i = 0; i < testSunrise.length - 1; i++) {
+            String sunrise = ValueConverter.sunrise((short) testSunrise[i]);
+            System.out.println("Output: "+ sunrise + ", Input:" + testSunrise[i]);
+        }
+        reader.next();
+        // Sunset test
+        System.out.println("Sunset test:");
+        for (int i = 0; i < testSunset.length - 1; i++) {
+            String sunset = ValueConverter.sunset((short) testSunset[i]);
+            System.out.println("Output: "+ sunset + ", Input:" + testSunset[i]);
+        }
+        reader.next();
+        // WindDirection test
+        System.out.println("WindDirection test:");
+        for (int i = 0; i < testWindDirection.length - 1; i++) {
+            int windDirection = ValueConverter.windDirection((short) testWindDirection[i]);
+            System.out.println("Output: "+ windDirection + ", Input:" + testWindDirection[i]);
         }
         reader.next();
     }
