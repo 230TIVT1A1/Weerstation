@@ -65,7 +65,7 @@ public class ValueConverter {
     }
 
     public static double uvIndex(short rawValue) {
-        if (rawValue >= 0 && rawValue <= 10) {
+        if (rawValue >= 0 && rawValue <= 100) {
             double uv = rawValue / 10.0;
             return uv;
         }
@@ -73,7 +73,7 @@ public class ValueConverter {
     }
 
     public static double batteryLevel(short rawValue) {
-        if (rawValue > 0 || rawValue < 512) {
+        if (rawValue > 0 && rawValue < 512) {
             double level = 1.0 * ((rawValue * 300) / 512) / 100;
             return level;
         }
