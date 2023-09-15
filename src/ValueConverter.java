@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 public class ValueConverter {
 
     public static void main(String[] Args) {
-        System.out.println("Luchtdruk: " + airPressure((short) 30500));
+        System.out.println("Luchtdruk: " + airPressure((short) 50000));
         System.out.println("Temperatuur: " + temperature((short) 775));
         System.out.println("Luchtvochtigheid: " + humidity((short) 65));
         System.out.println("Windsnelheid: " + windSpeed((short) 25));
@@ -15,7 +15,7 @@ public class ValueConverter {
     }
 
     public static double airPressure(short rawValue) {
-        if (rawValue > 0) {
+        if (rawValue > 0  && rawValue < 32767) {
             double press = (rawValue / 1000.0) * 33.863889532610884;
             return Math.round(press * 10.0) / 10.0;
         }
@@ -24,73 +24,82 @@ public class ValueConverter {
 
     public static double temperature(short rawValue) {
         if (rawValue < -4596 || rawValue > 10000) {
-            throw new IllegalArgumentException("Input rawValue is out of valid range for temperature.");
+            return 0;
         }
         double calc = Math.round(((rawValue / 10.0) - 32) * 5.0/9.0 * 10.0) / 10.0;
         return calc;
     }
 
     public static int humidity(short rawValue) {
-        int humidity = rawValue;
-        return humidity;
+        if (rawValue >= 0 & rawValue <= 100) {
+            int humidity = rawValue;
+            return humidity;
+        }
+        return 0;
     }
 
     public static double windSpeed(short rawValue) {
-        if (rawValue < 0) {
-            throw new IllegalArgumentException("Wind speed cannot be negative.");
-        }
         double speed = rawValue * 1.609344;
-        if (speed > 200.0) {
-            throw new IllegalArgumentException("Wind speed value is unrealistically high.");
+        if (rawValue < 0 || speed > 200.0) {
+            return 0;
         }
         Double result = new BigDecimal(speed).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
         return result;
     }
 
     public static int windDirection(short rawValue) {
-        int result = rawValue ;
-        return result;
+        if (rawValue >= 0 && rawValue <= 360) {
+            int result = rawValue ;
+            return result;
+        }
+        return 0;
     }
 
     public static double rainRate(short rawValue) {
-        double rate = (rawValue / 100.0) * 25.4;
-        Double result = new BigDecimal(rate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        return result;
+        if (rawValue >= 0 && rawValue <= 32767) {
+            double rate = (rawValue / 100.0) * 25.4;
+            Double result = new BigDecimal(rate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            return result;
+        }
+        return 0;
     }
 
     public static double uvIndex(short rawValue) {
-        if (rawValue < 0) {
-            throw new IllegalArgumentException("UV index value cannot be negative.");
+        if (rawValue >= 0 && rawValue <= 10) {
+            double uv = rawValue / 10.0;
+            return uv;
         }
-        double uv = rawValue / 10.0;
-        return uv;
+        return 0;
     }
 
     public static double batteryLevel(short rawValue) {
-        if (rawValue < 0 || rawValue > 512) {
-            throw new IllegalArgumentException("Battery level value is out of valid range.");
+        if (rawValue > 0 || rawValue < 512) {
+            double level = 1.0 * ((rawValue * 300) / 512) / 100;
+            return level;
         }
-        double level = 1.0 * ((rawValue * 300) / 512) / 100;
-        return level;
+        return 0;
     }
 
     public static String sunrise(short rawValue) {
-        int inputTime = rawValue;
-
-        int hours = inputTime / 100;
-        int minutes = inputTime % 100;
-
-        String formattedTime = String.format("%d:%02d", hours, minutes);
-        return formattedTime;
+        if (rawValue >= 0000 & rawValue <= 2359) {
+            int inputTime = rawValue;
+            int hours = inputTime / 100;
+            int minutes = inputTime % 100;
+            String formattedTime = String.format("%d:%02d", hours, minutes);
+            return formattedTime;
+        }
+        return "Incorrect Time";
     }
 
     public static String sunset(short rawValue) {
-        int inputTime = rawValue;
-
-        int hours = inputTime / 100;
-        int minutes = inputTime % 100;
-
-        String formattedTime = String.format("%d:%02d", hours, minutes);
-        return formattedTime;
+        if (rawValue >= 0000 & rawValue <= 2359) {
+            int inputTime = rawValue;
+            int hours = inputTime / 100;
+            int minutes = inputTime % 100;
+            String formattedTime = String.format("%d:%02d", hours, minutes);
+            return formattedTime;
+        }
+        return "Incorrect Time";
     }
 }
+
