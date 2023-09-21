@@ -9,6 +9,6 @@ public class Main {
 
 
         System.out.println(measurement.toString());
-
+        boolean test = measurement.isValid();
     }
 }

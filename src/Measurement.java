@@ -76,6 +76,7 @@ public class Measurement {
         return ValueConverter.sunset(this.rawMeasurement.getSunset());
     }
 
+
     @Override
     public String toString() {
         return "Measurement{" +
@@ -97,6 +98,18 @@ public class Measurement {
                 ", sunrise=" + getSunrise() +
                 ", sunset=" + getSunset() +
                 '}';
+    }
+    public boolean isValid(){
+        checkShortOverflow(this.rawMeasurement.getBarometer());
+        return false;
+    }
+    public static boolean checkShortOverflow(short rawValue) {
+        if (rawValue == Short.MIN_VALUE) {
+            return false;
+        } else if (rawValue == Short.MAX_VALUE) {
+            return false;
+        }
+        return true;
     }
 }
 
