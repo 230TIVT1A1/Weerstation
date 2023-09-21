@@ -8,7 +8,7 @@ public class Main {
         System.out.println(measurement.getInsideTemp());
 
 
-        System.out.println(measurement.toString()   );
+        System.out.println(measurement.toString());
 
     }
 }

@@ -118,10 +118,10 @@ public class Measurement {
                 ", insideTemp=" + getInsideTemp() +
                 ", insideHum=" + getInsideHum() +
                 ", outsideTemp=" + getOutsideTemp() +
+                ", outsideHum=" + getOutsideHum() +
                 ", windSpeed=" + getWindSpeed() +
                 ", avgWindSpeed=" + getAvgWindSpeed() +
                 ", windDir=" + getWindDir() +
-                ", outsideHum=" + getOutsideHum() +
                 ", rainRate=" + getRainRate() +
                 ", UVLevel=" + getUVLevel() +
                 ", solarRad=" + getSolarRad() +
