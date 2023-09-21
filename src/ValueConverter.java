@@ -4,7 +4,7 @@ public class ValueConverter {
     }
 
     public static double temperature(short rawValue) {
-        return ((checkDoubleOverflow(rawValue) / 10.0) - 32) * 5.0/9.0 * 10.0;
+        return ((checkDoubleOverflow(rawValue) / 10.0) - 32.0) * 5.0/9.0;
     }
 
     public static int humidity(short rawValue) {

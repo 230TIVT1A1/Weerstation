@@ -32,7 +32,7 @@ public class Measurement {
         return ValueConverter.humidity(this.rawMeasurement.getInsideHum());
     }
 
-    public double getOutsideHum() {
+    public int getOutsideHum() {
         return ValueConverter.humidity(this.rawMeasurement.getOutsideHum());
     }
 
@@ -56,7 +56,7 @@ public class Measurement {
         return ValueConverter.uvIndex(this.rawMeasurement.getUVLevel());
     }
 
-    public short getSolarRad() {
+    public double getSolarRad() {
         return this.rawMeasurement.getSolarRad();
     }
 
