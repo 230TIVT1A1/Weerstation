@@ -1,19 +1,6 @@
 import java.math.BigDecimal;
 
 public class ValueConverter {
-
-    public static void main(String[] Args) {
-        System.out.println("Luchtdruk: " + airPressure((short) 50000));
-        System.out.println("Temperatuur: " + temperature((short) 775));
-        System.out.println("Luchtvochtigheid: " + humidity((short) 65));
-        System.out.println("Windsnelheid: " + windSpeed((short) 25));
-        System.out.println("Windrichting: " + windDirection((short) 72));
-        System.out.println("regensnelheid " + rainRate((short) 300));
-        System.out.println("batterylevel " + batteryLevel((short) 193));
-        System.out.println("Sunrise: "  + sunrise((short) 526));
-        System.out.println("Sunset: "  + sunset((short) 2202));
-    }
-
     public static double airPressure(short rawValue) {
         if (rawValue > 0  && rawValue < 32767) {
             double press = (rawValue / 1000.0) * 33.863889532610884;
