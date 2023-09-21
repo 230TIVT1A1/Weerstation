@@ -76,7 +76,22 @@ public class Measurement {
         return ValueConverter.sunset(this.rawMeasurement.getSunset());
     }
 
+    public double getWindChill() {
+        return 13.12 + 0.625*this.getOutsideTemp() - 11.37*Math.pow(this.getWindSpeed(),0.16) + 0.3965*this.getOutsideTemp()*Math.pow(this.getWindSpeed(),0.16);
+    }
 
+    public double getHeatIndex() {
+        return (-8.78469475556
+                + 1.61139411*this.getOutsideTemp()
+                + 2.33854883889*this.getOutsideHum()
+                + -0.14611605*this.getOutsideTemp()*this.getOutsideHum()
+                + -0.012308094*Math.pow(this.getOutsideTemp(),2)
+                + -0.0164248277778*Math.pow(this.getOutsideHum(), 2)
+                + 0.002211732*Math.pow(this.getOutsideTemp(),2)*this.getOutsideHum()
+                + 0.00072546*Math.pow(this.getOutsideHum(),2)*this.getOutsideTemp()
+                + -0.000003582*Math.pow(this.getOutsideHum(),2)*Math.pow(this.getOutsideTemp(),2)
+        );
+    }
     @Override
     public String toString() {
         return "Measurement{" +
@@ -97,6 +112,9 @@ public class Measurement {
                 ", battLevel=" + getBattLevel() +
                 ", sunrise=" + getSunrise() +
                 ", sunset=" + getSunset() +
+                ", windChill=" + getWindChill() +
+                ", heatIndex=" + getHeatIndex() +
+                ", dewPoint=" + getDewpoint() +
                 '}';
     }
     public boolean isValid(){
