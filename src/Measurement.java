@@ -111,6 +111,13 @@ public class Measurement {
         }
         return true;
     }
+    public double getDewpoint() {
+        int humidity = (getInsideHum());
+        double temp = (getInsideTemp());
+
+        return temp - ((100.0 - humidity) / 5);
+    }
+
 }
 
 
