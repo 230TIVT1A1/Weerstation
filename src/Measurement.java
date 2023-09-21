@@ -2,6 +2,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Measurement {
+    private RawMeasurement rawMeasurement;
     private String stationId;
     private LocalDateTime dateStamp;
     private short barometer;
@@ -21,6 +22,7 @@ public class Measurement {
     private short sunset;
 
     public Measurement(RawMeasurement rawMeasurement) {
+        this.rawMeasurement = rawMeasurement;
         this.stationId = rawMeasurement.getStationId();
         this.dateStamp = rawMeasurement.getDateStamp();
         this.barometer = rawMeasurement.getBarometer();
@@ -38,7 +40,6 @@ public class Measurement {
         this.battLevel = rawMeasurement.getBattLevel();
         this.sunrise = rawMeasurement.getSunrise();
         this.sunset = rawMeasurement.getSunset();
-
     }
 
     public String getStationId() {
@@ -50,7 +51,7 @@ public class Measurement {
     }
 
     public double getBarometer() {
-        return ValueConverter.airPressure(this.barometer);
+        return ValueConverter.airPressure(this.rawMeasurement.getBarometer());
     }
 
     public double getInsideTemp() {

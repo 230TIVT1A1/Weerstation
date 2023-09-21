@@ -27,11 +27,10 @@ public class ValueConverter {
 
     public static double windSpeed(short rawValue) {
         double speed = rawValue * 1.609344;
-        if (rawValue < 0 || speed > 200.0) {
-            return 0;
+        if (rawValue > 0 || speed < 200.0) {
+            return speed;
         }
-        Double result = new BigDecimal(speed).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
-        return result;
+        return 0;
     }
 
     public static int windDirection(short rawValue) {
@@ -61,7 +60,7 @@ public class ValueConverter {
 
     public static double batteryLevel(short rawValue) {
         if (rawValue > 0 && rawValue < 512) {
-            double level = 1.0 * ((rawValue * 300) / 512) / 100;
+            double level = ((rawValue * 300) / 512.0) / 100;
             return level;
         }
         return 0;
