@@ -58,7 +58,7 @@ public class Measurement {
     }
 
     public double getOutsideTemp() {
-        return ValueConverter.temperature(this.outsideHum);
+        return ValueConverter.temperature(this.outsideTemp);
     }
 
     public int getInsideHum() {
