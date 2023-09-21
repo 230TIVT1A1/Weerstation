@@ -40,5 +40,11 @@ public class Measurement {
         this.sunset = rawMeasurement.getSunset();
 
     }
+    public double getInsideTemp(){
+        return ValueConverter.temperature(this.insideTemp);
+    }
+
+
 }
+
 
