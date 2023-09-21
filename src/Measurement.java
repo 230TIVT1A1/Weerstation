@@ -40,11 +40,97 @@ public class Measurement {
         this.sunset = rawMeasurement.getSunset();
 
     }
-    public double getInsideTemp(){
+
+    public String getStationId() {
+        return this.stationId;
+    }
+
+    public LocalDateTime getDateStamp() {
+        return this.dateStamp;
+    }
+
+    public double getBarometer() {
+        return ValueConverter.airPressure(this.barometer);
+    }
+
+    public double getInsideTemp() {
         return ValueConverter.temperature(this.insideTemp);
     }
 
+    public double getOutsideTemp() {
+        return ValueConverter.temperature(this.outsideHum);
+    }
 
+    public int getInsideHum() {
+        return ValueConverter.humidity(this.insideHum);
+    }
+
+    public double getOutsideHum() {
+        return ValueConverter.humidity(this.outsideHum);
+    }
+
+    public double getWindSpeed() {
+        return ValueConverter.windSpeed(this.windSpeed);
+    }
+
+    public double getAvgWindSpeed() {
+        return ValueConverter.windSpeed(this.avgWindSpeed);
+    }
+
+    public int getWindDir() {
+        return ValueConverter.windDirection(this.windDir);
+    }
+
+    public double getRainRate() {
+        return ValueConverter.rainRate(this.rainRate);
+    }
+
+    public double getUVLevel() {
+        return ValueConverter.uvIndex(this.UVLevel);
+    }
+
+    public short getSolarRad() {
+        return this.solarRad;
+    }
+
+    public double getXmitBatt() {
+        return ValueConverter.batteryLevel(this.xmitBatt);
+    }
+
+    public double getBattLevel() {
+        return ValueConverter.batteryLevel(this.battLevel);
+    }
+
+    public String getSunrise() {
+        return ValueConverter.sunrise(this.sunrise);
+    }
+
+    public String getSunset() {
+        return ValueConverter.sunset(this.sunset);
+    }
+
+    @Override
+    public String toString() {
+        return "Measurement{" +
+                "stationId='" + getStationId() + '\'' +
+                ", dateStamp=" + getDateStamp() +
+                ", barometer=" + getBarometer() +
+                ", insideTemp=" + getInsideTemp() +
+                ", insideHum=" + getInsideHum() +
+                ", outsideTemp=" + getOutsideTemp() +
+                ", windSpeed=" + getWindSpeed() +
+                ", avgWindSpeed=" + getAvgWindSpeed() +
+                ", windDir=" + getWindDir() +
+                ", outsideHum=" + getOutsideHum() +
+                ", rainRate=" + getRainRate() +
+                ", UVLevel=" + getUVLevel() +
+                ", solarRad=" + getSolarRad() +
+                ", xmitBatt=" + getXmitBatt() +
+                ", battLevel=" + getBattLevel() +
+                ", sunrise=" + getSunrise() +
+                ", sunset=" + getSunset() +
+                '}';
+    }
 }
 
 
