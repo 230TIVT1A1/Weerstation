@@ -3,51 +3,17 @@ import java.time.LocalDateTime;
 
 public class Measurement {
     private RawMeasurement rawMeasurement;
-    private String stationId;
-    private LocalDateTime dateStamp;
-    private short barometer;
-    private short insideTemp;
-    private short insideHum;
-    private short outsideTemp;
-    private short windSpeed;
-    private short avgWindSpeed;
-    private short windDir;
-    private short outsideHum;
-    private short rainRate;
-    private short UVLevel;
-    private short solarRad;
-    private short xmitBatt;
-    private short battLevel;
-    private short sunrise;
-    private short sunset;
 
     public Measurement(RawMeasurement rawMeasurement) {
         this.rawMeasurement = rawMeasurement;
-        this.stationId = rawMeasurement.getStationId();
-        this.dateStamp = rawMeasurement.getDateStamp();
-        this.barometer = rawMeasurement.getBarometer();
-        this.insideTemp = rawMeasurement.getInsideTemp();
-        this.outsideTemp = rawMeasurement.getOutsideTemp();
-        this.insideHum = rawMeasurement.getInsideHum();
-        this.outsideHum  = rawMeasurement.getOutsideHum();
-        this.windSpeed = rawMeasurement.getWindSpeed();
-        this.avgWindSpeed = rawMeasurement.getAvgWindSpeed();
-        this.windDir = rawMeasurement.getWindDir();
-        this.rainRate = rawMeasurement.getRainRate();
-        this.UVLevel = rawMeasurement.getUVLevel();
-        this.solarRad = rawMeasurement.getSolarRad();
-        this.xmitBatt = rawMeasurement.getXmitBatt();
-        this.battLevel = rawMeasurement.getBattLevel();
-        this.sunrise = rawMeasurement.getSunrise();
-        this.sunset = rawMeasurement.getSunset();
     }
 
     public String getStationId() {
-        return this.stationId;
+        return this.rawMeasurement.getStationId();
     }
 
     public LocalDateTime getDateStamp() {
-        return this.dateStamp;
+        return this.rawMeasurement.getDateStamp();
     }
 
     public double getBarometer() {
@@ -55,59 +21,59 @@ public class Measurement {
     }
 
     public double getInsideTemp() {
-        return ValueConverter.temperature(this.insideTemp);
+        return ValueConverter.temperature(this.rawMeasurement.getInsideTemp());
     }
 
     public double getOutsideTemp() {
-        return ValueConverter.temperature(this.outsideTemp);
+        return ValueConverter.temperature(this.rawMeasurement.getOutsideTemp());
     }
 
     public int getInsideHum() {
-        return ValueConverter.humidity(this.insideHum);
+        return ValueConverter.humidity(this.rawMeasurement.getInsideHum());
     }
 
     public double getOutsideHum() {
-        return ValueConverter.humidity(this.outsideHum);
+        return ValueConverter.humidity(this.rawMeasurement.getOutsideHum());
     }
 
     public double getWindSpeed() {
-        return ValueConverter.windSpeed(this.windSpeed);
+        return ValueConverter.windSpeed(this.rawMeasurement.getWindSpeed());
     }
 
     public double getAvgWindSpeed() {
-        return ValueConverter.windSpeed(this.avgWindSpeed);
+        return ValueConverter.windSpeed(this.rawMeasurement.getAvgWindSpeed());
     }
 
     public int getWindDir() {
-        return ValueConverter.windDirection(this.windDir);
+        return ValueConverter.windDirection(this.rawMeasurement.getWindDir());
     }
 
     public double getRainRate() {
-        return ValueConverter.rainRate(this.rainRate);
+        return ValueConverter.rainRate(this.rawMeasurement.getRainRate());
     }
 
     public double getUVLevel() {
-        return ValueConverter.uvIndex(this.UVLevel);
+        return ValueConverter.uvIndex(this.rawMeasurement.getUVLevel());
     }
 
     public short getSolarRad() {
-        return this.solarRad;
+        return this.rawMeasurement.getSolarRad();
     }
 
     public double getXmitBatt() {
-        return ValueConverter.batteryLevel(this.xmitBatt);
+        return ValueConverter.batteryLevel(this.rawMeasurement.getXmitBatt());
     }
 
     public double getBattLevel() {
-        return ValueConverter.batteryLevel(this.battLevel);
+        return ValueConverter.batteryLevel(this.rawMeasurement.getBattLevel());
     }
 
     public String getSunrise() {
-        return ValueConverter.sunrise(this.sunrise);
+        return ValueConverter.sunrise(this.rawMeasurement.getSunrise());
     }
 
     public String getSunset() {
-        return ValueConverter.sunset(this.sunset);
+        return ValueConverter.sunset(this.rawMeasurement.getSunset());
     }
 
     @Override
