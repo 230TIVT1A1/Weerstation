@@ -1,69 +1,44 @@
-import java.math.BigDecimal;
-
 public class ValueConverter {
     public static double airPressure(short rawValue) {
-        if (rawValue > 0  && rawValue < 32767) {
-            double press = (rawValue / 1000.0) * 33.863889532610884;
-            return Math.round(press * 10.0) / 10.0;
-        }
-        return 0;
+        return (checkDoubleOverflow(rawValue) / 1000.0) * 33.863889532610884;
     }
 
     public static double temperature(short rawValue) {
-        if (rawValue < -4596 || rawValue > 10000) {
-            return 0;
-        }
-        double calc = Math.round(((rawValue / 10.0) - 32) * 5.0/9.0 * 10.0) / 10.0;
-        return calc;
+        return ((checkDoubleOverflow(rawValue) / 10.0) - 32) * 5.0/9.0 * 10.0;
     }
 
     public static int humidity(short rawValue) {
-        if (rawValue >= 0 & rawValue <= 100) {
-            int humidity = rawValue;
-            return humidity;
+        if (rawValue == Short.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else if (rawValue == Short.MAX_VALUE) {
+            return Integer.MAX_VALUE;
         }
-        return 0;
+        return rawValue;
     }
 
     public static double windSpeed(short rawValue) {
-        double speed = rawValue * 1.609344;
-        if (rawValue > 0 || speed < 200.0) {
-            return speed;
-        }
-        return 0;
+        return checkDoubleOverflow(rawValue) * 1.609344;
     }
 
     public static int windDirection(short rawValue) {
-        if (rawValue >= 0 && rawValue <= 360) {
-            int result = rawValue ;
-            return result;
+        if (rawValue == Short.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else if (rawValue == Short.MAX_VALUE) {
+            return Integer.MAX_VALUE;
         }
-        return 0;
+        return rawValue;
     }
 
     public static double rainRate(short rawValue) {
-        if (rawValue >= 0 && rawValue <= 32767) {
-            double rate = (rawValue / 100.0) * 25.4;
-            Double result = new BigDecimal(rate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-            return result;
-        }
-        return 0;
+        return (checkDoubleOverflow(rawValue) / 100.0) * 25.4;
     }
 
     public static double uvIndex(short rawValue) {
-        if (rawValue >= 0 && rawValue <= 100) {
-            double uv = rawValue / 10.0;
-            return uv;
-        }
-        return 0;
+        return checkDoubleOverflow(rawValue) / 10.0;
     }
 
     public static double batteryLevel(short rawValue) {
-        if (rawValue > 0 && rawValue < 512) {
-            double level = ((rawValue * 300) / 512.0) / 100;
-            return level;
-        }
-        return 0;
+        return ((checkDoubleOverflow(rawValue) * 300) / 512.0) / 100;
     }
 
     public static String sunrise(short rawValue) {
@@ -86,6 +61,15 @@ public class ValueConverter {
             return formattedTime;
         }
         return "Incorrect Time";
+    }
+
+    public static double checkDoubleOverflow(short rawValue) {
+        if (rawValue == Short.MIN_VALUE) {
+            return Double.MIN_VALUE;
+        } else if (rawValue == Short.MAX_VALUE) {
+            return Double.MAX_VALUE;
+        }
+        return rawValue;
     }
 }
 
