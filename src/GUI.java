@@ -64,7 +64,6 @@ public class GUI {
         }
         int indexPoint = inputString.indexOf(chr);
         inputString = inputString.replace(""+chr, "").replace("-", "");
-        System.out.println(inputString);
         int addressShift = segSize[group] - inputString.length() - 1;
         for (int i = 0; i < inputString.length(); i++) {
             int chrInt = inputString.charAt(i) - '0';
