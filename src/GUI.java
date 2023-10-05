@@ -81,4 +81,41 @@ public class GUI {
             IO.writeShort(addresses[group] - addressShift * 2, 0x100);
         }
     }
+
+    public static void showText(String text){
+        // Spaces / refreshing the screen
+        for (int p = 0; p <= text.length() / 21; p++){
+            if ((p%3) == 0){
+                continue;
+            }
+            if (text.length() > (21 * p)){
+                text = text.substring(0, (21 * p)) + "\n" + text.substring((21 * p)).trim();
+            }
+        }
+        // Placing text
+        int charactersTyped = 0;
+        int maxCharactersOnScreen = 63;
+        for (int j = 0;j < text.length();j++) {
+            int pos = text.indexOf(' ');
+            String first = "";
+            if (pos < 1) {
+                first = text.substring(0, text.length());
+            } else {
+                first = text.substring(0, pos);
+            }
+            for (int i = 0; i < first.length(); i++) {
+                // Clear screen if it's full
+                if (charactersTyped == maxCharactersOnScreen){
+                    clrDisplay();
+                    charactersTyped = 0;
+                }
+                char c = text.charAt(0);
+                IO.writeShort(0x40, c);
+                charactersTyped++;
+                text = text.substring(1);
+                // Slow typing animation
+                IO.delay(50);
+            }
+        }
+    }
 }
