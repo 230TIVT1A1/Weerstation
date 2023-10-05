@@ -12,6 +12,5 @@ public class Main {
         GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
         GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
         GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
-
     }
 }
