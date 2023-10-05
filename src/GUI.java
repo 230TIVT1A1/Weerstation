@@ -9,13 +9,7 @@ public class GUI {
         IO.writeShort(0x40, 0xFE);
         IO.writeShort(0x40, 0x01);
     }
-
-    public static void printDisplay(String print) { //todo deze vervangen dooor methaode van daan
-        for (int i = 0; print.length() > i; i++) {
-            char chr = print.charAt(i);
-            IO.writeShort(0x40, chr);
-        }
-    }
+    
 
     public static void setPixel(int x, int y, boolean state) {
         if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
