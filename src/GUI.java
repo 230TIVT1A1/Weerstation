@@ -29,15 +29,11 @@ public class GUI {
         }
     }
 
-    public static void matrixGraph(ArrayList<Double> input){//todo deze vervangen dooor methaode van tiemen
-        System.out.println((double) GUI.WIDTH /input.size()*1.0);
-        for (int i = 0; i < GUI.WIDTH/input.size(); i++) {
-            for (Double in : input) {
-                System.out.println("x"+i+"y"+in.intValue());
-                GUI.setPixel(i,in.intValue(),true);
-            }
+    public static void matrixGraph(ArrayList<Double> input){//todo deze vervangen door methode van tiemen
+        // only displays values between 0 and 32 correctly
+        for (int x = 0; x < input.size(); x++) {
+            IO.writeShort(0x42, 1 << 12 | x << 5 | 32 - ((int) Math.round(input.get(x))));
         }
-
     }
 
     public static void clearSegment() {
