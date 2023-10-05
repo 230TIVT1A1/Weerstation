@@ -56,8 +56,15 @@ public class GUI {
         int[] addresses = new int[]{0x18, 0x24, 0x34};
         DecimalFormat df = new DecimalFormat(format);
         String inputString = df.format(inPrint);
-        int indexPoint = inputString.indexOf(',');
-        inputString = inputString.replace(",", "").replace("-", "");
+        char chr = ' ';
+        if(inputString.contains(".")) {
+            chr = '.';
+        }else if(inputString.contains(",")) {
+            chr = ',';
+        }
+        int indexPoint = inputString.indexOf(chr);
+        inputString = inputString.replace(""+chr, "").replace("-", "");
+        System.out.println(inputString);
         int addressShift = segSize[group] - inputString.length() - 1;
         for (int i = 0; i < inputString.length(); i++) {
             int chrInt = inputString.charAt(i) - '0';
