@@ -7,10 +7,11 @@ public class Main {
         System.out.println(measurement.getOutsideTemp());
         System.out.println(measurement.getOutsideHum());
         System.out.println(measurement.getInsideTemp());
-        System.out.println(measurement.getInsideHum());
+        IO.init();
+        GUI.clearSegment();
+        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
+        GUI.segmentNumber(measurement.getOutsideHum(),1,"0  0");
+        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
 
-        System.out.println(measurement.toString());
-        boolean test = measurement.isValid();
-        System.out.println(measurement.getDewpoint());
     }
 }

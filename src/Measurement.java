@@ -95,26 +95,26 @@ public class Measurement {
     @Override
     public String toString() {
         return "Measurement{" +
-                "stationId='" + getStationId() + '\'' +
-                ", dateStamp=" + getDateStamp() +
-                ", barometer=" + getBarometer() +
-                ", insideTemp=" + getInsideTemp() +
-                ", insideHum=" + getInsideHum() +
-                ", outsideTemp=" + getOutsideTemp() +
-                ", outsideHum=" + getOutsideHum() +
-                ", windSpeed=" + getWindSpeed() +
-                ", avgWindSpeed=" + getAvgWindSpeed() +
-                ", windDir=" + getWindDir() +
-                ", rainRate=" + getRainRate() +
-                ", UVLevel=" + getUVLevel() +
-                ", solarRad=" + getSolarRad() +
-                ", xmitBatt=" + getXmitBatt() +
-                ", battLevel=" + getBattLevel() +
-                ", sunrise=" + getSunrise() +
-                ", sunset=" + getSunset() +
-                ", windChill=" + getWindChill() +
-                ", heatIndex=" + getHeatIndex() +
-                ", dewPoint=" + getDewpoint() +
+                "stationId='" + getStationId() + '\'' +"\n"+
+                ", dateStamp=" + getDateStamp() +"\n"+
+                ", barometer=" + getBarometer() +"\n"+
+                ", insideTemp=" + getInsideTemp() +"\n"+
+                ", insideHum=" + getInsideHum() +"\n"+
+                ", outsideTemp=" + getOutsideTemp() +"\n"+
+                ", outsideHum=" + getOutsideHum() +"\n"+
+                ", windSpeed=" + getWindSpeed() +"\n"+
+                ", avgWindSpeed=" + getAvgWindSpeed() +"\n"+
+                ", windDir=" + getWindDir() +"\n"+
+                ", rainRate=" + getRainRate() +"\n"+
+                ", UVLevel=" + getUVLevel() +"\n"+
+                ", solarRad=" + getSolarRad() +"\n"+
+                ", xmitBatt=" + getXmitBatt() +"\n"+
+                ", battLevel=" + getBattLevel() +"\n"+
+                ", sunrise=" + getSunrise() +"\n"+
+                ", sunset=" + getSunset() +"\n"+
+                ", windChill=" + getWindChill() +"\n"+
+                ", heatIndex=" + getHeatIndex() +"\n"+
+                ", dewPoint=" + getDewpoint() +"\n"+
                 '}';
     }
     public boolean isValid(){
