@@ -55,5 +55,23 @@ public class Main {
         System.out.println("Mediaan Luchtvochtigheid Buiten: " + period.getOutsideHumidityMedian(measurements));
 
         System.out.println("---------------------------------------------");
+
+        /**
+          Modus
+         */
+        System.out.println("Mode Binnentemperatuur: " + period.getInsideTempMode(measurements));
+        System.out.println("Mode Buitentemperatuur: " + period.getOutsideTempMode(measurements));
+        System.out.println("Mode Barometer: " + period.getBarometerMode(measurements));
+        System.out.println("Mode Luchtvochtigheid Buiten: " + period.getOutsideHumidityMode(measurements));
+
+        System.out.println("---------------------------------------------");
+
+        /**
+         Standaardafwijking
+         */
+        System.out.println("Standaardafwijking Binnentemperatuur: " + period.getInsideTempSD(measurements));
+        System.out.println("Standaardafwijking Buitentemperatuur: " + period.getOutsideTempSD(measurements));
+        System.out.println("Standaardafwijking Barometer: " + period.getBarometerSD(measurements));
+        System.out.println("Standaardafwijking Luchtvochtigheid Buiten: " + period.getOutsideHumiditySD(measurements));
     }
 }
