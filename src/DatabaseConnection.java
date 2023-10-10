@@ -301,7 +301,7 @@ public class DatabaseConnection {
 			Files.list(Paths.get(getCacheDir())).forEach(file ->
 			{
 				try {
-					int timestamp = ((Number) NumberFormat.getInstance().parse(file.getFileName().toString())).intValue();
+					int timestamp = NumberFormat.getInstance().parse(file.getFileName().toString()).intValue();
 					long current = (System.currentTimeMillis() / (1000 * 60 * 60));
 					if (timestamp != current)
 						Files.delete(file);
