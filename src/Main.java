@@ -1,17 +1,19 @@
-
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
         RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
         Measurement measurement = new Measurement(rawMeasurement);
-        System.out.println(measurement.getOutsideTemp());
-        System.out.println(measurement.getOutsideHum());
-        System.out.println(measurement.getInsideTemp());
-        IO.init();
-        GUI.clearSegment();
-        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
-        GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
-        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
+//        System.out.println(measurement.getOutsideTemp());
+//        System.out.println(measurement.getOutsideHum());
+//        System.out.println(measurement.getInsideTemp());
+//        IO.init();
+//        GUI.clearSegment();
+//        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
+//        GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
+//        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
+        Period period = new Period(LocalDate.of(2023,10,3));
+        System.out.println(period.longestRainFall());
 
     }
 }
