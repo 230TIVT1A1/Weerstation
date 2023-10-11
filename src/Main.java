@@ -1,7 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-
 public class Main {
     public static void main(String[] args) {
 //        RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
@@ -14,7 +12,7 @@ public class Main {
 //        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
 //        GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
 //        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
-        ArrayList<RawMeasurement> rawMeasurements = DatabaseConnection.getMeasurementsLastHour();
+        ArrayList<RawMeasurement> rawMeasurements = DatabaseConnection.getMeasurementsLastDay();
         ArrayList<Measurement> measurements = new ArrayList<>();
         Period period = new Period();
         for (RawMeasurement rawMeasurement : rawMeasurements) {
@@ -85,6 +83,8 @@ public class Main {
         System.out.println("Standaardafwijking Barometer: " + period.getBarometerSD(measurements));
         System.out.println("Standaardafwijking Luchtvochtigheid Buiten: " + period.getOutsideHumiditySD(measurements));
 
+        System.out.println("---------------------------------------------");
+        
         /**
          Individual Assignment (Daan)
          Date of biggest difference between the WindChill and OutsideTemp
