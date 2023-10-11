@@ -310,15 +310,31 @@ public class Period {
 	/**
 	 * Individueel
 	 */
-	public Double maxTemperatureDifference() {
-		ArrayList<Measurement> measurements = getMeasurements();
-		double maxTemp = 0;
+	public Double maxTemperatureDifference(ArrayList<Measurement> measurements) {
+
+		if (measurements.isEmpty()) {
+			return null;
+		}
+
+		double maxTemp = measurements.get(0).getOutsideTemp();
+		double minTemp = measurements.get(0).getOutsideTemp();
+
 		for (Measurement measurement : measurements) {
-			if (measurement.getInsideTemp() > maxTemp) {
-				maxTemp = measurement.getInsideTemp();
+			double outsideTemp = measurement.getOutsideTemp();
+
+			if (outsideTemp > maxTemp) {
+				maxTemp = outsideTemp;
+			}
+
+			if (outsideTemp < minTemp) {
+				minTemp = outsideTemp;
 			}
 		}
-		return null;
+
+		double difference = maxTemp - minTemp;
+		return difference;
 	}
+
+
 
 }

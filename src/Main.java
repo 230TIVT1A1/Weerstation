@@ -55,5 +55,7 @@ public class Main {
         System.out.println("Mediaan Luchtvochtigheid Buiten: " + period.getOutsideHumidityMedian(measurements));
 
         System.out.println("---------------------------------------------");
+
     }
+
 }
