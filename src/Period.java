@@ -132,40 +132,6 @@ public class Period {
 	/**
 	 * Todo more methods
 	 */
-//	public double getBarometerLowestValue(){
-//		ArrayList<Measurement> measurements = getMeasurements(this.beginPeriod, this.endPeriod);
-//		// Realistic values
-//		double prevBarometer = 1025;
-//		double lowestValue = 1025;
-//		for (Measurement measurement : measurements){
-//			double barometer = measurement.getBarometer();
-//			if (barometer < prevBarometer && barometer < lowestValue){
-//				lowestValue = barometer;
-//			} else if (prevBarometer < barometer && prevBarometer < lowestValue){
-//				lowestValue = prevBarometer;
-//			}
-//			prevBarometer = measurement.getBarometer();
-//		}
-//		return lowestValue;
-//	}
-//	public double getInsideTempLowestValue(){
-//		ArrayList<Measurement> measurements = getMeasurements(this.beginPeriod, this.endPeriod);
-//		// Realistic values
-//		double prevTemp = 1025;
-//		double lowestValue = ;
-//		for (Measurement measurement1 : measurements){
-//			for (Measurement measurement2 : measurements){
-//				double barometer = measurement1.getBarometer();
-//				if (barometer < prevBarometer && barometer < lowestValue){
-//					lowestValue = barometer;
-//				} else if (prevBarometer < barometer && prevBarometer < lowestValue){
-//					lowestValue = prevBarometer;
-//				}
-//				prevBarometer = measurement2.getBarometer();
-//			}
-//		}
-//		return lowestValue;
-//	}
 	public Double getLowestInsideTemp(ArrayList<Measurement> measurements) {
 		Measurement first = measurements.get(0);
 		double lowest = first.getInsideTemp();
