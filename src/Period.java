@@ -311,6 +311,32 @@ public class Period {
 		return hums.get(middle);
 	}
 
+	public boolean Heatwave() {
+		int degrees30 = 0;
+		int degrees25 = 0;
+		int counter = 0;
+		for(Measurement measurement: this.getMeasurements()) {
+			if(measurement.getOutsideTemp() < 25) {
+				degrees25 = 0;
+				degrees30 = 0;
+				counter = 0;
+			}
+			if(measurement.getOutsideTemp() >= 25 && measurement.getOutsideTemp() < 30) { degrees25++; counter++; }
+			if(measurement.getOutsideTemp() >= 30) { degrees30++; counter++; }
+
+
+			if (counter == 5 && degrees30 < 3) {
+				counter--;
+				if (degrees25 >= 3) degrees25--;
+			}
+
+			if(degrees30 >= 3 && (degrees30 + degrees25) >= 5){
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	/**
 	 * Individueel
