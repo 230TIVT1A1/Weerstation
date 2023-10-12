@@ -118,8 +118,12 @@ public class Measurement {
                 '}';
     }
     public boolean isValid(){
-        checkShortOverflow(this.rawMeasurement.getBarometer());
-        return false;
+        return checkShortOverflow(this.rawMeasurement.getBarometer()) &&
+                checkShortOverflow(this.rawMeasurement.getOutsideHum()) &&
+                checkShortOverflow(this.rawMeasurement.getOutsideTemp()) &&
+                checkShortOverflow(this.rawMeasurement.getAvgWindSpeed()) &&
+                checkShortOverflow(this.rawMeasurement.getSolarRad()) &&
+                checkShortOverflow(this.rawMeasurement.getUVLevel());
     }
     public static boolean checkShortOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {

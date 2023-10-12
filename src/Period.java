@@ -453,19 +453,7 @@ public class Period {
 	/**
 	 * Individueel
 	 */
-	public ArrayList<Measurement> getMeasurements(LocalDate beginPeriod, LocalDate endPeriod){
-		DatabaseConnection db = new DatabaseConnection();
-		ArrayList<RawMeasurement> rawMeasurements = db.getMeasurementsBetween(beginPeriod.atStartOfDay(), endPeriod.atStartOfDay());
-		ArrayList<Measurement> measurements = new ArrayList<>();
-		for (RawMeasurement rawMeasurement : rawMeasurements){
-			Measurement measurement = new Measurement(rawMeasurement);
-			measurements.add(measurement);
-		}
-		return measurements;
-	}
-
-	public double getDiffWindChillAndOutsideTemp(LocalDate beginPeriod, LocalDate endPeriod){
-		ArrayList<Measurement> measurements = getMeasurements(beginPeriod, endPeriod);
+	public double getDiffWindChillAndOutsideTemp(ArrayList<Measurement> measurements){
 		double biggestDifference = 0;
 		for (Measurement measurement : measurements){
 			double outsideTemp = measurement.getOutsideTemp();
@@ -489,9 +477,8 @@ public class Period {
 		return biggestDifference;
 	}
 
-	public LocalDate getDateBiggestDiff(LocalDate beginPeriod, LocalDate endPeriod){
-		double biggestDiff = getDiffWindChillAndOutsideTemp(beginPeriod, endPeriod);
-		ArrayList<Measurement> measurements = getMeasurements(beginPeriod, endPeriod);
+	public LocalDate getDateBiggestDiff(ArrayList<Measurement> measurements){
+		double biggestDiff = getDiffWindChillAndOutsideTemp(measurements);
 		LocalDate theDate = null;
 		for (Measurement measurement : measurements){
 			LocalDate date = LocalDate.from(measurement.getDateStamp());
