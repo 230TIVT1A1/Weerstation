@@ -118,8 +118,7 @@ public class Measurement {
                 '}';
     }
     public boolean isValid(){
-        checkShortOverflow(this.rawMeasurement.getBarometer());
-        return false;
+        return checkShortOverflow(this.rawMeasurement.getBarometer());
     }
     public static boolean checkShortOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {
@@ -130,8 +129,8 @@ public class Measurement {
         return true;
     }
     public double getDewpoint() {
-        int humidity = (getInsideHum());
-        double temp = (getInsideTemp());
+        int humidity = (getOutsideHum());
+        double temp = (getOutsideTemp());
 
         return temp - ((100.0 - humidity) / 5);
     }

@@ -109,7 +109,7 @@ public class Period {
 		ArrayList<Measurement> measurements = getMeasurements();
 
 		//calculate average outside temperature and return it
-		return measurements.get(0).getTemperature();
+		return measurements.get(0).getOutsideTemp();
 	}
 
 	/**
@@ -131,4 +131,24 @@ public class Period {
 	 */
 
 
+	public ArrayList<LocalDate> getGoodDays() {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<LocalDate> returnDagen = new ArrayList<>();
+		for (Measurement measurement:measurements) {
+			double temp = measurement.getOutsideTemp();
+			int hum = measurement.getOutsideHum();
+			double rainRate = measurement.getRainRate();
+
+			if (temp > 22 && temp < 30) {
+				if (hum > 30 && hum < 50) {
+					if (rainRate == 0) {
+						if (!returnDagen.contains(measurement.getDateStamp().toLocalDate())) {
+							returnDagen.add(measurement.getDateStamp().toLocalDate());
+						}
+					}
+				}
+			}
+		}
+		return returnDagen;
+	}
 }
