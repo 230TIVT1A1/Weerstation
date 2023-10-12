@@ -702,4 +702,24 @@ public class Period {
 		}
 		return theDate;
 	}
+	public ArrayList<LocalDate> getGoodDays() {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<LocalDate> returnDagen = new ArrayList<>();
+		for (Measurement measurement:measurements) {
+			double temp = measurement.getOutsideTemp();
+			int hum = measurement.getOutsideHum();
+			double rainRate = measurement.getRainRate();
+
+			if (temp > 22 && temp < 30) {
+				if (hum > 30 && hum < 50) {
+					if (rainRate == 0) {
+						if (!returnDagen.contains(measurement.getDateStamp().toLocalDate())) {
+							returnDagen.add(measurement.getDateStamp().toLocalDate());
+						}
+					}
+				}
+			}
+		}
+		return returnDagen;
+	}
 }

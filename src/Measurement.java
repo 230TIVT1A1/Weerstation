@@ -131,8 +131,8 @@ public class Measurement {
         } else return rawValue != Short.MAX_VALUE;
     }
     public double getDewpoint() {
-        int humidity = (getInsideHum());
-        double temp = (getInsideTemp());
+        int humidity = (getOutsideHum());
+        double temp = (getOutsideTemp());
 
         return temp - ((100.0 - humidity) / 5);
     }
