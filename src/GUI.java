@@ -90,7 +90,7 @@ public class GUI {
             int pos = text.indexOf(' ');
             String first = "";
             if (pos < 1) {
-                first = text.substring(0, text.length());
+                first = text;
             } else {
                 first = text.substring(0, pos);
             }
