@@ -130,10 +130,10 @@ public class Period {
 	/**
 	InsideTemp
 	 */
-	public Double getLowestInsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getLowestInsideTemp() {
+		Measurement first = getMeasurements().get(0);
 		double lowest = first.getInsideTemp();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getInsideTemp() < lowest) {
 				lowest = measurement.getInsideTemp();
 			}
@@ -141,10 +141,10 @@ public class Period {
 		return lowest;
 	}
 
-	public Double getHighestInsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getHighestInsideTemp() {
+		Measurement first = getMeasurements().get(0);
 		double highest = first.getInsideTemp();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getInsideTemp() > highest) {
 				highest = measurement.getInsideTemp();
 			}
@@ -152,17 +152,17 @@ public class Period {
 		return highest;
 	}
 
-	public Double getAverageInsideTemp(ArrayList<Measurement> measurements) {
+	public Double getAverageInsideTemp() {
 		double sum = 0;
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			sum += measurement.getInsideTemp();
 		}
-		return sum / measurements.size();
+		return sum / getMeasurements().size();
 	}
 
-	public Double getInsideTempMedian(ArrayList<Measurement> measurements) {
+	public Double getInsideTempMedian() {
 		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			insideTemps.add(measurement.getInsideTemp());
 		}
 		Collections.sort(insideTemps);
@@ -179,10 +179,10 @@ public class Period {
 	/**
 	OutsideTemp
 	 */
-	public Double getLowestOutsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getLowestOutsideTemp() {
+		Measurement first = getMeasurements().get(0);
 		double lowest = first.getOutsideTemp();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getOutsideTemp() < lowest) {
 				lowest = measurement.getOutsideTemp();
 			}
@@ -190,10 +190,10 @@ public class Period {
 		return lowest;
 	}
 
-	public Double getHighestOutsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getHighestOutsideTemp() {
+		Measurement first = getMeasurements().get(0);
 		double highest = first.getOutsideTemp();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getOutsideTemp() > highest) {
 				highest = measurement.getOutsideTemp();
 			}
@@ -201,17 +201,17 @@ public class Period {
 		return highest;
 	}
 
-	public Double getAverageOutsideTemp(ArrayList<Measurement> measurements) {
+	public Double getAverageOutsideTemp() {
 		double sum = 0;
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			sum += measurement.getOutsideTemp();
 		}
-		return sum / measurements.size();
+		return sum / getMeasurements().size();
 	}
 
-	public Double getOutsideTempMedian(ArrayList<Measurement> measurements) {
+	public Double getOutsideTempMedian() {
 		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			outsideTemps.add(measurement.getOutsideTemp());
 		}
 		Collections.sort(outsideTemps);
@@ -223,10 +223,10 @@ public class Period {
 	/**
 	Barometer
 	 */
-	public Double getLowestBarometer(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getLowestBarometer() {
+		Measurement first = getMeasurements().get(0);
 		double lowest = first.getBarometer();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getBarometer() < lowest) {
 				lowest = measurement.getBarometer();
 			}
@@ -234,10 +234,10 @@ public class Period {
 		return lowest;
 	}
 
-	public Double getHighestBarometer(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Double getHighestBarometer() {
+		Measurement first = getMeasurements().get(0);
 		double highest = first.getBarometer();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getBarometer() > highest) {
 				highest = measurement.getBarometer();
 			}
@@ -245,17 +245,17 @@ public class Period {
 		return highest;
 	}
 
-	public Double getAverageBarometer(ArrayList<Measurement> measurements) {
+	public Double getAverageBarometer() {
 		double sum = 0;
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			sum += measurement.getBarometer();
 		}
-		return sum / measurements.size();
+		return sum / getMeasurements().size();
 	}
 
-	public Double getBarometerMedian(ArrayList<Measurement> measurements) {
+	public Double getBarometerMedian() {
 		ArrayList<Double> baros = new ArrayList<>();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			baros.add(measurement.getBarometer());
 		}
 		Collections.sort(baros);
@@ -267,10 +267,10 @@ public class Period {
 	/**
 	Humidity
 	 */
-	public Integer getLowestOutsideHumidity(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Integer getLowestOutsideHumidity() {
+		Measurement first = getMeasurements().get(0);
 		int lowest = first.getOutsideHum();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getOutsideHum() < lowest) {
 				lowest = measurement.getOutsideHum();
 			}
@@ -278,10 +278,10 @@ public class Period {
 		return lowest;
 	}
 
-	public Integer getHighestOutsideHumidity(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
+	public Integer getHighestOutsideHumidity() {
+		Measurement first = getMeasurements().get(0);
 		int highest = first.getOutsideHum();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			if (measurement.getOutsideHum() > highest) {
 				highest = measurement.getOutsideHum();
 			}
@@ -289,17 +289,17 @@ public class Period {
 		return highest;
 	}
 
-	public Double getAverageOutsideHumidity(ArrayList<Measurement> measurements) {
+	public Double getAverageOutsideHumidity() {
 		int sum = 0;
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			sum += measurement.getOutsideHum();
 		}
-		return ((1.0*sum) / measurements.size());
+		return ((1.0*sum) / getMeasurements().size());
 	}
 
-	public Integer getOutsideHumidityMedian(ArrayList<Measurement> measurements) {
+	public Integer getOutsideHumidityMedian() {
 		ArrayList<Integer> hums = new ArrayList<>();
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			hums.add(measurement.getOutsideHum());
 		}
 		Collections.sort(hums);
@@ -312,16 +312,16 @@ public class Period {
 	/**
 	 * Individueel
 	 */
-	public Double maxTemperatureDifference(ArrayList<Measurement> measurements) {
+	public Double maxTemperatureDifference() {
 
-		if (measurements.isEmpty()) {
+		if (getMeasurements().isEmpty()) {
 			return null;
 		}
 
-		double maxTemp = measurements.get(0).getOutsideTemp();
-		double minTemp = measurements.get(0).getOutsideTemp();
+		double maxTemp = getMeasurements().get(0).getOutsideTemp();
+		double minTemp = getMeasurements().get(0).getOutsideTemp();
 
-		for (Measurement measurement : measurements) {
+		for (Measurement measurement : getMeasurements()) {
 			double outsideTemp = measurement.getOutsideTemp();
 
 			if (outsideTemp > maxTemp) {
