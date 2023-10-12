@@ -12,8 +12,8 @@ public class Main {
 //        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
 //        GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
 //        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
-        Period period = new Period(LocalDate.of(2023,10,3));
-        System.out.println(period.longestRainFall());
+//        Period period = new Period(LocalDate.of(2023,10,3));
+//        System.out.println(period.longestRainFall());
 
     }
 }
