@@ -129,24 +129,32 @@ public class Period {
 	/**
 	 * Todo more methods
 	 */
-	public int getLastDayOfMonth(int month) {
-		int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		return monthDays[month];
-	}
 
-	public Year mostRainMonth(Year year) {
-		ArrayList<Integer> monthData = new ArrayList<>();
+	public boolean Heatwave() {
+		int degrees30 = 0;
+		int degrees25 = 0;
+		int counter = 0;
+		for(Measurement measurement: this.getMeasurements()) {
+			if(measurement.getOutsideTemp() < 25) {
+				degrees25 = 0;
+				degrees30 = 0;
+				counter = 0;
+			}
+			if(measurement.getOutsideTemp() >= 25 && measurement.getOutsideTemp() < 30) { degrees25++; counter++; }
+			if(measurement.getOutsideTemp() >= 30) { degrees30++; counter++; }
 
-		for (int i = 1; i <= 12; i++) {
-			LocalDate start = LocalDate.parse(year + "-" + i + "-01");
 
-			LocalDate end = LocalDate.parse(year + "-" + i + "-" + getLastDayOfMonth(i));
+			if (counter == 5 && degrees30 < 3) {
+				counter--;
+				if (degrees25 >= 3) degrees25--;
+			}
 
-			Period period = new Period(start, end);
-			monthData.set(i - 1, average(period.getMeasurements()));
+			if(degrees30 >= 3 && (degrees30 + degrees25) >= 5){
+				return true;
+			}
 		}
-		return monthData.indexOf(highestValue(monthData))+1;
 
+		return false;
 	}
 
 }
