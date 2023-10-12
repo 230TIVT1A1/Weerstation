@@ -104,37 +104,6 @@ public class Period {
 
 
 	/**
-	 * todo
-	 * @return
-	 */
-	public double getAverageOutsideTemperature()
-	{
-		ArrayList<Measurement> measurements = getMeasurements();
-
-		//calculate average outside temperature and return it
-		return measurements.get(0).getOutsideTemp();
-	}
-
-	/**
-	 * Todo
-	 */
-	public ArrayList<Period> hasHeatWave() {
-		return null;
-	}
-
-	/**
-	 * Todo
-	 */
-	public Period longestDraught() {
-		return new Period();
-	}
-
-	/**
-	 * Todo more methods
-	 */
-
-
-	/**
 	InsideTemp
 	 */
 	public Double getLowestInsideTemp(ArrayList<Measurement> measurements) {
