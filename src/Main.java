@@ -60,9 +60,6 @@ public class Main {
         System.out.println("Mediaan Luchtvochtigheid Buiten: " + period.getOutsideHumidityMedian());
 
         System.out.println("---------------------------------------------");
-
-
-        Period period = new Period(100);
         /**
          Mediaan
          */
@@ -133,8 +130,8 @@ public class Main {
          Individual Assignment (Daan)
          Date of biggest difference between the WindChill and OutsideTemp
          */
-        System.out.println("Biggest difference between the WindChill and OutsideTemp: " + period.getDiffWindChillAndOutsideTemp(period.getMeasurements()));
-        System.out.println("Date when this happend: " + period.getDateBiggestDiff(period.getMeasurements()));
+        System.out.println("Biggest difference between the WindChill and OutsideTemp: " + period.getDiffWindChillAndOutsideTemp());
+        System.out.println("Date when this happend: " + period.getDateBiggestDiff());
     }
 
 }

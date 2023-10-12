@@ -661,9 +661,9 @@ public class Period {
 	/**
 	 * Individueel
 	 */
-	public double getDiffWindChillAndOutsideTemp(ArrayList<Measurement> measurements){
+	public double getDiffWindChillAndOutsideTemp(){
 		double biggestDifference = 0;
-		for (Measurement measurement : measurements){
+		for (Measurement measurement : this.getMeasurements()){
 			double outsideTemp = measurement.getOutsideTemp();
 			// Overflow Check
 			if (outsideTemp > 1000 || outsideTemp < -1000){
@@ -685,10 +685,10 @@ public class Period {
 		return biggestDifference;
 	}
 
-	public LocalDate getDateBiggestDiff(ArrayList<Measurement> measurements){
-		double biggestDiff = getDiffWindChillAndOutsideTemp(measurements);
+	public LocalDate getDateBiggestDiff(){
+		double biggestDiff = getDiffWindChillAndOutsideTemp();
 		LocalDate theDate = null;
-		for (Measurement measurement : measurements){
+		for (Measurement measurement : this.getMeasurements()){
 			LocalDate date = LocalDate.from(measurement.getDateStamp());
 			if ((measurement.getOutsideTemp() - measurement.getWindChill()) > 0){
 				if ((measurement.getOutsideTemp() - measurement.getWindChill()) == biggestDiff){
