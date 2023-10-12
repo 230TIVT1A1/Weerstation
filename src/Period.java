@@ -101,31 +101,29 @@ public class Period {
         return measurements;
     }
 
-    public ArrayList<String> longestRainFall() {
-        ArrayList<Measurement> arrayMesurement = getMeasurements();
-        ArrayList<String> returnList = new ArrayList<>();
-        LocalDateTime startDate = this.beginPeriod.atStartOfDay();
-        LocalDateTime endDate = null;
-        long longestRain = 0;
-        for (Measurement mes : arrayMesurement) {
-            LocalDateTime mesDateStamp = mes.getDateStamp();
-            if (mes.getRainRate() == 0.0) {
-                startDate = mesDateStamp;
-            } else {
-                long rainTime = startDate.until(mesDateStamp, ChronoUnit.MINUTES);
-                if (longestRain < rainTime) {
-                    longestRain = rainTime;
-                    endDate = mesDateStamp;
-                    returnList.clear();
-                    returnList.add(String.valueOf(longestRain));
-                    returnList.add(String.valueOf(startDate));
-                    returnList.add(String.valueOf(endDate));
-                }
-            }
-        }
-        return returnList;
-
-
-    }
+//    public ArrayList<String> longestRainFall() {
+//        ArrayList<Measurement> arrayMesurement = getMeasurements();
+//        ArrayList<String> returnList = new ArrayList<>();
+//        LocalDateTime startDate = this.beginPeriod.atStartOfDay();
+//        LocalDateTime endDate = null;
+//        long longestRain = 0;
+//        for (Measurement mes : arrayMesurement) {
+//            LocalDateTime mesDateStamp = mes.getDateStamp();
+//            if (mes.getRainRate() == 0.0) {
+//                startDate = mesDateStamp;
+//            } else {
+//                long rainTime = startDate.until(mesDateStamp, ChronoUnit.MINUTES);
+//                if (longestRain < rainTime) {
+//                    longestRain = rainTime;
+//                    endDate = mesDateStamp;
+//                    returnList.clear();
+//                    returnList.add(String.valueOf(longestRain));
+//                    returnList.add(String.valueOf(startDate));
+//                    returnList.add(String.valueOf(endDate));
+//                }
+//            }
+//        }
+//        return returnList;
+//    }
 
 }
