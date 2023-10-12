@@ -129,6 +129,24 @@ public class Period {
 	/**
 	 * Todo more methods
 	 */
+	public int getLastDayOfMonth(int month) {
+		int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		return monthDays[month];
+	}
 
+	public Year mostRainMonth(Year year) {
+		ArrayList<Integer> monthData = new ArrayList<>();
+
+		for (int i = 1; i <= 12; i++) {
+			LocalDate start = LocalDate.parse(year + "-" + i + "-01");
+
+			LocalDate end = LocalDate.parse(year + "-" + i + "-" + getLastDayOfMonth(i));
+
+			Period period = new Period(start, end);
+			monthData.set(i - 1, average(period.getMeasurements()));
+		}
+		return monthData.indexOf(highestValue(monthData))+1;
+
+	}
 
 }
