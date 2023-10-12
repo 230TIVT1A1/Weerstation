@@ -118,8 +118,7 @@ public class Measurement {
                 '}';
     }
     public boolean isValid(){
-        checkShortOverflow(this.rawMeasurement.getBarometer());
-        return false;
+        return checkShortOverflow(this.rawMeasurement.getBarometer());
     }
     public static boolean checkShortOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {
