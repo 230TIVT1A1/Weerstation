@@ -52,8 +52,9 @@ public class GUI {
         }else if(inputString.contains(",")) {
             chr = ',';
         }
+        inputString = inputString.replace("-", "");
         int indexPoint = inputString.indexOf(chr);
-        inputString = inputString.replace(""+chr, "").replace("-", "");
+        inputString = inputString.replace(""+chr, "");
         int addressShift = segSize[group] - inputString.length() - 1;
         for (int i = 0; i < inputString.length(); i++) {
             int chrInt = inputString.charAt(i) - '0';
@@ -89,7 +90,7 @@ public class GUI {
             int pos = text.indexOf(' ');
             String first = "";
             if (pos < 1) {
-                first = text.substring(0, text.length());
+                first = text;
             } else {
                 first = text.substring(0, pos);
             }

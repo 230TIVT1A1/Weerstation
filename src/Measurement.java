@@ -2,7 +2,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Measurement {
-    private RawMeasurement rawMeasurement;
+    private final RawMeasurement rawMeasurement;
 
     public Measurement(RawMeasurement rawMeasurement) {
         this.rawMeasurement = rawMeasurement;
@@ -118,19 +118,21 @@ public class Measurement {
                 '}';
     }
     public boolean isValid(){
-        return checkShortOverflow(this.rawMeasurement.getBarometer());
+        return checkShortOverflow(this.rawMeasurement.getBarometer()) &&
+                checkShortOverflow(this.rawMeasurement.getOutsideHum()) &&
+                checkShortOverflow(this.rawMeasurement.getOutsideTemp()) &&
+                checkShortOverflow(this.rawMeasurement.getAvgWindSpeed()) &&
+                checkShortOverflow(this.rawMeasurement.getSolarRad()) &&
+                checkShortOverflow(this.rawMeasurement.getUVLevel());
     }
     public static boolean checkShortOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {
             return false;
-        } else if (rawValue == Short.MAX_VALUE) {
-            return false;
-        }
-        return true;
+        } else return rawValue != Short.MAX_VALUE;
     }
     public double getDewpoint() {
-        int humidity = (getInsideHum());
-        double temp = (getInsideTemp());
+        int humidity = (getOutsideHum());
+        double temp = (getOutsideTemp());
 
         return temp - ((100.0 - humidity) / 5);
     }
