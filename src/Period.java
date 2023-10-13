@@ -310,7 +310,7 @@ public class Period {
 
 		return hums.get(middle);
 	}
-
+  
 	public boolean Heatwave() {
 		int degrees30 = 0;
 		int degrees25 = 0;
@@ -711,6 +711,34 @@ public class Period {
 		return biggestDifference;
 	}
 
+	public Period longestDrougth() {
+		ArrayList<Measurement> measurements = this.getMeasurements();
+		int count = 0;
+		int maxCount = 0;
+		LocalDateTime endOfPeriod = null;
+		LocalDateTime beginOfPeriod = null;
+		for (int i = 0; i < measurements.size(); i++) {
+			double totalRain = 0;
+			if (measurements.get(i).getRainRate() < 10.0) {
+				for (int j = i; j < measurements.size(); j++) {
+					totalRain += measurements.get(j).getRainRate();
+					if (totalRain >= 10)
+						break;
+					if (count > maxCount) {
+						maxCount = count;
+						endOfPeriod = measurements.get(j).getDateStamp();
+						beginOfPeriod = measurements.get(i).getDateStamp();
+					}
+					count++;
+				}
+				count = 0;
+			}
+		}
+		if (beginOfPeriod==null)
+			return new Period();
+		else
+			return new Period(beginOfPeriod.toLocalDate(),endOfPeriod.toLocalDate());
+  }
 	public LocalDate getDateBiggestDiff(){
 		double biggestDiff = getDiffWindChillAndOutsideTemp();
 		LocalDate theDate = null;
