@@ -105,30 +105,7 @@ public class Period {
         return measurements;
     }
 
-   public ArrayList<String> longestRainFall() {
-       ArrayList<Measurement> arrayMesurement = getMeasurements();
-       ArrayList<String> returnList = new ArrayList<>();
-       LocalDateTime startDate = this.beginPeriod.atStartOfDay();
-       LocalDateTime endDate = null;
-       long longestRain = 0;
-       for (Measurement mes : arrayMesurement) {
-           LocalDateTime mesDateStamp = mes.getDateStamp();
-           if (mes.getRainRate() == 0.0) {
-               startDate = mesDateStamp;
-           } else {
-               long rainTime = startDate.until(mesDateStamp, ChronoUnit.MINUTES);
-               if (longestRain < rainTime) {
-                   longestRain = rainTime;
-                   endDate = mesDateStamp;
-                   returnList.clear();
-                   returnList.add(String.valueOf(longestRain));
-                   returnList.add(String.valueOf(startDate));
-                   returnList.add(String.valueOf(endDate));
-               }
-           }
-       }
-       return returnList;
-   }
+
 
 	/**
 	InsideTemp
@@ -174,10 +151,6 @@ public class Period {
 		return insideTemps.get(middle);
 	}
 
-	public Double getInsideTempDeviation(ArrayList<Measurement> measurements) {
-
-		return null;
-	}
 
 	/**
 	OutsideTemp
@@ -310,33 +283,153 @@ public class Period {
 
 		return hums.get(middle);
 	}
-  
-	public boolean Heatwave() {
-		int degrees30 = 0;
-		int degrees25 = 0;
-		int counter = 0;
-		for(Measurement measurement: this.getMeasurements()) {
-			if(measurement.getOutsideTemp() < 25) {
-				degrees25 = 0;
-				degrees30 = 0;
-				counter = 0;
-			}
-			if(measurement.getOutsideTemp() >= 25 && measurement.getOutsideTemp() < 30) { degrees25++; counter++; }
-			if(measurement.getOutsideTemp() >= 30) { degrees30++; counter++; }
 
+	public Double getInsideTempMode() {
+		ArrayList<Double> insideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			insideTemps.add(measurement.getInsideTemp());
+		}
+		int maxFrequenty = 0;
+		double insideTempMode = 0.0;
+		for (int i = 0; i < insideTemps.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < insideTemps.size(); j++) {
+				if (Math.round(insideTemps.get(i)) == Math.round(insideTemps.get(j))) {
+					count++;
+				}
 
-			if (counter == 5 && degrees30 < 3) {
-				counter--;
-				if (degrees25 >= 3) degrees25--;
-			}
-
-			if(degrees30 >= 3 && (degrees30 + degrees25) >= 5){
-				return true;
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					insideTempMode = Math.round(insideTemps.get(i));
+				}
 			}
 		}
-
-		return false;
+		return insideTempMode;
 	}
+
+	public Double getInsideTempSD() {
+		ArrayList<Double> insideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			insideTemps.add(measurement.getInsideTemp());
+		}
+		double dividend = 0.0;
+		double averageInsideTemp = this.getAverageInsideTemp();
+		for (Double insideTemp : insideTemps) {
+			dividend += (insideTemp - averageInsideTemp) * (insideTemp - averageInsideTemp);
+		}
+		return Math.sqrt(dividend/(insideTemps.size()-1));
+	}
+
+	public Double getOutsideTempMode() {
+		ArrayList<Double> outsideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			outsideTemps.add(measurement.getOutsideTemp());
+		}
+		int maxFrequenty = 0;
+		double outsideTempMode = 0.0;
+		for (int i = 0; i < outsideTemps.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < outsideTemps.size(); j++) {
+				if (Math.round(outsideTemps.get(i)) == Math.round(outsideTemps.get(j))) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					outsideTempMode = Math.round(outsideTemps.get(i));
+				}
+			}
+		}
+		return outsideTempMode;
+	}
+
+	public Double getOutsideTempSD() {
+		ArrayList<Double> outsideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			outsideTemps.add(measurement.getOutsideTemp());
+		}
+		double dividend = 0.0;
+		double averageOutsideTemp = this.getAverageOutsideTemp();
+		for (Double outsideTemp : outsideTemps) {
+			dividend += (outsideTemp - averageOutsideTemp) * (outsideTemp - averageOutsideTemp);
+		}
+		return Math.sqrt(dividend/(outsideTemps.size()-1));
+	}
+
+	public Double getBarometerMode() {
+		ArrayList<Double> Barometer = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Barometer.add(measurement.getBarometer());
+		}
+		int maxFrequenty = 0;
+		double barometerMode = 0.0;
+		for (int i = 0; i < Barometer.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < Barometer.size(); j++) {
+				if (Math.round(Barometer.get(i)) == Math.round(Barometer.get(j))) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					barometerMode = Math.round(Barometer.get(i));
+				}
+			}
+		}
+		return barometerMode;
+	}
+
+	public Double getBarometerSD() {
+		ArrayList<Double> Barometers = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Barometers.add(measurement.getBarometer());
+		}
+		double dividend = 0.0;
+		double averageBarometer = this.getAverageBarometer();
+		for (Double barometer : Barometers) {
+			dividend += (barometer - averageBarometer) * (barometer - averageBarometer);
+		}
+		return Math.sqrt(dividend/(Barometers.size()-1));
+	}
+
+
+
+	public Double getOutsideHumidityMode() {
+		ArrayList<Integer> Humidities = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Humidities.add(measurement.getOutsideHum());
+		}
+		int maxFrequenty = 0;
+		double humidityMode = 0.0;
+		for (int i = 0; i < Humidities.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < Humidities.size(); j++) {
+				if (Humidities.get(i) == Humidities.get(j)) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					humidityMode = Humidities.get(i);
+				}
+			}
+		}
+		return humidityMode;
+	}
+
+	public Double getOutsideHumiditySD() {
+		ArrayList<Integer> Humidities = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Humidities.add(measurement.getOutsideHum());
+		}
+		double dividend = 0.0;
+		double averageOutsideHumidity = this.getAverageOutsideHumidity();
+		for (int humidity : Humidities) {
+			dividend += (humidity - averageOutsideHumidity) * (humidity - averageOutsideHumidity);
+		}
+		return Math.sqrt(dividend/(Humidities.size()-1));
+	}
+
 
 	/**
 	 * Individueel
@@ -365,328 +458,35 @@ public class Period {
 		double difference = maxTemp - minTemp;
 		return difference;
 	}
-
-	public Double getLowestInsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double lowest = first.getInsideTemp();
-		for (Measurement measurement : measurements) {
-			if (measurement.getInsideTemp() < lowest) {
-				lowest = measurement.getInsideTemp();
-			}
-		}
-		return lowest;
-	}
-
-	public Double getHighestInsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double highest = first.getInsideTemp();
-		for (Measurement measurement : measurements) {
-			if (measurement.getInsideTemp() > highest) {
-				highest = measurement.getInsideTemp();
-			}
-		}
-		return highest;
-	}
-
-	public Double getAverageInsideTemp(ArrayList<Measurement> measurements) {
-		double sum = 0;
-		for (Measurement measurement : measurements) {
-			sum += measurement.getInsideTemp();
-		}
-		return sum / measurements.size();
-	}
-
-	public Double getInsideTempMedian(ArrayList<Measurement> measurements) {
-		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			insideTemps.add(measurement.getInsideTemp());
-		}
-		Collections.sort(insideTemps);
-		int middle = (insideTemps.size() + 1) / 2;
-
-		return insideTemps.get(middle);
-	}
-
-	public Double getInsideTempMode(ArrayList<Measurement> measurements) {
-		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			insideTemps.add(measurement.getInsideTemp());
-		}
-		int maxFrequenty = 0;
-		double insideTempMode = 0.0;
-		for (int i = 0; i < insideTemps.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < insideTemps.size(); j++) {
-				if (Math.round(insideTemps.get(i)) == Math.round(insideTemps.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					insideTempMode = Math.round(insideTemps.get(i));
-				}
-			}
-		}
-		return insideTempMode;
-	}
-
-	public Double getInsideTempSD(ArrayList<Measurement> measurements) {
-		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			insideTemps.add(measurement.getInsideTemp());
-		}
-		double dividend = 0.0;
-		double averageInsideTemp = this.getAverageInsideTemp(measurements);
-		for (Double insideTemp : insideTemps) {
-			dividend += (insideTemp - averageInsideTemp) * (insideTemp - averageInsideTemp);
-		}
-		return Math.sqrt(dividend/(insideTemps.size()-1));
-	}
-
 	/**
-	 OutsideTemp
+	 * checks when the longest rain took place
+	 *
+	 * @return a list with time of the rainfall and the start and end date
 	 */
-	public Double getLowestOutsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double lowest = first.getOutsideTemp();
-		for (Measurement measurement : measurements) {
-			if (measurement.getOutsideTemp() < lowest) {
-				lowest = measurement.getOutsideTemp();
-			}
-		}
-		return lowest;
-	}
-
-	public Double getHighestOutsideTemp(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double highest = first.getOutsideTemp();
-		for (Measurement measurement : measurements) {
-			if (measurement.getOutsideTemp() > highest) {
-				highest = measurement.getOutsideTemp();
-			}
-		}
-		return highest;
-	}
-
-	public Double getAverageOutsideTemp(ArrayList<Measurement> measurements) {
-		double sum = 0;
-		for (Measurement measurement : measurements) {
-			sum += measurement.getOutsideTemp();
-		}
-		return sum / measurements.size();
-	}
-
-	public Double getOutsideTempMedian(ArrayList<Measurement> measurements) {
-		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			outsideTemps.add(measurement.getOutsideTemp());
-		}
-		Collections.sort(outsideTemps);
-		int middle = (outsideTemps.size() + 1) / 2;
-
-		return outsideTemps.get(middle);
-	}
-
-	public Double getOutsideTempMode(ArrayList<Measurement> measurements) {
-		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			outsideTemps.add(measurement.getOutsideTemp());
-		}
-		int maxFrequenty = 0;
-		double outsideTempMode = 0.0;
-		for (int i = 0; i < outsideTemps.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < outsideTemps.size(); j++) {
-				if (Math.round(outsideTemps.get(i)) == Math.round(outsideTemps.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					outsideTempMode = Math.round(outsideTemps.get(i));
+	public ArrayList<String> longestRainFall() {
+		ArrayList<Measurement> arrayMesurement = getMeasurements();
+		ArrayList<String> returnList = new ArrayList<>();
+		LocalDateTime startDate = this.beginPeriod.atStartOfDay();
+		LocalDateTime endDate = null;
+		long longestRain = 0;
+		for (Measurement mes : arrayMesurement) {
+			LocalDateTime mesDateStamp = mes.getDateStamp();
+			if (mes.getRainRate() == 0.0) {
+				startDate = mesDateStamp;
+			} else {
+				long rainTime = startDate.until(mesDateStamp, ChronoUnit.MINUTES);
+				if (longestRain < rainTime) {
+					longestRain = rainTime;
+					endDate = mesDateStamp;
+					returnList.clear();
+					returnList.add(String.valueOf(longestRain));
+					returnList.add(String.valueOf(startDate));
+					returnList.add(String.valueOf(endDate));
 				}
 			}
 		}
-		return outsideTempMode;
+		return returnList;
 	}
-
-	public Double getOutsideTempSD(ArrayList<Measurement> measurements) {
-		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			outsideTemps.add(measurement.getOutsideTemp());
-		}
-		double dividend = 0.0;
-		double averageOutsideTemp = this.getAverageOutsideTemp(measurements);
-		for (Double outsideTemp : outsideTemps) {
-			dividend += (outsideTemp - averageOutsideTemp) * (outsideTemp - averageOutsideTemp);
-		}
-		return Math.sqrt(dividend/(outsideTemps.size()-1));
-	}
-
-	/**
-	 Barometer
-	 */
-	public Double getLowestBarometer(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double lowest = first.getBarometer();
-		for (Measurement measurement : measurements) {
-			if (measurement.getBarometer() < lowest) {
-				lowest = measurement.getBarometer();
-			}
-		}
-		return lowest;
-	}
-
-	public Double getHighestBarometer(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		double highest = first.getBarometer();
-		for (Measurement measurement : measurements) {
-			if (measurement.getBarometer() > highest) {
-				highest = measurement.getBarometer();
-			}
-		}
-		return highest;
-	}
-
-	public Double getAverageBarometer(ArrayList<Measurement> measurements) {
-		double sum = 0;
-		for (Measurement measurement : measurements) {
-			sum += measurement.getBarometer();
-		}
-		return sum / measurements.size();
-	}
-
-	public Double getBarometerMedian(ArrayList<Measurement> measurements) {
-		ArrayList<Double> baros = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			baros.add(measurement.getBarometer());
-		}
-		Collections.sort(baros);
-		int middle = (baros.size() + 1) / 2;
-
-		return baros.get(middle);
-	}
-
-	public Double getBarometerMode(ArrayList<Measurement> measurements) {
-		ArrayList<Double> Barometer = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			Barometer.add(measurement.getBarometer());
-		}
-		int maxFrequenty = 0;
-		double barometerMode = 0.0;
-		for (int i = 0; i < Barometer.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < Barometer.size(); j++) {
-				if (Math.round(Barometer.get(i)) == Math.round(Barometer.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					barometerMode = Math.round(Barometer.get(i));
-				}
-			}
-		}
-		return barometerMode;
-	}
-
-	public Double getBarometerSD(ArrayList<Measurement> measurements) {
-		ArrayList<Double> Barometers = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			Barometers.add(measurement.getBarometer());
-		}
-		double dividend = 0.0;
-		double averageBarometer = this.getAverageBarometer(measurements);
-		for (Double barometer : Barometers) {
-			dividend += (barometer - averageBarometer) * (barometer - averageBarometer);
-		}
-		return Math.sqrt(dividend/(Barometers.size()-1));
-	}
-
-	/**
-	 Humidity
-	 */
-	public Integer getLowestOutsideHumidity(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		int lowest = first.getOutsideHum();
-		for (Measurement measurement : measurements) {
-			if (measurement.getOutsideHum() < lowest) {
-				lowest = measurement.getOutsideHum();
-			}
-		}
-		return lowest;
-	}
-
-	public Integer getHighestOutsideHumidity(ArrayList<Measurement> measurements) {
-		Measurement first = measurements.get(0);
-		int highest = first.getOutsideHum();
-		for (Measurement measurement : measurements) {
-			if (measurement.getOutsideHum() > highest) {
-				highest = measurement.getOutsideHum();
-			}
-		}
-		return highest;
-	}
-
-	public Double getAverageOutsideHumidity(ArrayList<Measurement> measurements) {
-		int sum = 0;
-		for (Measurement measurement : measurements) {
-			sum += measurement.getOutsideHum();
-		}
-		return ((1.0*sum) / measurements.size());
-	}
-
-	public Integer getOutsideHumidityMedian(ArrayList<Measurement> measurements) {
-		ArrayList<Integer> hums = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			hums.add(measurement.getOutsideHum());
-		}
-		Collections.sort(hums);
-		int middle = (hums.size() + 1) / 2;
-
-		return hums.get(middle);
-	}
-
-	public Double getOutsideHumidityMode(ArrayList<Measurement> measurements) {
-		ArrayList<Integer> Humidities = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			Humidities.add(measurement.getOutsideHum());
-		}
-		int maxFrequenty = 0;
-		double humidityMode = 0.0;
-		for (int i = 0; i < Humidities.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < Humidities.size(); j++) {
-				if (Humidities.get(i) == Humidities.get(j)) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					humidityMode = Humidities.get(i);
-				}
-			}
-		}
-		return humidityMode;
-	}
-
-	public Double getOutsideHumiditySD(ArrayList<Measurement> measurements) {
-		ArrayList<Integer> Humidities = new ArrayList<>();
-		for (Measurement measurement : measurements) {
-			Humidities.add(measurement.getOutsideHum());
-		}
-		double dividend = 0.0;
-		double averageOutsideHumidity = this.getAverageOutsideHumidity(measurements);
-		for (int humidity : Humidities) {
-			dividend += (humidity - averageOutsideHumidity) * (humidity - averageOutsideHumidity);
-		}
-		return Math.sqrt(dividend/(Humidities.size()-1));
-	}
-
-
-	/**
-	 * Individueel
-	 */
 	public double getDiffWindChillAndOutsideTemp(){
 		double biggestDifference = 0;
 		for (Measurement measurement : this.getMeasurements()){
@@ -710,7 +510,32 @@ public class Period {
 		}
 		return biggestDifference;
 	}
+	public boolean Heatwave() {
+		int degrees30 = 0;
+		int degrees25 = 0;
+		int counter = 0;
+		for(Measurement measurement: this.getMeasurements()) {
+			if(measurement.getOutsideTemp() < 25) {
+				degrees25 = 0;
+				degrees30 = 0;
+				counter = 0;
+			}
+			if(measurement.getOutsideTemp() >= 25 && measurement.getOutsideTemp() < 30) { degrees25++; counter++; }
+			if(measurement.getOutsideTemp() >= 30) { degrees30++; counter++; }
 
+
+			if (counter == 5 && degrees30 < 3) {
+				counter--;
+				if (degrees25 >= 3) degrees25--;
+			}
+
+			if(degrees30 >= 3 && (degrees30 + degrees25) >= 5){
+				return true;
+			}
+		}
+
+		return false;
+	}
 	public Period longestDrougth() {
 		ArrayList<Measurement> measurements = this.getMeasurements();
 		int count = 0;
