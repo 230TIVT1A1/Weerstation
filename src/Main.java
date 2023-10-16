@@ -10,6 +10,7 @@ public class Main {
         IO.init();
         GUI.drawPicture("/Icons/thermostat.png",1,1);
         GUI.drawPicture("/Icons/thermostatSelected.png",16,1);
+        GUI.drawPicture("/Icons/wind.png",32,1);
 //        GUI.drawPicture("/Icons/Clearer.png",0,0);
         GUI.clearSegment();
         GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
