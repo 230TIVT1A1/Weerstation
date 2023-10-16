@@ -1,3 +1,6 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -9,7 +12,20 @@ public class GUI {
         IO.writeShort(0x40, 0xFE);
         IO.writeShort(0x40, 0x01);
     }
-    
+
+    public static void drawPicture(String fileName, int px, int py){
+        try {
+            BufferedImage image = ImageIO.read(GUI.class.getResourceAsStream(fileName));
+            for (int x = 0; x < image.getWidth(); x++) {
+                for (int y = 0; y < image.getHeight(); y++) {
+                    setPixel(px + x, py + y, image.getRGB(x, y) == -1);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public static void setPixel(int x, int y, boolean state) {
         if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
