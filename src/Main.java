@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class Main {
@@ -7,9 +8,9 @@ public class Main {
 //        System.out.println(measurement.getOutsideTemp());
 //        System.out.println(measurement.getOutsideHum());
 //        System.out.println(measurement.getInsideTemp());
-        GUI.drawPicture("/Icons/thermostat.png",1,1);
-        GUI.drawPicture("/Icons/thermostatSelected.png",16,1);
-        GUI.drawPicture("/Icons/wind.png",32,1);
+        GUI.drawPicture("/Temp/Temp.png",1,1);
+        GUI.drawPicture("/Temp/Temp-Selected.png",16,1);
+        GUI.drawPicture("/Wind/Wind.png",32,1);
 //        GUI.drawPicture("/Icons/Clearer.png",0,0);
         IO.init();
         GUI.clearSegment();

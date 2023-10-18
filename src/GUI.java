@@ -1,4 +1,6 @@
 import javax.imageio.ImageIO;
+import java.awt.GridLayout;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -21,10 +23,35 @@ public class GUI {
                     setPixel(px + x, py + y, image.getRGB(x, y) == -1);
                 }
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+//    public static void main(String[] args) {
+
+//    }
+    public void getGrid (String Grid) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(12, 12);
+        frame.setLayout(new GridLayout(2, 12, 6, 3));
+
+        frame.add(new JButton("1"));
+        frame.add(new JButton("2"));
+        frame.add(new JButton("3"));
+        frame.add(new JButton("4"));
+        frame.add(new JButton("5"));
+        frame.add(new JButton("6"));
+        frame.add(new JButton("7"));
+        frame.add(new JButton("8"));
+        frame.add(new JButton("9"));
+        frame.add(new JButton("10"));
+        frame.add(new JButton("11"));
+        frame.add(new JButton("12"));
+
+        frame.setVisible(true);
     }
 
     public static void setPixel(int x, int y, boolean state) {
