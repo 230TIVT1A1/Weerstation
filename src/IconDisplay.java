@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class IconDisplay {
 
-    public static void drawPicture(String fileName, int px, int py){
+    public static void drawPicture(String fileName, int px, int py) {
         try {
             BufferedImage image = ImageIO.read(GUI.class.getResourceAsStream(fileName));
             for (int x = 0; x < image.getWidth(); x++) {
@@ -14,15 +14,19 @@ public class IconDisplay {
                     GUI.setPixel(px + x, py + y, image.getRGB(x, y) == -1);
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-    public void Grid (String Grid) {
-        JFrame frame = new JFrame();
-        frame.setSize(12, 12);
-        frame.setLayout(new GridLayout(2, 6, 8, 3));
-    }
 }
+
+//    public void gridLayout(String Grid){
+//    }
+
+//    public void Grid (String Grid) {
+//        JFrame frame = new JFrame();
+//        frame.setSize(12, 12);
+//        frame.setLayout(new GridLayout(2, 6, 4, 3));
+//    }
+//}
+
