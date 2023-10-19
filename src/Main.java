@@ -80,20 +80,45 @@ public class Main {
 //        System.out.println("Date when this happend: " + period.getDateBiggestDiff());
 
 
-        Menu menu = new Menu();
-        menu.addItem(new MenuItem("hum"));
-        menu.addItem(new MenuItem("temp"));
-        menu.addItem(new MenuItem("wind"));
-        menu.addItem(new MenuItem("bar"));
+        Menu mainMenu = new Menu();
+        mainMenu.addItem(new MenuItem("hum"));
+        mainMenu.addItem(new MenuItem("temp"));
+        mainMenu.addItem(new MenuItem("wind"));
+        mainMenu.addItem(new MenuItem("bar"));
+        mainMenu.addItem(new MenuItem("period"));
 
-        System.out.println(menu.getItems());
-        System.out.println(menu.getCurrentItem());
-        menu.nextItem();
-        System.out.println(menu.getCurrentItem());
-        menu.previousItem();
-        System.out.println(menu.getCurrentItem());
-        menu.setCurrentItem("wind");
-        System.out.println(menu.getCurrentItem());
+        Menu subMenu = new Menu();
+        subMenu.addItem(new MenuItem("modes"));
+        subMenu.addItem(new MenuItem("mediaan"));
+        subMenu.addItem(new MenuItem("standaardafwijking"));
+        subMenu.addItem(new MenuItem("gemiddeld"));
+        subMenu.addItem(new MenuItem("minimaal"));
+        subMenu.addItem(new MenuItem("maximaal"));
+
+
+        Menu periodMenu = new Menu();
+        periodMenu.addItem(new MenuItem("Last year"));
+        periodMenu.addItem(new MenuItem("Last month"));
+        periodMenu.addItem(new MenuItem("Last week"));
+        periodMenu.addItem(new MenuItem("Last Hour"));
+        periodMenu.addItem(new MenuItem("This day"));
+        periodMenu.addItem(new MenuItem("Yesterday"));
+
+        ArrayList<Menu> menuArray = new ArrayList<>();
+        menuArray.add(mainMenu);
+        menuArray.add(subMenu);
+        menuArray.add(periodMenu);
+
+        Menus menus = new Menus(menuArray);
+
+        System.out.println(mainMenu.getItems());
+        System.out.println(mainMenu.getCurrentItem());
+        mainMenu.nextItem();
+        System.out.println(mainMenu.getCurrentItem());
+        mainMenu.previousItem();
+        System.out.println(mainMenu.getCurrentItem());
+        mainMenu.setCurrentItem("wind");
+        System.out.println(mainMenu.getCurrentItem());
 
 
     }
