@@ -8,10 +8,10 @@ public class Main {
 //        System.out.println(measurement.getOutsideTemp());
 //        System.out.println(measurement.getOutsideHum());
 //        System.out.println(measurement.getInsideTemp());
-        GUI.drawPicture("/Temp/Temp.png",1,1);
-        GUI.drawPicture("/Temp/Temp-Selected.png",16,1);
-        GUI.drawPicture("/Wind/Wind.png",32,1);
-//        GUI.drawPicture("/Icons/Clearer.png",0,0);
+        IconDisplay.drawPicture("/Icons/Temp.png",1,1);
+        IconDisplay.drawPicture("/Icons/Temp-Selected.png",16,1);
+        IconDisplay.drawPicture("/Icons/Wind.png",32,1);
+//        IconDisplay.drawPicture("/Icons/Clearer.png",0,0);
         IO.init();
         GUI.clearSegment();
 //        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
