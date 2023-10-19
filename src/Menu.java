@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public class Menu {
+    private String name = "";
     private ArrayList<MenuItem> items = new ArrayList<>();
     private MenuItem currentItem = null;
-
-    public Menu(){
+    public Menu(String name){
+        this.name = name;
     }
     public Menu(ArrayList<MenuItem> items){
         this.items = items;
@@ -23,19 +24,19 @@ public class Menu {
     }
     public void addItem(MenuItem item){
         this.items.add(item);
-        if(currentItem == null){
-            currentItem = item;
+        if(this.currentItem == null){
+            this.currentItem = item;
         }
     }
-    public void removeItem(String item){
-        this.items.remove(item);
+    public void removeItem(String name){
+        this.items.removeIf(item -> item.getName().equals(name));
     }
     public ArrayList<MenuItem> getItems(){
         return this.items;
     }
     public void setCurrentItem(String name){
         for (MenuItem item:items) {
-            if(item.getName() == name) {
+            if(item.getName().equalsIgnoreCase(name)) {
                 this.currentItem = item;
             }
         }
@@ -43,17 +44,31 @@ public class Menu {
     public MenuItem getCurrentItem(){
         return this.currentItem;
     }
+    public int getIndexOfCurrentItem(){
+        return this.items.indexOf(this.currentItem);
+    }
+    public String getName(){
+        return this.name;
+    }
     public void nextItem(){
         int index = this.items.indexOf(this.currentItem)+1;
-        if(index < items.size()) {
-            currentItem = items.get(index);
+        if(index < this.items.size()) {
+            this.currentItem = this.items.get(index);
         }
     }
     public void previousItem(){
         int index = this.items.indexOf(this.currentItem)-1;
         if(index >= 0) {
-            currentItem = items.get(index);
+            this.currentItem = this.items.get(index);
         }
     }
 
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "name='" + this.name + '\'' +
+                ", items=" + this.items +
+                ", currentItem=" + this.currentItem +
+                '}'+"\n";
+    }
 }

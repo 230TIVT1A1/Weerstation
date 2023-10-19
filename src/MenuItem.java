@@ -16,18 +16,18 @@ public class MenuItem {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getIcon() {
-        return icon;
+        return this.icon;
     }
 
     @Override
     public String toString() {
         return "MenuItem{" +
-                "name='" + name + "'" +
-                ", icon='" + icon + "'" +
+                "name='" + this.name + "'" +
+                ", icon='" + this.icon + "'" +
                 '}';
     }
 }

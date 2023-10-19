@@ -80,14 +80,14 @@ public class Main {
 //        System.out.println("Date when this happend: " + period.getDateBiggestDiff());
 
 
-        Menu mainMenu = new Menu();
+        Menu mainMenu = new Menu("mainMenu");
         mainMenu.addItem(new MenuItem("hum"));
         mainMenu.addItem(new MenuItem("temp"));
         mainMenu.addItem(new MenuItem("wind"));
         mainMenu.addItem(new MenuItem("bar"));
         mainMenu.addItem(new MenuItem("period"));
 
-        Menu subMenu = new Menu();
+        Menu subMenu = new Menu("subMenu");
         subMenu.addItem(new MenuItem("modes"));
         subMenu.addItem(new MenuItem("mediaan"));
         subMenu.addItem(new MenuItem("standaardafwijking"));
@@ -96,7 +96,7 @@ public class Main {
         subMenu.addItem(new MenuItem("maximaal"));
 
 
-        Menu periodMenu = new Menu();
+        Menu periodMenu = new Menu("periodMenu");
         periodMenu.addItem(new MenuItem("Last year"));
         periodMenu.addItem(new MenuItem("Last month"));
         periodMenu.addItem(new MenuItem("Last week"));
@@ -111,14 +111,6 @@ public class Main {
 
         Menus menus = new Menus(menuArray);
 
-        System.out.println(mainMenu.getItems());
-        System.out.println(mainMenu.getCurrentItem());
-        mainMenu.nextItem();
-        System.out.println(mainMenu.getCurrentItem());
-        mainMenu.previousItem();
-        System.out.println(mainMenu.getCurrentItem());
-        mainMenu.setCurrentItem("wind");
-        System.out.println(mainMenu.getCurrentItem());
 
 
     }
