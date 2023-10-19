@@ -10,26 +10,52 @@ public class Main {
 //        System.out.println(measurement.getInsideTemp());
         IO.init();
         GUI.clearSegment();
-        IconDisplay.drawPicture("/Icons/Clearer.png",0,0);
+        GUI.clrDisplay();
+//        IconDisplay.drawPicture("/Icons/Clearer.png",0,0);
 
 //        First Row
 
-        IconDisplay.drawPicture("/Icons/Temp.png",10,3);
-        IconDisplay.drawPicture("/Icons/rainrate.png",26,3);
-        IconDisplay.drawPicture("/Icons/dewpoint.png",42,3);
-        IconDisplay.drawPicture("/Icons/wind.png",58,3);
-        IconDisplay.drawPicture("/Icons/heatindex.png",74,3);
-        IconDisplay.drawPicture("/Icons/sunrise.png",90,3);
-        IconDisplay.drawPicture("/Icons/batterylevel.png",106,3);
-
+//        IconDisplay.drawPicture("/Icons/Temp.png",10,3);
+//        IconDisplay.drawPicture("/Icons/rainrate.png",26,3);
+//        IconDisplay.drawPicture("/Icons/dewpoint.png",42,3);
+//        IconDisplay.drawPicture("/Icons/wind.png",58,3);
+//        IconDisplay.drawPicture("/Icons/heatindex.png",74,3);
+//        IconDisplay.drawPicture("/Icons/sunrise.png",90,3);
+//        IconDisplay.drawPicture("/Icons/batterylevel.png",106,3);
+//
 //      Second Row
+//
+//        IconDisplay.drawPicture("/Icons/heatindex.png",10,18);
+//        IconDisplay.drawPicture("/Icons/humidity.png",26,18);
+//        IconDisplay.drawPicture("/Icons/barometer.png",42,18);
+//        IconDisplay.drawPicture("/Icons/windchill.png",58,18);
+//        IconDisplay.drawPicture("/Icons/UV.png",74,18);
+//        IconDisplay.drawPicture("/Icons/sunset.png",90,18);
 
-        IconDisplay.drawPicture("/Icons/heatindex.png",10,18);
-        IconDisplay.drawPicture("/Icons/humidity.png",26,18);
-        IconDisplay.drawPicture("/Icons/barometer.png",42,18);
-        IconDisplay.drawPicture("/Icons/windchill.png",58,18);
-        IconDisplay.drawPicture("/Icons/UV.png",74,18);
-        IconDisplay.drawPicture("/Icons/sunset.png",90,18);
+        ArrayList<String> iconsRow1 = new ArrayList<>();
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/UV-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+        iconsRow1.add("/Icons/sunset-selected.png");
+
+        IconDisplay.drawArray(iconsRow1, 0, 3);
+
+        ArrayList<String> iconsRow2 = new ArrayList<>();
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/UV-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+        iconsRow2.add("/Icons/sunset-selected.png");
+
+        IconDisplay.drawArray(iconsRow2, 0, 18);
+
 
 //        IconDisplay.drawPicture("/Icons/Wind.png",64,3);
 //        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");

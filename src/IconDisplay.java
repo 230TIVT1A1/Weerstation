@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class IconDisplay {
 
@@ -18,15 +19,22 @@ public class IconDisplay {
             throw new RuntimeException(e);
         }
     }
+
+    public static void drawArray(ArrayList<String> icons, int px, int py){
+
+        System.out.println(icons.size());
+
+        for (int i = 0; i < icons.size() ; i++) {
+
+            int x = px + i * (GUI.WIDTH / icons.size()) + ((GUI.WIDTH / icons.size()) -12) / 2;
+
+            int y = py;
+
+            drawPicture(icons.get(i), x, y);
+
+        }
+    }
 }
 
-//    public void gridLayout(String Grid){
-//    }
 
-//    public void Grid (String Grid) {
-//        JFrame frame = new JFrame();
-//        frame.setSize(12, 12);
-//        frame.setLayout(new GridLayout(2, 6, 4, 3));
-//    }
-//}
 
