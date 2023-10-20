@@ -9,7 +9,6 @@ public class GUI {
         IO.writeShort(0x40, 0xFE);
         IO.writeShort(0x40, 0x01);
     }
-    
 
     public static void setPixel(int x, int y, boolean state) {
         if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
