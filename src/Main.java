@@ -32,29 +32,54 @@ public class Main {
 //        IconDisplay.drawPicture("/Icons/UV.png",74,18);
 //        IconDisplay.drawPicture("/Icons/sunset.png",90,18);
 
-        ArrayList<String> iconsRow1 = new ArrayList<>();
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/UV-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
+//        ArrayList<String> iconsRow1 = new ArrayList<>();
+//        iconsRow1.add("/Icons/Temp.png");
+//        iconsRow1.add("/Icons/rainrate.png");
+//        iconsRow1.add("/Icons/dewpoint.png");
+//        iconsRow1.add("/Icons/wind.png");
+//        iconsRow1.add("/Icons/heatindex.png");
+//        iconsRow1.add("/Icons/sunrise.png");
+//        iconsRow1.add("/Icons/period.png");
+//
+//        IconDisplay.drawArray(iconsRow1, 0, 3);
+//
+//        ArrayList<String> iconsRow2 = new ArrayList<>();
+//        iconsRow2.add("/Icons/heatindex.png");
+//        iconsRow2.add("/Icons/humidity.png");
+//        iconsRow2.add("/Icons/barometer.png");
+//        iconsRow2.add("/Icons/windchill.png");
+//        iconsRow2.add("/Icons/UV.png");
+//        iconsRow2.add("/Icons/sunset.png");
+//        iconsRow2.add("/Icons/solarrad.png");
+//        iconsRow2.add("/Icons/quit.png");
+//
+//
+//        IconDisplay.drawArray(iconsRow2, 0, 18);
 
-        IconDisplay.drawArray(iconsRow1, 0, 3);
 
-        ArrayList<String> iconsRow2 = new ArrayList<>();
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/UV-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
+        ArrayList<String> iconsRow1Sel = new ArrayList<>();
+        iconsRow1Sel.add("/Icons/Temp-Selected.png");
+        iconsRow1Sel.add("/Icons/rainrate-Selected.png");
+        iconsRow1Sel.add("/Icons/dewpoint-Selected.png");
+        iconsRow1Sel.add("/Icons/wind-Selected.png");
+        iconsRow1Sel.add("/Icons/heatindex-Selected.png");
+        iconsRow1Sel.add("/Icons/sunrise-Selected.png");
+        iconsRow1Sel.add("/Icons/period-Selected.png");
 
-        IconDisplay.drawArray(iconsRow2, 0, 18);
+        IconDisplay.drawArray(iconsRow1Sel, 0, 3);
+
+        ArrayList<String> iconsRow2Sel = new ArrayList<>();
+        iconsRow2Sel.add("/Icons/heatindex-Selected.png");
+        iconsRow2Sel.add("/Icons/humidity-Selected.png");
+        iconsRow2Sel.add("/Icons/barometer-Selected.png");
+        iconsRow2Sel.add("/Icons/windchill-Selected.png");
+        iconsRow2Sel.add("/Icons/UV-Selected.png");
+        iconsRow2Sel.add("/Icons/sunset-Selected.png");
+        iconsRow2Sel.add("/Icons/solarrad-Selected.png");
+        iconsRow2Sel.add("/Icons/quit-Selected.png");
+
+
+        IconDisplay.drawArray(iconsRow2Sel, 0, 18);
 
 
 //        IconDisplay.drawPicture("/Icons/Wind.png",64,3);
