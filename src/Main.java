@@ -3,15 +3,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-//        RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
-//        Measurement measurement = new Measurement(rawMeasurement);
-//        System.out.println(measurement.getOutsideTemp());
-//        System.out.println(measurement.getOutsideHum());
-//        System.out.println(measurement.getInsideTemp());
         IO.init();
         GUI.clearSegment();
         GUI.clrDisplay();
-//        IconDisplay.drawPicture("/Icons/Clearer.png",0,0);
 
 //        First Row
 
@@ -26,115 +20,29 @@ public class Main {
 //      Second Row
 //
 //        IconDisplay.drawPicture("/Icons/heatindex.png",10,18);
-//        IconDisplay.drawPicture("/Icons/humidity.png",26,18);
+//        IconDisplay.drawPicture("/Icons/Humidity.png",26,18);
 //        IconDisplay.drawPicture("/Icons/barometer.png",42,18);
 //        IconDisplay.drawPicture("/Icons/windchill.png",58,18);
 //        IconDisplay.drawPicture("/Icons/UV.png",74,18);
 //        IconDisplay.drawPicture("/Icons/sunset.png",90,18);
 
-        ArrayList<String> iconsRow1 = new ArrayList<>();
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/UV-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
-        iconsRow1.add("/Icons/sunset-selected.png");
+        Menu mainMenu = new Menu("mainMenu",1,7);
+        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
+        mainMenu.addItem(new MenuItem("temp","icons/temp"));
+        mainMenu.addItem(new MenuItem("wind","icons/wind"));
+        mainMenu.addItem(new MenuItem("bar","icons/barometer"));
+        mainMenu.addItem(new MenuItem("dew","icons/dewpoint"));
+        mainMenu.addItem(new MenuItem("heat","icons/heatindex"));
+        mainMenu.addItem(new MenuItem("rain","icons/rainrate"));
 
-        IconDisplay.drawArray(iconsRow1, 0, 3);
-
-        ArrayList<String> iconsRow2 = new ArrayList<>();
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/UV-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-        iconsRow2.add("/Icons/sunset-selected.png");
-
-        IconDisplay.drawArray(iconsRow2, 0, 18);
-
-
-//        IconDisplay.drawPicture("/Icons/Wind.png",64,3);
-//        GUI.segmentNumber(measurement.getOutsideTemp(),0,"00.00");
-//        GUI.segmentNumber(measurement.getOutsideHum(),1,"00");
-//        GUI.segmentNumber(measurement.getInsideTemp(),2,"0.0");
-//        Period period = new Period(7);
-//        period.longestRainFall();
-//        period.maxTemperatureDifference();
-//        /**
-//         Laagste
-//         */
-//        System.out.println("Laagste Binnentemperatuur: " + period.getLowestInsideTemp());
-//        System.out.println("Laagste Buitentemperatuur: " + period.getLowestOutsideTemp());
-//        System.out.println("Laagste Barometer: " + period.getLowestBarometer());
-//        System.out.println("Laagste Luchtvochtigheid Buiten: " + period.getLowestOutsideHumidity());
-//
-//        System.out.println("---------------------------------------------");
-//        /**
-//         Hoogste
-//         */
-//        System.out.println("Hoogste Binnentemperatuur: " + period.getHighestInsideTemp());
-//        System.out.println("Hoogste Buitentemperatuur: " + period.getHighestOutsideTemp());
-//        System.out.println("Hoogste Barometer: " + period.getHighestBarometer());
-//        System.out.println("Hoogste Luchtvochtigheid Buiten: " + period.getHighestOutsideHumidity());
-//
-//        System.out.println("---------------------------------------------");
-//        /**
-//         Gemiddelde
-//         */
-//        System.out.println("Gemiddelde Binnentemperatuur: " + period.getAverageInsideTemp());
-//        System.out.println("Gemiddelde Buitentemperatuur: " + period.getAverageOutsideTemp());
-//        System.out.println("Gemiddelde Barometer: " + period.getAverageBarometer());
-//        System.out.println("Gemiddelde Luchtvochtigheid Buiten: " + period.getAverageOutsideHumidity());
-//
-//        System.out.println("---------------------------------------------");
-//        /**
-//         Mediaan
-//         */
-//        System.out.println("Mediaan Binnentemperatuur: " + period.getInsideTempMedian());
-//        System.out.println("Mediaan Buitentemperatuur: " + period.getOutsideTempMedian());
-//        System.out.println("Mediaan Barometer: " + period.getBarometerMedian());
-//        System.out.println("Mediaan Luchtvochtigheid Buiten: " + period.getOutsideHumidityMedian());
-//
-//        System.out.println("---------------------------------------------");
-//
-//        /**
-//         Modus
-//         */
-//        System.out.println("Mode Binnentemperatuur: " + period.getInsideTempMode());
-//        System.out.println("Mode Buitentemperatuur: " + period.getOutsideTempMode());
-//        System.out.println("Mode Barometer: " + period.getBarometerMode());
-//        System.out.println("Mode Luchtvochtigheid Buiten: " + period.getOutsideHumidityMode());
-//
-//        System.out.println("---------------------------------------------");
-//
-//        /**
-//         Standaardafwijking
-//         */
-//        System.out.println("Standaardafwijking Binnentemperatuur: " + period.getInsideTempSD());
-//        System.out.println("Standaardafwijking Buitentemperatuur: " + period.getOutsideTempSD());
-//        System.out.println("Standaardafwijking Barometer: " + period.getBarometerSD());
-//        System.out.println("Standaardafwijking Luchtvochtigheid Buiten: " + period.getOutsideHumiditySD());
-//
-//        System.out.println("---------------------------------------------");
-//
-//        /**
-//         Individual Assignment (Daan)
-//         Date of biggest difference between the WindChill and OutsideTemp
-//         */
-//        System.out.println("Biggest difference between the WindChill and OutsideTemp: " + period.getDiffWindChillAndOutsideTemp());
-//        System.out.println("Date when this happend: " + period.getDateBiggestDiff());
-
-
-        Menu mainMenu = new Menu("mainMenu");
-        mainMenu.addItem(new MenuItem("hum"));
-        mainMenu.addItem(new MenuItem("temp"));
-        mainMenu.addItem(new MenuItem("wind"));
-        mainMenu.addItem(new MenuItem("bar"));
-        mainMenu.addItem(new MenuItem("period"));
+        mainMenu.addItem(new MenuItem("solar","icons/Solarrad"));
+        mainMenu.addItem(new MenuItem("sunrise","icons/sunrise"));
+        mainMenu.addItem(new MenuItem("sunset","icons/sunset"));
+        mainMenu.addItem(new MenuItem("uv","icons/uv"));
+        mainMenu.addItem(new MenuItem("chill","icons/windchill"));
+        mainMenu.addItem(new MenuItem("period","icons/period"));
+        mainMenu.addItem(new MenuItem("exit","icons/quit"));
+        System.out.println(mainMenu.getItems().size());
 
         Menu subMenu = new Menu("subMenu");
         subMenu.addItem(new MenuItem("modes"));
@@ -159,7 +67,14 @@ public class Main {
         menuArray.add(periodMenu);
 
         Menus menus = new Menus(menuArray);
-
+        while (true) {
+            if(Button.previousButtonPressed()){
+                menus.getCurrentMenu().previousItem();
+            } else if(Button.nextButtonPressed()){
+                menus.getCurrentMenu().nextItem();
+            }
+            menus.getCurrentMenu().displayIcons(3, 3, 15);
+        }
 
 
     }

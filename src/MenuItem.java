@@ -23,6 +23,10 @@ public class MenuItem {
         return this.icon;
     }
 
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public String toString() {
         return "MenuItem{" +

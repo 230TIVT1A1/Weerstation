@@ -19,7 +19,7 @@ public class Menus {
         }
     }
     public void removeMenu(String name){
-        menus.removeIf(menu -> menu.getName().equals(name));
+        this.menus.removeIf(menu -> menu.getName().equals(name));
     }
     public ArrayList<Menu> getItems(){
         return this.menus;
