@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class Main {
+    public static boolean run = true;
     public static void main(String[] args) {
         IO.init();
         GUI.clearSegment();
@@ -42,7 +43,6 @@ public class Main {
         mainMenu.addItem(new MenuItem("chill","icons/windchill"));
         mainMenu.addItem(new MenuItem("period","icons/period"));
         mainMenu.addItem(new MenuItem("exit","icons/quit"));
-        System.out.println(mainMenu.getItems().size());
 
         Menu subMenu = new Menu("subMenu");
         subMenu.addItem(new MenuItem("modes"));
@@ -67,11 +67,17 @@ public class Main {
         menuArray.add(periodMenu);
 
         Menus menus = new Menus(menuArray);
-        while (true) {
+        while (run) {
             if(Button.previousButtonPressed()){
                 menus.getCurrentMenu().previousItem();
             } else if(Button.nextButtonPressed()){
                 menus.getCurrentMenu().nextItem();
+            }else if(Button.selectButtonPressed()){
+                MenuItem selected = menus.getCurrentMenu().getCurrentItem();
+                System.out.println(selected.getName());
+                if(selected.getName().equalsIgnoreCase("exit")){
+                    run = false;
+                }
             }
             menus.getCurrentMenu().displayIcons(3, 3, 15);
         }
