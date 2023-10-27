@@ -3,31 +3,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 public class Main {
     public static boolean run = true;
+    public static boolean periodSelected = false;
+    public static Period selectedPeriod = new Period();
+    public static MenuItem mainMenuSelected = new MenuItem();
+
     public static void main(String[] args) {
         IO.init();
         GUI.clearSegment();
         GUI.clrDisplay();
 
-//        First Row
-
-//        IconDisplay.drawPicture("/Icons/Temp.png",10,3);
-//        IconDisplay.drawPicture("/Icons/rainrate.png",26,3);
-//        IconDisplay.drawPicture("/Icons/dewpoint.png",42,3);
-//        IconDisplay.drawPicture("/Icons/wind.png",58,3);
-//        IconDisplay.drawPicture("/Icons/heatindex.png",74,3);
-//        IconDisplay.drawPicture("/Icons/sunrise.png",90,3);
-//        IconDisplay.drawPicture("/Icons/batterylevel.png",106,3);
-//
-//      Second Row
-//
-//        IconDisplay.drawPicture("/Icons/heatindex.png",10,18);
-//        IconDisplay.drawPicture("/Icons/Humidity.png",26,18);
-//        IconDisplay.drawPicture("/Icons/barometer.png",42,18);
-//        IconDisplay.drawPicture("/Icons/windchill.png",58,18);
-//        IconDisplay.drawPicture("/Icons/UV.png",74,18);
-//        IconDisplay.drawPicture("/Icons/sunset.png",90,18);
-
-        Menu mainMenu = new Menu("mainMenu",1,7);
+        // Declare menus
+        Menu mainMenu = new Menu("mainMenu",2,7);
         mainMenu.addItem(new MenuItem("hum","icons/humidity"));
         mainMenu.addItem(new MenuItem("temp","icons/temp"));
         mainMenu.addItem(new MenuItem("wind","icons/wind"));
@@ -41,48 +27,311 @@ public class Main {
         mainMenu.addItem(new MenuItem("sunset","icons/sunset"));
         mainMenu.addItem(new MenuItem("uv","icons/uv"));
         mainMenu.addItem(new MenuItem("chill","icons/windchill"));
-        mainMenu.addItem(new MenuItem("period","icons/period"));
+        mainMenu.addItem(new MenuItem("extra","icons/period"));
         mainMenu.addItem(new MenuItem("exit","icons/quit"));
 
-        Menu subMenu = new Menu("subMenu");
-        subMenu.addItem(new MenuItem("modes"));
-        subMenu.addItem(new MenuItem("mediaan"));
-        subMenu.addItem(new MenuItem("standaardafwijking"));
-        subMenu.addItem(new MenuItem("gemiddeld"));
-        subMenu.addItem(new MenuItem("minimaal"));
-        subMenu.addItem(new MenuItem("maximaal"));
+        Menu extraMenu = new Menu("extraMenu", 1, 3);
+        extraMenu.addItem(new MenuItem("back","icons/back"));
+        extraMenu.addItem(new MenuItem("period", "icons/periode"));
+        extraMenu.addItem(new MenuItem("assignments", "icons/assignments"));
 
+        Menu subMenu = new Menu("subMenu", 1, 7);
+        subMenu.addItem(new MenuItem("back","icons/back"));
+        subMenu.addItem(new MenuItem("modus","icons/modus"));
+        subMenu.addItem(new MenuItem("mediaan","icons/mediaan"));
+        subMenu.addItem(new MenuItem("standaardafwijking","icons/standaardafwijking"));
+        subMenu.addItem(new MenuItem("gemiddeld","icons/gemiddelde"));
+        subMenu.addItem(new MenuItem("minimaal","icons/minimaal"));
+        subMenu.addItem(new MenuItem("maximaal","icons/maximaal"));
 
-        Menu periodMenu = new Menu("periodMenu");
-        periodMenu.addItem(new MenuItem("Last year"));
-        periodMenu.addItem(new MenuItem("Last month"));
-        periodMenu.addItem(new MenuItem("Last week"));
-        periodMenu.addItem(new MenuItem("Last Hour"));
-        periodMenu.addItem(new MenuItem("This day"));
-        periodMenu.addItem(new MenuItem("Yesterday"));
+        Menu periodMenu = new Menu("periodMenu", 1, 7);
+        periodMenu.addItem(new MenuItem("back","icons/back"));
+        periodMenu.addItem(new MenuItem("Last year","icons/lastyear"));
+        periodMenu.addItem(new MenuItem("Last month","icons/lastmonth"));
+        periodMenu.addItem(new MenuItem("Last week","icons/lastweek"));
+        periodMenu.addItem(new MenuItem("Last Hour","icons/lasthour"));
+        periodMenu.addItem(new MenuItem("This day","icons/thisday"));
+        periodMenu.addItem(new MenuItem("Yesterday","icons/yesterday"));
+
+        Menu assignmentsMenu = new Menu("assignmentsMenu",1,7);
+        assignmentsMenu.addItem(new MenuItem("back","icons/back"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Daan","icons/assignmentdaan"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Storm","icons/assignmentstorm"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Melvin","icons/assignmentmelvin"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Tiemen","icons/assignmenttiemen"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Erik","icons/assignmenterik"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Lucas","icons/assignmentlucas"));
 
         ArrayList<Menu> menuArray = new ArrayList<>();
         menuArray.add(mainMenu);
         menuArray.add(subMenu);
+        menuArray.add(extraMenu);
         menuArray.add(periodMenu);
+        menuArray.add(assignmentsMenu);
 
         Menus menus = new Menus(menuArray);
+
+        // Program code
         while (run) {
+            // Get current menu and item
+            Menu selectedMenu = menus.getCurrentMenu();
+            MenuItem selected = menus.getCurrentMenu().getCurrentItem();
+
+            // Buttons
             if(Button.previousButtonPressed()){
-                menus.getCurrentMenu().previousItem();
+                // Previous item
+                // Main menu
+                if (selectedMenu.getName().equalsIgnoreCase("mainMenu")){
+                    if (selected.getName().equalsIgnoreCase("hum")){
+                        menus.getCurrentMenu().setCurrentItem("exit");
+                        IO.delay(300);
+                    } else{
+                        menus.getCurrentMenu().previousItem();
+                        IO.delay(300);
+                    }
+                }
+                // Sub menu
+                else if (selectedMenu.getName().equalsIgnoreCase("subMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        menus.getCurrentMenu().setCurrentItem("maximaal");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().previousItem();
+                        IO.delay(300);
+                    }
+                }
+                // Extra menu
+                else if (selectedMenu.getName().equalsIgnoreCase("extraMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        menus.getCurrentMenu().setCurrentItem("assignments");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().previousItem();
+                        IO.delay(300);
+                    }
+                }
+                // Period menu
+                else if (selectedMenu.getName().equalsIgnoreCase("periodMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        menus.getCurrentMenu().setCurrentItem("yesterday");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().previousItem();
+                        IO.delay(300);
+                    }
+                }
+                // Assignments menu
+                else if (selectedMenu.getName().equalsIgnoreCase("assignmentsMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        menus.getCurrentMenu().setCurrentItem("assignment lucas");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().previousItem();
+                        IO.delay(300);
+                    }
+                }
             } else if(Button.nextButtonPressed()){
-                menus.getCurrentMenu().nextItem();
+                // Next item
+                // Main menu
+                if (selectedMenu.getName().equalsIgnoreCase("mainMenu")){
+                    if (selected.getName().equalsIgnoreCase("exit")){
+                        menus.getCurrentMenu().setCurrentItem("hum");
+                        IO.delay(300);
+                    } else{
+                        menus.getCurrentMenu().nextItem();
+                        IO.delay(300);
+                    }
+                }
+                // Sub menu
+                else if (selectedMenu.getName().equalsIgnoreCase("subMenu")){
+                    if (selected.getName().equalsIgnoreCase("maximaal")){
+                        menus.getCurrentMenu().setCurrentItem("back");
+                        IO.delay(300);
+                    } else{
+                        menus.getCurrentMenu().nextItem();
+                        IO.delay(300);
+                    }
+                }
+                // Extra menu
+                else if (selectedMenu.getName().equalsIgnoreCase("extraMenu")){
+                    if (selected.getName().equalsIgnoreCase("assignments")){
+                        menus.getCurrentMenu().setCurrentItem("back");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().nextItem();
+                        IO.delay(300);
+                    }
+                }
+                // Period menu
+                else if (selectedMenu.getName().equalsIgnoreCase("periodMenu")){
+                    if (selected.getName().equalsIgnoreCase("yesterday")){
+                        menus.getCurrentMenu().setCurrentItem("back");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().nextItem();
+                        IO.delay(300);
+                    }
+                }
+                // Assignments menu
+                else if (selectedMenu.getName().equalsIgnoreCase("assignmentsMenu")){
+                    if (selected.getName().equalsIgnoreCase("assignment lucas")){
+                        menus.getCurrentMenu().setCurrentItem("back");
+                        IO.delay(300);
+                    } else {
+                        menus.getCurrentMenu().nextItem();
+                        IO.delay(300);
+                    }
+                }
             }else if(Button.selectButtonPressed()){
-                MenuItem selected = menus.getCurrentMenu().getCurrentItem();
-                System.out.println(selected.getName());
-                if(selected.getName().equalsIgnoreCase("exit")){
-                    run = false;
+                // Select item
+                // Main menu
+                if (selectedMenu.getName().equalsIgnoreCase("mainMenu")){
+                    mainMenuSelected = selected;
+                    if (selected.getName().equalsIgnoreCase("exit")){
+                        // Exit
+                        run = false;
+                    } else if (selected.getName().equalsIgnoreCase("extra")){
+                        // Period
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("extraMenu");
+                        IO.delay(500);
+                    } else {
+                        // subMenu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("subMenu");
+                        IO.delay(500);
+                    }
+                }
+                // Sub menu
+                else if (selectedMenu.getName().equalsIgnoreCase("subMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        // Main menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("mainMenu");
+                        IO.delay(500);
+                    } else{
+                        // Statistic selected
+                        if (periodSelected){
+                            if (selected.getName().equalsIgnoreCase("modus")){
+
+                            } else if (selected.getName().equalsIgnoreCase("mediaan")){
+
+                            } else if (selected.getName().equalsIgnoreCase("standaardafwijking")){
+
+                            } else if (selected.getName().equalsIgnoreCase("gemiddeld")){
+                                if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                                    GUI.clearSegment();
+                                    Double aHum = selectedPeriod.getAverageOutsideHumidity();
+                                    GUI.segmentNumber(aHum, 0, "00.0");
+                                    IO.delay(500);
+                                } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
+                                    GUI.clearSegment();
+                                    Double aHum = selectedPeriod.getAverageOutsideTemp();
+                                    GUI.segmentNumber(aHum, 0, "00.0");
+                                    IO.delay(500);
+                                } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                                    GUI.clearSegment();
+                                    Double aHum = selectedPeriod.getAverageBarometer();
+                                    GUI.segmentNumber(aHum, 0, "0000.0");
+                                    IO.delay(500);
+                                }
+                            } else if (selected.getName().equalsIgnoreCase("minimaal")){
+
+                            } else if (selected.getName().equalsIgnoreCase("maximaal")){
+
+                            }
+                        }
+                    }
+                }
+                // Extra menu
+                else if (selectedMenu.getName().equalsIgnoreCase("extraMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        // Main menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("mainMenu");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("period")){
+                        // Period menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("periodMenu");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("assignments")){
+                        // Assignments menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("assignmentsMenu");
+                        IO.delay(500);
+                    }
+                }
+                // Period menu
+                else if (selectedMenu.getName().equalsIgnoreCase("periodMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        // Main menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("extraMenu");
+                        IO.delay(500);
+                    } else {
+                        // Period selected (Nog te veranderen!)
+                        if (selected.getName().equalsIgnoreCase("last year")){
+                            Period period = new Period(365);
+                            periodSelected = true;
+                            selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("last month")){
+                            Period period = new Period(30);
+                            periodSelected = true;
+                            selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("last week")){
+                            Period period = new Period(14);
+                            periodSelected = true;
+                            selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("last hour")){
+                            // Het laatste uur is geen LocalDateTime, maar een LocalDate!
+                            // Dit moet met de DatabaseConnection gebeuren?
+
+                            //DatabaseConnection.getMeasurementsLastHour();
+                            //Period period = new Period(now.minu, now);
+                            periodSelected = true;
+                            //selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("today")){
+                            Period period = new Period(0);
+                            periodSelected = true;
+                            selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("yesterday")){
+                            Period period = new Period(1);
+                            periodSelected = true;
+                            selectedPeriod = period;
+                        }
+                    }
+                }
+                // Assignments menu
+                else if (selectedMenu.getName().equalsIgnoreCase("assignmentsMenu")){
+                    if (selected.getName().equalsIgnoreCase("back")){
+                        // Main menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("extraMenu");
+                        IO.delay(500);
+                    }
+                    else if (selected.getName().equalsIgnoreCase("assignment daan")){
+                        // If period is selected
+                        if (periodSelected){
+                            GUI.clearSegment();
+                            LocalDate date = selectedPeriod.getDateBiggestDiff();
+                            String sDate = String.valueOf(date);
+                            int pos1 = sDate.indexOf('-');
+                            int pos2 = sDate.lastIndexOf('-');
+                            GUI.segmentNumber(Double.parseDouble(sDate.substring(0, pos1)), 0, "0000");
+                            GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1+1, pos2)), 2, "00");
+                            GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
+                            IO.delay(500);
+                        }
+                    } // else if (...) INDIVIDUELE ASSIGNMENTS CODE HIER PLAATSEN
+
                 }
             }
+            // Show icons
             menus.getCurrentMenu().displayIcons(3, 3, 15);
         }
-
-
+        // When quit, clear the entire display
+        GUI.clearSegment();
+        GUI.clrDisplay();
     }
-
 }
