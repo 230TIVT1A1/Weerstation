@@ -385,11 +385,12 @@ public class Main {
                     } else if (selected.getName().equalsIgnoreCase("assignment daan")){
                         if (periodSelected){
                             GUI.clearSegment();
+                            double difference = selectedPeriod.getDiffWindChillAndOutsideTemp();
                             LocalDate date = selectedPeriod.getDateBiggestDiff();
                             String sDate = String.valueOf(date);
                             int pos1 = sDate.indexOf('-');
                             int pos2 = sDate.lastIndexOf('-');
-                            GUI.segmentNumber(Double.parseDouble(sDate.substring(0, pos1)), 0, "0000");
+                            GUI.segmentNumber(difference, 0, "00.0");
                             GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1+1, pos2)), 2, "00");
                             GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
                             IO.delay(500);
