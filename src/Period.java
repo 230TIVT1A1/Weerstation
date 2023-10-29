@@ -39,6 +39,14 @@ public class Period {
         this.endPeriod = LocalDate.now();
     }
 
+	public LocalDate getBeginPeriod() {
+		return beginPeriod;
+	}
+
+	public LocalDate getEndPeriod() {
+		return endPeriod;
+	}
+
     /**
      * Simple setter for start of period
      */
@@ -464,12 +472,12 @@ public class Period {
 	 * @return a list with time of the rainfall and the start and end date
 	 */
 	public ArrayList<String> longestRainFall() {
-		ArrayList<Measurement> arrayMesurement = getMeasurements();
+		ArrayList<Measurement> arrayMeasurement = getMeasurements();
 		ArrayList<String> returnList = new ArrayList<>();
 		LocalDateTime startDate = this.beginPeriod.atStartOfDay();
 		LocalDateTime endDate = null;
 		long longestRain = 0;
-		for (Measurement mes : arrayMesurement) {
+		for (Measurement mes : arrayMeasurement) {
 			LocalDateTime mesDateStamp = mes.getDateStamp();
 			if (mes.getRainRate() == 0.0) {
 				startDate = mesDateStamp;
