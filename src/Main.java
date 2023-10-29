@@ -1,8 +1,7 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 public class Main {
     public static boolean run = true;
-    public static boolean periodSelected = false;
+    public static volatile boolean periodSelected = false;
     public static Period selectedPeriod = new Period();
     public static MenuItem mainMenuSelected = new MenuItem();
 
@@ -71,11 +70,25 @@ public class Main {
 
         Menus menus = new Menus(menuArray);
 
+
         // Program code
         while (run) {
             // Get current menu and item
             Menu selectedMenu = menus.getCurrentMenu();
             MenuItem selected = menus.getCurrentMenu().getCurrentItem();
+
+// live homescreen?
+//            if (!periodSelected) {
+//                GUI.clearSegment();
+//                Period period = new Period();
+//                double outsideTemp = period.getHighestOutsideTemp();
+//                double outsideHumidity = period.getHighestOutsideHumidity();
+//                double windSpeed = period.getHighestWindSpeed();
+//
+//                GUI.segmentNumber(outsideTemp, 0, "00.0");
+//                GUI.segmentNumber(outsideHumidity, 1, "00");
+//                GUI.segmentNumber(windSpeed, 2, "0.0");
+//            }
 
             // Buttons
             if(Button.previousButtonPressed()){
@@ -191,7 +204,7 @@ public class Main {
                         // Exit
                         run = false;
                     } else if (selected.getName().equalsIgnoreCase("extra")){
-                        // Period
+                        // Period & assignments
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
                         IO.delay(500);
@@ -212,7 +225,7 @@ public class Main {
                     } else{
                         // Statistic selected
                         if (periodSelected){
-                            new GetDataForDisplay(mainMenuSelected, selected, selectedPeriod);
+                            new SetSegDisplay(mainMenuSelected, selected, selectedPeriod);
                         }
                     }
                 }
@@ -271,7 +284,12 @@ public class Main {
                             Period period = new Period(1);
                             periodSelected = true;
                             selectedPeriod = period;
+                        } else if (selected.getName().equalsIgnoreCase("now")){
+                            Period period = new Period();
+                            periodSelected = true;
+                            selectedPeriod = period;
                         }
+
                     }
                 }
                 // Assignments menu
@@ -282,7 +300,7 @@ public class Main {
                         menus.setCurrentMenu("extraMenu");
                         IO.delay(500);
                     } else if (periodSelected){
-                        new GetDataForDisplay(selected, selectedPeriod);
+                        new SetSegDisplay(selected, selectedPeriod);
                     }
 
                 }

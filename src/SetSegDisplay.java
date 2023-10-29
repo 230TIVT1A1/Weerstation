@@ -2,97 +2,125 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class GetDataForDisplay {
+public class SetSegDisplay {
 
-    private MenuItem menu;
-
-    // possibly other var name, usage for average, median, mode, etc.
-    private MenuItem format;
-    private Period period;
-
-
-    public GetDataForDisplay(MenuItem menu, MenuItem format, Period period) {
-        this.menu = menu;
-        this.format = format;
-        this.period = period;
-
+    public SetSegDisplay(MenuItem menu, MenuItem format, Period period) {
         GUI.clearSegment();
-        sendToGUI();
-        IO.delay(500);
 
-    }
-
-    private void sendToGUI() {
-        if (format.getName().equalsIgnoreCase("modus")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+        if (format.getName().equalsIgnoreCase("modus")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 Double aHum = period.getOutsideHumidityMode();
                 GUI.segmentNumber(aHum, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getOutsideTempMode();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getInsideTempMode();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getBarometerMode();
                 GUI.segmentNumber(aBar, 0, "0000.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getWindSpeedMode();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
-        } else if (format.getName().equalsIgnoreCase("mediaan")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+
+        } else if (format.getName().equalsIgnoreCase("mediaan")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 int aHum = period.getOutsideHumidityMedian();
                 GUI.segmentNumber(aHum, 0, "00");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getOutsideTempMedian();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getInsideTempMedian();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getBarometerMedian();
                 GUI.segmentNumber(aBar, 0, "0000.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getWindSpeedMedian();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
-        } else if (format.getName().equalsIgnoreCase("standaardafwijking")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+
+        } else if (format.getName().equalsIgnoreCase("standaardafwijking")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 Double aHum = period.getOutsideHumiditySD();
                 GUI.segmentNumber(aHum, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getOutsideTempSD();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getInsideTempSD();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getBarometerSD();
                 GUI.segmentNumber(aBar, 0, "0000.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getWindSpeedSD();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
-        } else if (format.getName().equalsIgnoreCase("gemiddeld")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+
+        } else if (format.getName().equalsIgnoreCase("gemiddeld")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 Double aHum = period.getAverageOutsideHumidity();
                 GUI.segmentNumber(aHum, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getAverageOutsideTemp();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getAverageInsideTemp();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getAverageBarometer();
                 GUI.segmentNumber(aBar, 0, "0000.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getAverageWindSpeed();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
-        } else if (format.getName().equalsIgnoreCase("minimaal")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+
+        } else if (format.getName().equalsIgnoreCase("minimaal")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 int aHum = period.getLowestOutsideHumidity();
                 GUI.segmentNumber(aHum, 0, "00");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getLowestOutsideTemp();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getLowestInsideTemp();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getLowestBarometer();
                 GUI.segmentNumber(aBar, 0, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getLowestWindSpeed();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
-        } else if (format.getName().equalsIgnoreCase("maximaal")){
-            if (menu.getName().equalsIgnoreCase("hum")){
+
+        } else if (format.getName().equalsIgnoreCase("maximaal")) {
+            if (menu.getName().equalsIgnoreCase("hum")) {
                 int aHum = period.getHighestOutsideHumidity();
                 GUI.segmentNumber(aHum, 0, "00");
-            } else if (menu.getName().equalsIgnoreCase("temp")){
+            } else if (menu.getName().equalsIgnoreCase("temp")) {
                 Double aTemp = period.getHighestOutsideTemp();
-                GUI.segmentNumber(aTemp, 0, "00.0");
-            } else if (menu.getName().equalsIgnoreCase("bar")){
+                GUI.segmentNumber(aTemp, 1, "00.0");
+
+                Double bTemp = period.getHighestInsideTemp();
+                GUI.segmentNumber(bTemp, 2, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("bar")) {
                 Double aBar = period.getHighestBarometer();
                 GUI.segmentNumber(aBar, 0, "00.0");
+            } else if (menu.getName().equalsIgnoreCase("wind")) {
+                Double aWind = period.getHighestWindSpeed();
+                GUI.segmentNumber(aWind, 0, "0.0");
             }
+
+            IO.delay(500);
+
         }
     }
 
-    public GetDataForDisplay(MenuItem individualAssignment, Period period){
+    public SetSegDisplay(MenuItem individualAssignment, Period period){
         GUI.clearSegment();
 
         switch(individualAssignment.getName()) {

@@ -113,8 +113,6 @@ public class Period {
         return measurements;
     }
 
-
-
 	/**
 	InsideTemp
 	 */
@@ -435,6 +433,223 @@ public class Period {
 		return Math.sqrt(dividend/(Humidities.size()-1));
 	}
 
+	/**
+	 * WindSpeed
+	 */
+	public Double getLowestWindSpeed() {
+		Measurement first = getMeasurements().get(0);
+		double lowest = first.getWindSpeed();
+		for (Measurement measurement : getMeasurements()) {
+			if (measurement.getWindSpeed() < lowest) {
+				lowest = measurement.getWindSpeed();
+			}
+		}
+		return lowest;
+	}
+	public Double getHighestWindSpeed() {
+		Measurement first = getMeasurements().get(0);
+		double highest = first.getWindSpeed();
+		for (Measurement measurement : getMeasurements()) {
+			if (measurement.getWindSpeed() > highest) {
+				highest = measurement.getWindSpeed();
+			}
+		}
+		return highest;
+	}
+	public Double getAverageWindSpeed() {
+		double sum = 0;
+		for (Measurement measurement : getMeasurements()) {
+			sum += measurement.getWindSpeed();
+		}
+		return sum / getMeasurements().size();
+	}
+
+	public Double getWindSpeedMedian(){
+		ArrayList<Double> speeds = new ArrayList<>();
+		for (Measurement measurement : getMeasurements()) {
+			speeds.add(measurement.getWindSpeed());
+		}
+		Collections.sort(speeds);
+		int middle = (speeds.size() + 1) / 2;
+
+		return speeds.get(middle);
+	}
+
+	public Double getWindSpeedMode() {
+		ArrayList<Double> speeds = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			speeds.add(measurement.getWindSpeed());
+		}
+		int maxFrequenty = 0;
+		double speedMode = 0.0;
+		for (int i = 0; i < speeds.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < speeds.size(); j++) {
+				if (speeds.get(i) == speeds.get(j)) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					speedMode = speeds.get(i);
+				}
+			}
+		}
+		return speedMode;
+	}
+
+	public Double getWindSpeedSD()	{
+		ArrayList<Double> speeds = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			speeds.add(measurement.getWindSpeed());
+		}
+		double dividend = 0.0;
+		double averageWindSpeed = this.getAverageWindSpeed();
+		for (Double humidity : speeds) {
+			dividend += (humidity - averageWindSpeed) * (humidity - averageWindSpeed);
+		}
+		return Math.sqrt(dividend/(speeds.size()-1));
+	}
+
+	public Double getLowestRainRate() {
+		Measurement first = getMeasurements().get(0);
+		double lowest = first.getRainRate();
+		for (Measurement measurement : getMeasurements()) {
+			if (measurement.getRainRate() < lowest) {
+				lowest = measurement.getRainRate();
+			}
+		}
+		return lowest;
+	}
+
+	public Double getHighestRainRate() {
+		Measurement first = getMeasurements().get(0);
+		double highest = first.getRainRate();
+		for (Measurement measurement : getMeasurements()) {
+			if (measurement.getRainRate() > highest) {
+				highest = measurement.getRainRate();
+			}
+		}
+		return highest;
+	}
+
+	public Double getAverageRainRate() {
+		double sum = 0;
+		for (Measurement measurement : getMeasurements()) {
+			sum += measurement.getRainRate();
+		}
+		return sum / getMeasurements().size();
+	}
+
+	public Double getRainRateMedian() {
+		ArrayList<Double> rates = new ArrayList<>();
+		for (Measurement measurement : getMeasurements()) {
+			rates.add(measurement.getRainRate());
+		}
+		Collections.sort(rates);
+		int middle = (rates.size() + 1) / 2;
+
+		return rates.get(middle);
+	}
+
+	public double calculatePeriod(String format, String menu) {
+		ArrayList<Double> measurements = new ArrayList<>();
+		switch(menu) {
+			case "hum":
+				for (Measurement measurement : getMeasurements()) {
+					double hum = measurement.getOutsideHum();
+					measurements.add(hum);
+				}
+				break;
+			case "temp":
+				for (Measurement measurement : getMeasurements()) {
+					measurements.add(measurement.getOutsideTemp());
+				}
+				break;
+			case "wind":
+				for (Measurement measurement : getMeasurements()) {
+					measurements.add(measurement.getWindSpeed());
+				}
+				break;
+			case "bar":
+				for (Measurement measurement : getMeasurements()) {
+					measurements.add(measurement.getBarometer());
+				}
+				break;
+			case "rain":
+				for (Measurement measurement : getMeasurements()) {
+					measurements.add(measurement.getRainRate());
+				}
+				break;
+		}
+
+		double returnVar = 0;
+		switch(format) {
+			case "minimaal":
+				double lowest = measurements.get(0);
+				for (double measurement : measurements) {
+					if (measurement < lowest) {
+						lowest = measurement;
+					}
+				}
+				returnVar = lowest;
+				break;
+			case "maximaal":
+				double highest = measurements.get(0);
+				for (double measurement : measurements) {
+					if (measurement > highest) {
+						highest = measurement;
+					}
+				}
+				returnVar = highest;
+				break;
+			case "gemiddeld":
+				double sum = 0;
+				for (double measurement : measurements) {
+					sum += measurement;
+				}
+				returnVar = sum / measurements.size();
+				break;
+			case "mediaan":
+				Collections.sort(measurements);
+				int middle = (measurements.size() + 1) / 2;
+
+				returnVar = measurements.get(middle);
+				break;
+			case "modus":
+				ArrayList<Double> speeds = new ArrayList<>();
+				for (Measurement measurement : this.getMeasurements()) {
+					speeds.add(measurement.getWindSpeed());
+				}
+				int maxFrequenty = 0;
+				double mode = 0.0;
+				for (int i = 0; i < measurements.size(); i++) {
+					int count = 0;
+					for (int j = 0; j < measurements.size(); j++) {
+						if (measurements.get(i) == measurements.get(j)) {
+							count++;
+						}
+
+						if (count > maxFrequenty) {
+							maxFrequenty = count;
+							mode = measurements.get(i);
+						}
+					}
+				}
+				returnVar = mode;
+				break;
+			case "standaardafwijking":
+				double dividend = 0.0;
+				double average = this.calculatePeriod("average", menu);
+				for (Double measurement : measurements) {
+					dividend += (measurement - average) * (measurement - average);
+				}
+				returnVar = Math.sqrt(dividend/(measurements.size()-1));
+				break;
+		}
+
+		return returnVar;
+	}
 
 	// individual assignment Melvin
 	public Double maxTemperatureDifference() {
@@ -591,7 +806,7 @@ public class Period {
 			return new Period();
 		else
 			return new Period(beginOfPeriod.toLocalDate(),endOfPeriod.toLocalDate());
-  }
+    }
 
   	// individual assignment Erik
 	public ArrayList<LocalDate> getGoodDays() {
