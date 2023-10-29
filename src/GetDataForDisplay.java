@@ -10,12 +10,7 @@ public class GetDataForDisplay {
     private MenuItem format;
     private Period period;
 
-    /**
-     *
-     * @param menu
-     * @param format
-     * @param period
-     */
+
     public GetDataForDisplay(MenuItem menu, MenuItem format, Period period) {
         this.menu = menu;
         this.format = format;

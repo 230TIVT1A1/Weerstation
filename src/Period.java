@@ -159,6 +159,41 @@ public class Period {
 		return insideTemps.get(middle);
 	}
 
+	public Double getInsideTempMode() {
+		ArrayList<Double> insideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			insideTemps.add(measurement.getInsideTemp());
+		}
+		int maxFrequenty = 0;
+		double insideTempMode = 0.0;
+		for (int i = 0; i < insideTemps.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < insideTemps.size(); j++) {
+				if (Math.round(insideTemps.get(i)) == Math.round(insideTemps.get(j))) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					insideTempMode = Math.round(insideTemps.get(i));
+				}
+			}
+		}
+		return insideTempMode;
+	}
+
+	public Double getInsideTempSD() {
+		ArrayList<Double> insideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			insideTemps.add(measurement.getInsideTemp());
+		}
+		double dividend = 0.0;
+		double averageInsideTemp = this.getAverageInsideTemp();
+		for (Double insideTemp : insideTemps) {
+			dividend += (insideTemp - averageInsideTemp) * (insideTemp - averageInsideTemp);
+		}
+		return Math.sqrt(dividend/(insideTemps.size()-1));
+	}
 
 	/**
 	OutsideTemp
@@ -202,6 +237,42 @@ public class Period {
 		int middle = (outsideTemps.size() + 1) / 2;
 
 		return outsideTemps.get(middle);
+	}
+
+	public Double getOutsideTempMode() {
+		ArrayList<Double> outsideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			outsideTemps.add(measurement.getOutsideTemp());
+		}
+		int maxFrequenty = 0;
+		double outsideTempMode = 0.0;
+		for (int i = 0; i < outsideTemps.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < outsideTemps.size(); j++) {
+				if (Math.round(outsideTemps.get(i)) == Math.round(outsideTemps.get(j))) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					outsideTempMode = Math.round(outsideTemps.get(i));
+				}
+			}
+		}
+		return outsideTempMode;
+	}
+
+	public Double getOutsideTempSD() {
+		ArrayList<Double> outsideTemps = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			outsideTemps.add(measurement.getOutsideTemp());
+		}
+		double dividend = 0.0;
+		double averageOutsideTemp = this.getAverageOutsideTemp();
+		for (Double outsideTemp : outsideTemps) {
+			dividend += (outsideTemp - averageOutsideTemp) * (outsideTemp - averageOutsideTemp);
+		}
+		return Math.sqrt(dividend/(outsideTemps.size()-1));
 	}
 
 	/**
@@ -248,6 +319,42 @@ public class Period {
 		return baros.get(middle);
 	}
 
+	public Double getBarometerMode() {
+		ArrayList<Double> Barometer = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Barometer.add(measurement.getBarometer());
+		}
+		int maxFrequenty = 0;
+		double barometerMode = 0.0;
+		for (int i = 0; i < Barometer.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < Barometer.size(); j++) {
+				if (Math.round(Barometer.get(i)) == Math.round(Barometer.get(j))) {
+					count++;
+				}
+
+				if (count > maxFrequenty) {
+					maxFrequenty = count;
+					barometerMode = Math.round(Barometer.get(i));
+				}
+			}
+		}
+		return barometerMode;
+	}
+
+	public Double getBarometerSD() {
+		ArrayList<Double> Barometers = new ArrayList<>();
+		for (Measurement measurement : this.getMeasurements()) {
+			Barometers.add(measurement.getBarometer());
+		}
+		double dividend = 0.0;
+		double averageBarometer = this.getAverageBarometer();
+		for (Double barometer : Barometers) {
+			dividend += (barometer - averageBarometer) * (barometer - averageBarometer);
+		}
+		return Math.sqrt(dividend/(Barometers.size()-1));
+	}
+
 	/**
 	Humidity
 	 */
@@ -292,116 +399,6 @@ public class Period {
 		return hums.get(middle);
 	}
 
-	public Double getInsideTempMode() {
-		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			insideTemps.add(measurement.getInsideTemp());
-		}
-		int maxFrequenty = 0;
-		double insideTempMode = 0.0;
-		for (int i = 0; i < insideTemps.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < insideTemps.size(); j++) {
-				if (Math.round(insideTemps.get(i)) == Math.round(insideTemps.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					insideTempMode = Math.round(insideTemps.get(i));
-				}
-			}
-		}
-		return insideTempMode;
-	}
-
-	public Double getInsideTempSD() {
-		ArrayList<Double> insideTemps = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			insideTemps.add(measurement.getInsideTemp());
-		}
-		double dividend = 0.0;
-		double averageInsideTemp = this.getAverageInsideTemp();
-		for (Double insideTemp : insideTemps) {
-			dividend += (insideTemp - averageInsideTemp) * (insideTemp - averageInsideTemp);
-		}
-		return Math.sqrt(dividend/(insideTemps.size()-1));
-	}
-
-	public Double getOutsideTempMode() {
-		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			outsideTemps.add(measurement.getOutsideTemp());
-		}
-		int maxFrequenty = 0;
-		double outsideTempMode = 0.0;
-		for (int i = 0; i < outsideTemps.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < outsideTemps.size(); j++) {
-				if (Math.round(outsideTemps.get(i)) == Math.round(outsideTemps.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					outsideTempMode = Math.round(outsideTemps.get(i));
-				}
-			}
-		}
-		return outsideTempMode;
-	}
-
-	public Double getOutsideTempSD() {
-		ArrayList<Double> outsideTemps = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			outsideTemps.add(measurement.getOutsideTemp());
-		}
-		double dividend = 0.0;
-		double averageOutsideTemp = this.getAverageOutsideTemp();
-		for (Double outsideTemp : outsideTemps) {
-			dividend += (outsideTemp - averageOutsideTemp) * (outsideTemp - averageOutsideTemp);
-		}
-		return Math.sqrt(dividend/(outsideTemps.size()-1));
-	}
-
-	public Double getBarometerMode() {
-		ArrayList<Double> Barometer = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			Barometer.add(measurement.getBarometer());
-		}
-		int maxFrequenty = 0;
-		double barometerMode = 0.0;
-		for (int i = 0; i < Barometer.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < Barometer.size(); j++) {
-				if (Math.round(Barometer.get(i)) == Math.round(Barometer.get(j))) {
-					count++;
-				}
-
-				if (count > maxFrequenty) {
-					maxFrequenty = count;
-					barometerMode = Math.round(Barometer.get(i));
-				}
-			}
-		}
-		return barometerMode;
-	}
-
-	public Double getBarometerSD() {
-		ArrayList<Double> Barometers = new ArrayList<>();
-		for (Measurement measurement : this.getMeasurements()) {
-			Barometers.add(measurement.getBarometer());
-		}
-		double dividend = 0.0;
-		double averageBarometer = this.getAverageBarometer();
-		for (Double barometer : Barometers) {
-			dividend += (barometer - averageBarometer) * (barometer - averageBarometer);
-		}
-		return Math.sqrt(dividend/(Barometers.size()-1));
-	}
-
-
-
 	public Double getOutsideHumidityMode() {
 		ArrayList<Integer> Humidities = new ArrayList<>();
 		for (Measurement measurement : this.getMeasurements()) {
@@ -439,9 +436,7 @@ public class Period {
 	}
 
 
-	/**
-	 * Individueel
-	 */
+	// individual assignment Melvin
 	public Double maxTemperatureDifference() {
 
 		if (getMeasurements().isEmpty()) {
@@ -463,9 +458,10 @@ public class Period {
 			}
 		}
 
-		double difference = maxTemp - minTemp;
-		return difference;
+        return maxTemp - minTemp;
 	}
+
+	// individual assignment Storm
 	/**
 	 * checks when the longest rain took place
 	 *
@@ -495,6 +491,8 @@ public class Period {
 		}
 		return returnList;
 	}
+
+	// individual assignment Daan
 	public double getDiffWindChillAndOutsideTemp(){
 		double biggestDifference = 0;
 		for (Measurement measurement : this.getMeasurements()){
@@ -518,6 +516,26 @@ public class Period {
 		}
 		return biggestDifference;
 	}
+
+	public LocalDate getDateBiggestDiff(){
+		double biggestDiff = getDiffWindChillAndOutsideTemp();
+		LocalDate theDate = null;
+		for (Measurement measurement : this.getMeasurements()){
+			LocalDate date = LocalDate.from(measurement.getDateStamp());
+			if ((measurement.getOutsideTemp() - measurement.getWindChill()) > 0){
+				if ((measurement.getOutsideTemp() - measurement.getWindChill()) == biggestDiff){
+					theDate = date;
+				}
+			} else if ((measurement.getWindChill() - measurement.getOutsideTemp()) > 0){
+				if ((measurement.getWindChill() - measurement.getOutsideTemp()) == biggestDiff){
+					theDate = date;
+				}
+			}
+		}
+		return theDate;
+	}
+
+	// individual assignment Lucas
 	public boolean Heatwave() {
 		int degrees30 = 0;
 		int degrees25 = 0;
@@ -544,6 +562,8 @@ public class Period {
 
 		return false;
 	}
+
+	// individual assignment Tiemen
 	public Period longestDrougth() {
 		ArrayList<Measurement> measurements = this.getMeasurements();
 		int count = 0;
@@ -572,23 +592,8 @@ public class Period {
 		else
 			return new Period(beginOfPeriod.toLocalDate(),endOfPeriod.toLocalDate());
   }
-	public LocalDate getDateBiggestDiff(){
-		double biggestDiff = getDiffWindChillAndOutsideTemp();
-		LocalDate theDate = null;
-		for (Measurement measurement : this.getMeasurements()){
-			LocalDate date = LocalDate.from(measurement.getDateStamp());
-			if ((measurement.getOutsideTemp() - measurement.getWindChill()) > 0){
-				if ((measurement.getOutsideTemp() - measurement.getWindChill()) == biggestDiff){
-					theDate = date;
-				}
-			} else if ((measurement.getWindChill() - measurement.getOutsideTemp()) > 0){
-				if ((measurement.getWindChill() - measurement.getOutsideTemp()) == biggestDiff){
-					theDate = date;
-				}
-			}
-		}
-		return theDate;
-	}
+
+  	// individual assignment Erik
 	public ArrayList<LocalDate> getGoodDays() {
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<LocalDate> returnDagen = new ArrayList<>();
