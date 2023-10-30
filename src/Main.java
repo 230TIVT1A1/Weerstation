@@ -422,7 +422,11 @@ public class Main {
                     } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
                         if (periodSelected){
                             GUI.clearSegment();
-                            //code...
+
+                            boolean Heatwave = selectedPeriod.Heatwave();
+                            if (Heatwave) { GUI.segmentNumber(1, 0, "0");
+                            } else { GUI.segmentNumber(0, 0, "0"); }
+
                             IO.delay(500);
                         }
                     }
