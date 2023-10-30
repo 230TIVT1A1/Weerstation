@@ -7,13 +7,6 @@ public class SetSegDisplay {
     public SetSegDisplay(MenuItem menu, MenuItem calculation, Period period) {
         GUI.clearSegment();
 
-//        switch(menu.getName().equalsIgnoreCase("temp")) {
-
-//        } else {
-//            double data = period.calculatePeriod(calculation.getName(), menu.getName());
-//            GUI.segmentNumber(data, 0, "0.0");
-//        }
-
         switch(menu.getName()) {
             case "temp":
                 double outtemp = period.calculatePeriod(calculation.getName(), "outtemp");
@@ -80,7 +73,7 @@ public class SetSegDisplay {
             case "Assignment Erik":
                 ArrayList<LocalDate> goodDays = period.getGoodDays();
                 double amountOfDays = goodDays.size();
-                GUI.segmentNumber(amountOfDays, 0, "000");
+                GUI.segmentNumber(amountOfDays, 0, "0");
                 break;
             case "Assignment Lucas":
                 boolean Heatwave = period.Heatwave();
