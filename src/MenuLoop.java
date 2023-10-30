@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class MenuLoop {
     public boolean run = true;
 
@@ -16,6 +18,8 @@ public class MenuLoop {
             // Get current menu and item
             Menu selectedMenu = menus.getCurrentMenu();
             MenuItem selected = menus.getCurrentMenu().getCurrentItem();
+
+
 
             // Buttons
             if(Button.previousButtonPressed()){
@@ -199,6 +203,22 @@ public class MenuLoop {
 
                 }
             }
+
+            // Live homescreen, working but lags input.
+//            if(!PeriodSelect.isSelected) {
+//                RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+//                double recentTemp = new Measurement(recent).getOutsideTemp();
+//                double recentHum = new Measurement(recent).getOutsideHum();
+//
+//                String recentDate = String.valueOf(LocalDateTime.now());
+//                int timePos1 = recentDate.indexOf(":");
+//                int timePos2 = recentDate.lastIndexOf(":");
+//
+//                GUI.segmentNumber(Double.parseDouble(recentDate.substring(timePos1-2, timePos1)) + (Double.parseDouble(recentDate.substring(timePos1+1, timePos2)) / 100), 0, "00.00");
+//                GUI.segmentNumber(recentTemp, 1, "0.0");
+//                GUI.segmentNumber(recentHum, 2, "0.0");
+//            }
+
             // Show icons
             menus.getCurrentMenu().displayIcons(3, 3, 15);
         }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class PeriodSelect {
-    public static Period selectedPeriod;
+    public static Period selectedPeriod = null;
     public static boolean isSelected = false;
 
     private int year = 365;
@@ -27,10 +27,10 @@ public class PeriodSelect {
             case "today":
                 selectedPeriod = new Period(today);
                 break;
-            default:
+            case "now":
                 selectedPeriod = new Period();
                 break;
         }
-        isSelected = true;
+        if(selectedPeriod != null)isSelected = true;
     }
 }
