@@ -194,6 +194,12 @@ public class Main {
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
                         IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("wind")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getWindSpeed();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
                     } else {
                         // subMenu
                         GUI.clrDisplay();
@@ -354,13 +360,10 @@ public class Main {
                             periodSelected = true;
                             selectedPeriod = period;
                         } else if (selected.getName().equalsIgnoreCase("last week")){
-                            Period period = new Period(14);
+                            Period period = new Period(7);
                             periodSelected = true;
                             selectedPeriod = period;
                         } else if (selected.getName().equalsIgnoreCase("last hour")){
-                            // Het laatste uur is geen LocalDateTime, maar een LocalDate!
-                            // Dit moet met de DatabaseConnection gebeuren?
-                            //DatabaseConnection.getMeasurementsLastHour();
                             Period period = new Period(0);
                             periodSelected = true;
                             selectedPeriod = period;
