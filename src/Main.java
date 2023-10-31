@@ -393,9 +393,14 @@ public class Main {
                         GUI.clearSegment();
                         //code...
                         IO.delay(500);
-                    } else if (selected.getName().equalsIgnoreCase("assignment erik")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment Erik")){
                         GUI.clearSegment();
-                        //code...
+                        ArrayList<LocalDate> returnDays = selectedPeriod.getGoodDays();
+                        int days = 0;
+                        for (LocalDate returnDay : returnDays) {
+                            days++;
+                        }
+                        GUI.segmentNumber(days, 0, "00");
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
                         GUI.clearSegment();
