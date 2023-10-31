@@ -115,41 +115,104 @@ public class Main {
                         menus.setCurrentMenu("location");
                         
                     } else if (selected.getName().equalsIgnoreCase("wind")){
-                        // Show wind
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayWindGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("dew")){
-                        // Show dewpoint
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayDewpointGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("heat")){
-                        // Show heatindex
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayHeatindexGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("rain")){
-                        // Show rainrate
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayRainrateGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("solar")){
-                        // Show solar radiation
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displaySolarradiationGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("sunrise")){
-                        // Show sunrise
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displaySunriseGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("sunset")){
-                        // Show sunset
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displaySunsetGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("uv")){
-                        // Show uv index
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayUVIndexGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("chill")){
-                        // Show windchill
-
-                        
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayWindchillGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else {
                         // subMenu
                         GUI.clrDisplay();
