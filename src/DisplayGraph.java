@@ -187,4 +187,20 @@ public class DisplayGraph {
         GUI.segmentNumber(max, 2, "##.#");
         GUI.matrixGraph(rainrate, min, max);
     }
+    public static void displayInsideHumidityGraph(Period period) {
+        ArrayList<Double> hum = new ArrayList<>();
+        double min = Double.MAX_VALUE;
+        double max = 0;
+        for (Measurement measurement : period.getMeasurements()) {
+            double v = measurement.getInsideHum();
+            hum.add(v);
+            if (v>max)
+                max = v;
+            if (v<min)
+                min = v;
+        }
+        GUI.segmentNumber(min, 1, "##.#");
+        GUI.segmentNumber(max, 2, "##.#");
+        GUI.matrixGraph(hum, min, max);
+    }
 }
