@@ -194,58 +194,40 @@ public class Main {
                         menus.setCurrentMenu("extraMenu");
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("wind")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getWindSpeed();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show wind
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("dew")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getWindSpeed();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show dewpoint
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("heat")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getWindSpeed();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show heatindex
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("rain")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getRainRate();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show rainrate
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("solar")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getSolarRad();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show solar radiation
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("sunrise")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getSunrise();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show sunrise
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("sunset")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getSunset();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show sunset
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("uv")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getUVLevel();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show uv index
+
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("chill")){
-                        // Show recent wind
-                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
-                        double windSpeed = recent.getWindSpeed();
-                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        // Show windchill
+
                         IO.delay(500);
                     } else {
                         // subMenu
@@ -267,102 +249,102 @@ public class Main {
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumidityMode();
-                                GUI.segmentNumber(aHum, 0, "00.0");
+                                GUI.segmentNumber(aHum, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMode();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMode();
-                                GUI.segmentNumber(aBar, 0, "0000.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         } else if (selected.getName().equalsIgnoreCase("mediaan")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 int aHum = selectedPeriod.getOutsideHumidityMedian();
-                                GUI.segmentNumber(aHum, 0, "00");
+                                GUI.segmentNumber(aHum, 0, "0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMedian();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMedian();
-                                GUI.segmentNumber(aBar, 0, "0000.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         } else if (selected.getName().equalsIgnoreCase("standaardafwijking")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumiditySD();
-                                GUI.segmentNumber(aHum, 0, "00.0");
+                                GUI.segmentNumber(aHum, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempSD();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerSD();
-                                GUI.segmentNumber(aBar, 0, "0000.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         } else if (selected.getName().equalsIgnoreCase("gemiddeld")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getAverageOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "00.0");
+                                GUI.segmentNumber(aHum, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getAverageOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getAverageBarometer();
-                                GUI.segmentNumber(aBar, 0, "0000.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         } else if (selected.getName().equalsIgnoreCase("minimaal")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 int aHum = selectedPeriod.getLowestOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "00");
+                                GUI.segmentNumber(aHum, 0, "0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getLowestOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getLowestBarometer();
-                                GUI.segmentNumber(aBar, 0, "00.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         } else if (selected.getName().equalsIgnoreCase("maximaal")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 int aHum = selectedPeriod.getHighestOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "00");
+                                GUI.segmentNumber(aHum, 0, "0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getHighestOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "00.0");
+                                GUI.segmentNumber(aTemp, 0, "0.0");
                                 IO.delay(500);
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getHighestBarometer();
-                                GUI.segmentNumber(aBar, 0, "00.0");
+                                GUI.segmentNumber(aBar, 0, "0.0");
                                 IO.delay(500);
                             }
                         }
@@ -425,7 +407,7 @@ public class Main {
                         String sDate = String.valueOf(date);
                         int pos1 = sDate.indexOf('-');
                         int pos2 = sDate.lastIndexOf('-');
-                        GUI.segmentNumber(difference, 0, "00.0");
+                        GUI.segmentNumber(difference, 0, "0.0");
                         GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1+1, pos2)), 2, "00");
                         GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
                         IO.delay(500);
@@ -447,10 +429,10 @@ public class Main {
                         GUI.clearSegment();
                         ArrayList<LocalDate> returnDays = selectedPeriod.getGoodDays();
                         int days = 0;
-                        for (LocalDate returnDay : returnDays) {
+                        for (int i = 1; i <= returnDays.size(); i++){
                             days++;
                         }
-                        GUI.segmentNumber(days, 0, "000");
+                        GUI.segmentNumber(days, 0, "0");
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
                         GUI.clearSegment();
