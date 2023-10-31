@@ -58,7 +58,7 @@ public class Main {
         periodMenu.addItem(new MenuItem("Last week","icons/lastweek"));
         periodMenu.addItem(new MenuItem("This day","icons/thisday"));
         periodMenu.addItem(new MenuItem("Yesterday","icons/yesterday"));
-        periodMenu.addItem(new MenuItem("Last Hour","icons/Clearer - Copy (2)"));
+        periodMenu.addItem(new MenuItem("Last Hour","icons/Clearer"));
 
         Menu assignmentsMenu = new Menu("assignmentsMenu",1,7);
         assignmentsMenu.addItem(new MenuItem("back","icons/back"));
