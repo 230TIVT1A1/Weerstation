@@ -12,9 +12,9 @@ public class Main {
 
         // Declare menus
         Menu mainMenu = new Menu("mainMenu",2,7);
+        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
         mainMenu.addItem(new MenuItem("temp","icons/temp"));
         mainMenu.addItem(new MenuItem("uv","icons/uv"));
-        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
         mainMenu.addItem(new MenuItem("rain","icons/rainrate"));
         mainMenu.addItem(new MenuItem("wind","icons/wind"));
         mainMenu.addItem(new MenuItem("sunrise","icons/sunrise"));
