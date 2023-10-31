@@ -47,7 +47,6 @@ public class DisplayGraph {
         double max = 0;
         for (Measurement measurement : period.getMeasurements()) {
             double v = measurement.getDewpoint();
-            System.out.println(v);
             dewpoint.add(v);
             if (v>max)
                 max = v;
