@@ -474,7 +474,14 @@ public class Period {
 					longestRain = rainTime;
 					endDate = mesDateStamp;
 					returnList.clear();
-					returnList.add(String.valueOf(longestRain));
+					LocalDateTime rainDate = endDate.minusYears(startDate.getYear()-1);
+					rainDate = rainDate.minusDays(startDate.getDayOfMonth()-1);
+					rainDate = rainDate.minusMonths(startDate.getMonthValue()-1);
+					rainDate = rainDate.minusHours(startDate.getHour());
+					rainDate = rainDate.minusMinutes(startDate.getMinute());
+					rainDate = rainDate.minusSeconds(startDate.getSecond());
+
+					returnList.add(String.valueOf(rainDate.toLocalTime()));
 					returnList.add(String.valueOf(startDate));
 					returnList.add(String.valueOf(endDate));
 				}
