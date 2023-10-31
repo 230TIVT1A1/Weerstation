@@ -77,47 +77,49 @@ public class Measurement {
     }
 
     public double getWindChill() {
-        return 13.12 + 0.625*this.getOutsideTemp() - 11.37*Math.pow(this.getWindSpeed(),0.16) + 0.3965*this.getOutsideTemp()*Math.pow(this.getWindSpeed(),0.16);
+        return 13.12 + 0.625 * this.getOutsideTemp() - 11.37 * Math.pow(this.getWindSpeed(), 0.16) + 0.3965 * this.getOutsideTemp() * Math.pow(this.getWindSpeed(), 0.16);
     }
 
     public double getHeatIndex() {
         return (-8.78469475556
-                + 1.61139411*this.getOutsideTemp()
-                + 2.33854883889*this.getOutsideHum()
-                + -0.14611605*this.getOutsideTemp()*this.getOutsideHum()
-                + -0.012308094*Math.pow(this.getOutsideTemp(),2)
-                + -0.0164248277778*Math.pow(this.getOutsideHum(), 2)
-                + 0.002211732*Math.pow(this.getOutsideTemp(),2)*this.getOutsideHum()
-                + 0.00072546*Math.pow(this.getOutsideHum(),2)*this.getOutsideTemp()
-                + -0.000003582*Math.pow(this.getOutsideHum(),2)*Math.pow(this.getOutsideTemp(),2)
+                + 1.61139411 * this.getOutsideTemp()
+                + 2.33854883889 * this.getOutsideHum()
+                + -0.14611605 * this.getOutsideTemp() * this.getOutsideHum()
+                + -0.012308094 * Math.pow(this.getOutsideTemp(), 2)
+                + -0.0164248277778 * Math.pow(this.getOutsideHum(), 2)
+                + 0.002211732 * Math.pow(this.getOutsideTemp(), 2) * this.getOutsideHum()
+                + 0.00072546 * Math.pow(this.getOutsideHum(), 2) * this.getOutsideTemp()
+                + -0.000003582 * Math.pow(this.getOutsideHum(), 2) * Math.pow(this.getOutsideTemp(), 2)
         );
     }
+
     @Override
     public String toString() {
         return "Measurement{" +
-                "stationId='" + getStationId() + '\'' +"\n"+
-                ", dateStamp=" + getDateStamp() +"\n"+
-                ", barometer=" + getBarometer() +"\n"+
-                ", insideTemp=" + getInsideTemp() +"\n"+
-                ", insideHum=" + getInsideHum() +"\n"+
-                ", outsideTemp=" + getOutsideTemp() +"\n"+
-                ", outsideHum=" + getOutsideHum() +"\n"+
-                ", windSpeed=" + getWindSpeed() +"\n"+
-                ", avgWindSpeed=" + getAvgWindSpeed() +"\n"+
-                ", windDir=" + getWindDir() +"\n"+
-                ", rainRate=" + getRainRate() +"\n"+
-                ", UVLevel=" + getUVLevel() +"\n"+
-                ", solarRad=" + getSolarRad() +"\n"+
-                ", xmitBatt=" + getXmitBatt() +"\n"+
-                ", battLevel=" + getBattLevel() +"\n"+
-                ", sunrise=" + getSunrise() +"\n"+
-                ", sunset=" + getSunset() +"\n"+
-                ", windChill=" + getWindChill() +"\n"+
-                ", heatIndex=" + getHeatIndex() +"\n"+
-                ", dewPoint=" + getDewpoint() +"\n"+
+                "stationId='" + getStationId() + '\'' + "\n" +
+                ", dateStamp=" + getDateStamp() + "\n" +
+                ", barometer=" + getBarometer() + "\n" +
+                ", insideTemp=" + getInsideTemp() + "\n" +
+                ", insideHum=" + getInsideHum() + "\n" +
+                ", outsideTemp=" + getOutsideTemp() + "\n" +
+                ", outsideHum=" + getOutsideHum() + "\n" +
+                ", windSpeed=" + getWindSpeed() + "\n" +
+                ", avgWindSpeed=" + getAvgWindSpeed() + "\n" +
+                ", windDir=" + getWindDir() + "\n" +
+                ", rainRate=" + getRainRate() + "\n" +
+                ", UVLevel=" + getUVLevel() + "\n" +
+                ", solarRad=" + getSolarRad() + "\n" +
+                ", xmitBatt=" + getXmitBatt() + "\n" +
+                ", battLevel=" + getBattLevel() + "\n" +
+                ", sunrise=" + getSunrise() + "\n" +
+                ", sunset=" + getSunset() + "\n" +
+                ", windChill=" + getWindChill() + "\n" +
+                ", heatIndex=" + getHeatIndex() + "\n" +
+                ", dewPoint=" + getDewpoint() + "\n" +
                 '}';
     }
-    public boolean isValid(){
+
+    public boolean isValid() {
         return checkShortOverflow(this.rawMeasurement.getBarometer()) &&
                 checkShortOverflow(this.rawMeasurement.getOutsideHum()) &&
                 checkShortOverflow(this.rawMeasurement.getOutsideTemp()) &&
@@ -125,11 +127,13 @@ public class Measurement {
                 checkShortOverflow(this.rawMeasurement.getSolarRad()) &&
                 checkShortOverflow(this.rawMeasurement.getUVLevel());
     }
+
     public static boolean checkShortOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {
             return false;
         } else return rawValue != Short.MAX_VALUE;
     }
+
     public double getDewpoint() {
         int humidity = (getOutsideHum());
         double temp = (getOutsideTemp());

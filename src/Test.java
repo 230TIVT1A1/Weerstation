@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
 public class Test {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Original data
 //        double temp = Measurement.temperature((short) 20);
 //        System.out.println(temp);
@@ -37,7 +36,7 @@ public class Test {
         System.out.println("Barometer test:");
         for (int i = 0; i < testBarometer.length; i++) {
             double barometer = ValueConverter.airPressure((short) testBarometer[i]);
-            System.out.println("Output: "+barometer + ", Input:" + testBarometer[i]);
+            System.out.println("Output: " + barometer + ", Input:" + testBarometer[i]);
         }
         System.out.println("Expected result for 2 is: 1018,761253");
         System.out.println("Expected result for 3 is: 1025,364711");
@@ -48,7 +47,7 @@ public class Test {
         System.out.println("Temperature test:");
         for (int i = 0; i < testTemperature.length; i++) {
             double temperature = ValueConverter.temperature((short) testTemperature[i]);
-            System.out.println("Output: "+temperature + ", Input:" + testTemperature[i]);
+            System.out.println("Output: " + temperature + ", Input:" + testTemperature[i]);
         }
         System.out.println("Expected result for 2 is: 24,61111111");
         System.out.println("Expected result for 3 is: 29,88888889");
@@ -59,7 +58,7 @@ public class Test {
         System.out.println("WindSpeed test:");
         for (int i = 0; i < testWindspeed.length; i++) {
             double windSpeed = ValueConverter.windSpeed((short) testWindspeed[i]);
-            System.out.println("Output: "+windSpeed + ", Input:" + testWindspeed[i]);
+            System.out.println("Output: " + windSpeed + ", Input:" + testWindspeed[i]);
         }
         System.out.println("Expected result for 2 is: 22,530816");
         System.out.println("Expected result for 3 is: 8,04672");
@@ -70,7 +69,7 @@ public class Test {
         System.out.println("RainRate test:");
         for (int i = 0; i < testRainRate.length; i++) {
             double rainRate = ValueConverter.rainRate((short) testRainRate[i]);
-            System.out.println("Output: "+rainRate + ", Input:" + testRainRate[i]);
+            System.out.println("Output: " + rainRate + ", Input:" + testRainRate[i]);
         }
         System.out.println("Expected result for 2 is: 0");
         System.out.println("Expected result for 3 is: 0");
@@ -82,7 +81,7 @@ public class Test {
         for (int i = 0; i < testUvIndex.length; i++) {
             double UvIndex = ValueConverter.uvIndex(
                     (short) testUvIndex[i]);
-            System.out.println("Output: "+UvIndex + ", Input:" + testUvIndex[i]);
+            System.out.println("Output: " + UvIndex + ", Input:" + testUvIndex[i]);
         }
         System.out.println("Expected result for 2 is: 6,6");
         System.out.println("Expected result for 3 is: 0,5");
@@ -93,7 +92,7 @@ public class Test {
         System.out.println("BatteryLevel test:");
         for (int i = 0; i < testBatteryLevel.length; i++) {
             double batteryLevel = ValueConverter.batteryLevel((short) testBatteryLevel[i]);
-            System.out.println("Output: "+batteryLevel + ", Input:" + testBatteryLevel[i]);
+            System.out.println("Output: " + batteryLevel + ", Input:" + testBatteryLevel[i]);
         }
         System.out.println("Expected result for 2 is: 1,130859375");
         System.out.println("Expected result for 3 is: 1,142578125");
@@ -104,7 +103,7 @@ public class Test {
         System.out.println("Humidity test:");
         for (int i = 0; i < testHumidity.length; i++) {
             int humidity = ValueConverter.humidity((short) testHumidity[i]);
-            System.out.println("Output: "+humidity + ", Input:" + testHumidity[i]);
+            System.out.println("Output: " + humidity + ", Input:" + testHumidity[i]);
         }
         System.out.println("Expected result for 2 is: 32%");
         System.out.println("Expected result for 3 is: 25%");
@@ -115,7 +114,7 @@ public class Test {
         System.out.println("Sunrise test:");
         for (int i = 0; i < testSunrise.length; i++) {
             String sunrise = ValueConverter.sunrise((short) testSunrise[i]);
-            System.out.println("Output: "+ sunrise + ", Input:" + testSunrise[i]);
+            System.out.println("Output: " + sunrise + ", Input:" + testSunrise[i]);
         }
         System.out.println("Expected result for 2 is: 526");
         System.out.println("Expected result for 3 is: 527");
@@ -126,7 +125,7 @@ public class Test {
         System.out.println("Sunset test:");
         for (int i = 0; i < testSunset.length; i++) {
             String sunset = ValueConverter.sunset((short) testSunset[i]);
-            System.out.println("Output: "+ sunset + ", Input:" + testSunset[i]);
+            System.out.println("Output: " + sunset + ", Input:" + testSunset[i]);
         }
         System.out.println("Expected result for 2 is: 2202");
         System.out.println("Expected result for 3 is: 2203");
@@ -137,7 +136,7 @@ public class Test {
         System.out.println("WindDirection test:");
         for (int i = 0; i < testWindDirection.length; i++) {
             int windDirection = ValueConverter.windDirection((short) testWindDirection[i]);
-            System.out.println("Output: "+ windDirection + ", Input:" + testWindDirection[i]);
+            System.out.println("Output: " + windDirection + ", Input:" + testWindDirection[i]);
         }
         System.out.println("Expected result for 2 is: 293");
         System.out.println("Expected result for 3 is: 37");

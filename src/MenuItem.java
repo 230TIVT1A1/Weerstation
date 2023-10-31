@@ -4,14 +4,17 @@ public class MenuItem {
 
     public MenuItem() {
     }
+
     public MenuItem(String name) {
         this.name = name;
     }
+
     public MenuItem(String name, String icon) {
         this.name = name;
         this.icon = icon;
     }
-    public boolean hasIcon(){
+
+    public boolean hasIcon() {
         return !this.icon.isEmpty();
     }
 

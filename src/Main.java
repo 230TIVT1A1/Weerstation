@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 public class Main {
     public static boolean run = true;
     public static Period selectedPeriod = new Period(7);
@@ -12,62 +13,62 @@ public class Main {
 
 
         // Declare menus
-        Menu mainMenu = new Menu("mainMenu",2,7);
-        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
-        mainMenu.addItem(new MenuItem("temp","icons/temp"));
-        mainMenu.addItem(new MenuItem("bar","icons/barometer"));
-        mainMenu.addItem(new MenuItem("uv","icons/uv"));
-        mainMenu.addItem(new MenuItem("rain","icons/rainrate"));
-        mainMenu.addItem(new MenuItem("wind","icons/wind"));
-        mainMenu.addItem(new MenuItem("solar","icons/Solarrad"));
+        Menu mainMenu = new Menu("mainMenu", 2, 7);
+        mainMenu.addItem(new MenuItem("hum", "icons/humidity"));
+        mainMenu.addItem(new MenuItem("temp", "icons/temp"));
+        mainMenu.addItem(new MenuItem("bar", "icons/barometer"));
+        mainMenu.addItem(new MenuItem("uv", "icons/uv"));
+        mainMenu.addItem(new MenuItem("rain", "icons/rainrate"));
+        mainMenu.addItem(new MenuItem("wind", "icons/wind"));
+        mainMenu.addItem(new MenuItem("solar", "icons/Solarrad"));
 
-        mainMenu.addItem(new MenuItem("heat","icons/heatindex"));
-        mainMenu.addItem(new MenuItem("dew","icons/dewpoint"));
-        mainMenu.addItem(new MenuItem("chill","icons/windchill"));
-        mainMenu.addItem(new MenuItem("sunset","icons/sunset"));
-        mainMenu.addItem(new MenuItem("sunrise","icons/sunrise"));
-        mainMenu.addItem(new MenuItem("extra","icons/Extra"));
-        mainMenu.addItem(new MenuItem("exit","icons/quit"));
+        mainMenu.addItem(new MenuItem("heat", "icons/heatindex"));
+        mainMenu.addItem(new MenuItem("dew", "icons/dewpoint"));
+        mainMenu.addItem(new MenuItem("chill", "icons/windchill"));
+        mainMenu.addItem(new MenuItem("sunset", "icons/sunset"));
+        mainMenu.addItem(new MenuItem("sunrise", "icons/sunrise"));
+        mainMenu.addItem(new MenuItem("extra", "icons/Extra"));
+        mainMenu.addItem(new MenuItem("exit", "icons/quit"));
 
-        Menu location = new Menu("location", 1,3);
-        location.addItem(new MenuItem("back","icons/back"));
+        Menu location = new Menu("location", 1, 3);
+        location.addItem(new MenuItem("back", "icons/back"));
         location.addItem(new MenuItem("outside", "icons/outside"));
         location.addItem(new MenuItem("inside", "icons/inside"));
 
-        Menu wind = new Menu("wind", 1,3);
-        wind.addItem(new MenuItem("back","icons/back"));
+        Menu wind = new Menu("wind", 1, 3);
+        wind.addItem(new MenuItem("back", "icons/back"));
         wind.addItem(new MenuItem("direction", "icons/windDirection"));
         wind.addItem(new MenuItem("speed", "icons/windSpeed"));
 
         Menu extraMenu = new Menu("extraMenu", 1, 3);
-        extraMenu.addItem(new MenuItem("back","icons/back"));
+        extraMenu.addItem(new MenuItem("back", "icons/back"));
         extraMenu.addItem(new MenuItem("period", "icons/period"));
         extraMenu.addItem(new MenuItem("assignments", "icons/assignments"));
 
         Menu subMenu = new Menu("subMenu", 1, 5);
-        subMenu.addItem(new MenuItem("back","icons/back"));
-        subMenu.addItem(new MenuItem("mode","icons/mode"));
-        subMenu.addItem(new MenuItem("median","icons/median"));
-        subMenu.addItem(new MenuItem("standardDeviation","icons/standardDeviation"));
-        subMenu.addItem(new MenuItem("chart","icons/chart"));
+        subMenu.addItem(new MenuItem("back", "icons/back"));
+        subMenu.addItem(new MenuItem("mode", "icons/mode"));
+        subMenu.addItem(new MenuItem("median", "icons/median"));
+        subMenu.addItem(new MenuItem("standardDeviation", "icons/standardDeviation"));
+        subMenu.addItem(new MenuItem("chart", "icons/chart"));
 
         Menu periodMenu = new Menu("periodMenu", 1, 7);
-        periodMenu.addItem(new MenuItem("back","icons/back"));
-        periodMenu.addItem(new MenuItem("Last year","icons/lastyear"));
-        periodMenu.addItem(new MenuItem("Last month","icons/lastmonth"));
-        periodMenu.addItem(new MenuItem("Last week","icons/lastweek"));
-        periodMenu.addItem(new MenuItem("This day","icons/thisday"));
-        periodMenu.addItem(new MenuItem("Yesterday","icons/yesterday"));
-        periodMenu.addItem(new MenuItem("Last Hour","icons/Clearer"));
+        periodMenu.addItem(new MenuItem("back", "icons/back"));
+        periodMenu.addItem(new MenuItem("Last year", "icons/lastyear"));
+        periodMenu.addItem(new MenuItem("Last month", "icons/lastmonth"));
+        periodMenu.addItem(new MenuItem("Last week", "icons/lastweek"));
+        periodMenu.addItem(new MenuItem("This day", "icons/thisday"));
+        periodMenu.addItem(new MenuItem("Yesterday", "icons/yesterday"));
+        periodMenu.addItem(new MenuItem("Last Hour", "icons/Clearer"));
 
-        Menu assignmentsMenu = new Menu("assignmentsMenu",1,7);
-        assignmentsMenu.addItem(new MenuItem("back","icons/back"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Daan","icons/assignmentdaan"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Storm","icons/assignmentstorm"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Melvin","icons/assignmentmelvin"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Tiemen","icons/assignmenttiemen"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Erik","icons/assignmenterik"));
-        assignmentsMenu.addItem(new MenuItem("Assignment Lucas","icons/assignmentlucas"));
+        Menu assignmentsMenu = new Menu("assignmentsMenu", 1, 7);
+        assignmentsMenu.addItem(new MenuItem("back", "icons/back"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Daan", "icons/assignmentdaan"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Storm", "icons/assignmentstorm"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Melvin", "icons/assignmentmelvin"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Tiemen", "icons/assignmenttiemen"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Erik", "icons/assignmenterik"));
+        assignmentsMenu.addItem(new MenuItem("Assignment Lucas", "icons/assignmentlucas"));
 
         ArrayList<Menu> menuArray = new ArrayList<>();
         menuArray.add(mainMenu);
@@ -89,40 +90,40 @@ public class Main {
             MenuItem selected = menus.getCurrentMenu().getCurrentItem();
 
             // Buttons
-            if (Button.previousButtonChanged()){
+            if (Button.previousButtonChanged()) {
                 // Previous item
                 menus.getCurrentMenu().previousItem();
-            } else if (Button.nextButtonChanged()){
+            } else if (Button.nextButtonChanged()) {
                 // Next item
                 menus.getCurrentMenu().nextItem();
-            } else if (Button.selectButtonChanged()){
+            } else if (Button.selectButtonChanged()) {
                 // Select item
                 // Main menu
-                if (selectedMenu.getName().equalsIgnoreCase("mainMenu")){
+                if (selectedMenu.getName().equalsIgnoreCase("mainMenu")) {
                     mainMenuSelected = selected;
-                    if (selected.getName().equalsIgnoreCase("exit")){
+                    if (selected.getName().equalsIgnoreCase("exit")) {
                         // Exit
                         run = false;
-                    } else if (selected.getName().equalsIgnoreCase("extra")){
+                    } else if (selected.getName().equalsIgnoreCase("extra")) {
                         // Period
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
 
-                    }else if (selected.getName().equalsIgnoreCase("temp")){
+                    } else if (selected.getName().equalsIgnoreCase("temp")) {
                         // Location
                         GUI.clrDisplay();
                         menus.setCurrentMenu("location");
 
-                    }else if (selected.getName().equalsIgnoreCase("hum")){
+                    } else if (selected.getName().equalsIgnoreCase("hum")) {
                         // Location
                         GUI.clrDisplay();
                         menus.setCurrentMenu("location");
 
-                    } else if (selected.getName().equalsIgnoreCase("wind")){
+                    } else if (selected.getName().equalsIgnoreCase("wind")) {
                         // Wind sub menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("wind");
-                    } else if (selected.getName().equalsIgnoreCase("dew")){
+                    } else if (selected.getName().equalsIgnoreCase("dew")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayDewpointGraph(selectedPeriod);
@@ -134,7 +135,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("heat")){
+                    } else if (selected.getName().equalsIgnoreCase("heat")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayHeatindexGraph(selectedPeriod);
@@ -146,7 +147,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("rain")){
+                    } else if (selected.getName().equalsIgnoreCase("rain")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayRainrateGraph(selectedPeriod);
@@ -158,7 +159,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("solar")){
+                    } else if (selected.getName().equalsIgnoreCase("solar")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displaySolarradiationGraph(selectedPeriod);
@@ -170,7 +171,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("sunrise")){
+                    } else if (selected.getName().equalsIgnoreCase("sunrise")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displaySunriseGraph(selectedPeriod);
@@ -182,7 +183,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("sunset")){
+                    } else if (selected.getName().equalsIgnoreCase("sunset")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displaySunsetGraph(selectedPeriod);
@@ -194,7 +195,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("uv")){
+                    } else if (selected.getName().equalsIgnoreCase("uv")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayUVIndexGraph(selectedPeriod);
@@ -206,7 +207,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("chill")){
+                    } else if (selected.getName().equalsIgnoreCase("chill")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayWindchillGraph(selectedPeriod);
@@ -224,7 +225,7 @@ public class Main {
                         menus.setCurrentMenu("subMenu");
 
                     }
-                }else if (selectedMenu.getName().equalsIgnoreCase("location")) {
+                } else if (selectedMenu.getName().equalsIgnoreCase("location")) {
                     if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
@@ -254,12 +255,12 @@ public class Main {
                     }
                 }
                 // wind sub menu
-                else if(selectedMenu.getName().equalsIgnoreCase("wind")){
+                else if (selectedMenu.getName().equalsIgnoreCase("wind")) {
                     if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("mainMenu");
-                    } else if(selected.getName().equalsIgnoreCase("speed")) {
+                    } else if (selected.getName().equalsIgnoreCase("speed")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayWindGraph(selectedPeriod);
@@ -271,7 +272,7 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if(selected.getName().equalsIgnoreCase("direction")) {
+                    } else if (selected.getName().equalsIgnoreCase("direction")) {
                         GUI.clrDisplay();
                         boolean graph = true;
                         DisplayGraph.displayWinddirectionGraph(selectedPeriod);
@@ -286,67 +287,67 @@ public class Main {
                     }
                 }
                 // Sub menu
-                else if (selectedMenu.getName().equalsIgnoreCase("subMenu")){
-                    if (selected.getName().equalsIgnoreCase("back")){
+                else if (selectedMenu.getName().equalsIgnoreCase("subMenu")) {
+                    if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
                         GUI.clearSegment();
                         menus.setCurrentMenu("mainMenu");
-                    } else{
+                    } else {
                         // Statistic selected
-                        if (selected.getName().equalsIgnoreCase("mode")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                        if (selected.getName().equalsIgnoreCase("mode")) {
+                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumidityMode();
                                 GUI.segmentNumber(aHum, 0, "0.0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMode();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")) {
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMode();
                                 GUI.segmentNumber(aBar, 0, "0.0");
 
                             }
-                        } else if (selected.getName().equalsIgnoreCase("median")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                        } else if (selected.getName().equalsIgnoreCase("median")) {
+                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                                 GUI.clearSegment();
                                 int aHum = selectedPeriod.getOutsideHumidityMedian();
                                 GUI.segmentNumber(aHum, 0, "0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMedian();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")) {
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMedian();
                                 GUI.segmentNumber(aBar, 0, "0.0");
 
                             }
-                        } else if (selected.getName().equalsIgnoreCase("standardDeviation")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                        } else if (selected.getName().equalsIgnoreCase("standardDeviation")) {
+                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumiditySD();
                                 GUI.segmentNumber(aHum, 0, "0.0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempSD();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
 
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")) {
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerSD();
                                 GUI.segmentNumber(aBar, 0, "0.0");
 
                             }
-                        } else if (selected.getName().equalsIgnoreCase("chart")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                        } else if (selected.getName().equalsIgnoreCase("chart")) {
+                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                                 boolean graph = true;
                                 DisplayGraph.displayOutsideHumidityGraph(selectedPeriod);
                                 while (graph) {
@@ -357,8 +358,8 @@ public class Main {
                                         GUI.clearSegment();
                                     }
                                 }
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
-                                if (menus.getMenuString("location").getCurrentItem().getName().equalsIgnoreCase("outside")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
+                                if (menus.getMenuString("location").getCurrentItem().getName().equalsIgnoreCase("outside")) {
                                     boolean graph = true;
                                     DisplayGraph.displayOutsideTempGraph(selectedPeriod);
                                     while (graph) {
@@ -381,7 +382,7 @@ public class Main {
                                         }
                                     }
                                 }
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")) {
                                 boolean graph = true;
                                 DisplayGraph.displayBarometerGraph(selectedPeriod);
                                 while (graph) {
@@ -398,19 +399,19 @@ public class Main {
                     }
                 }
                 // Extra menu
-                else if (selectedMenu.getName().equalsIgnoreCase("extraMenu")){
-                    if (selected.getName().equalsIgnoreCase("back")){
+                else if (selectedMenu.getName().equalsIgnoreCase("extraMenu")) {
+                    if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
                         GUI.clearSegment();
                         menus.setCurrentMenu("mainMenu");
 
-                    } else if (selected.getName().equalsIgnoreCase("period")){
+                    } else if (selected.getName().equalsIgnoreCase("period")) {
                         // Period menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("periodMenu");
 
-                    } else if (selected.getName().equalsIgnoreCase("assignments")){
+                    } else if (selected.getName().equalsIgnoreCase("assignments")) {
                         // Assignments menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("assignmentsMenu");
@@ -418,35 +419,35 @@ public class Main {
                     }
                 }
                 // Period menu
-                else if (selectedMenu.getName().equalsIgnoreCase("periodMenu")){
-                    if (selected.getName().equalsIgnoreCase("back")){
+                else if (selectedMenu.getName().equalsIgnoreCase("periodMenu")) {
+                    if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
 
                     } else {
-                        if (selected.getName().equalsIgnoreCase("last year")){
+                        if (selected.getName().equalsIgnoreCase("last year")) {
                             selectedPeriod = new Period(365);
-                        } else if (selected.getName().equalsIgnoreCase("last month")){
+                        } else if (selected.getName().equalsIgnoreCase("last month")) {
                             selectedPeriod = new Period(30);
-                        } else if (selected.getName().equalsIgnoreCase("last week")){
+                        } else if (selected.getName().equalsIgnoreCase("last week")) {
                             selectedPeriod = new Period(7);
-                        } else if (selected.getName().equalsIgnoreCase("today")){
+                        } else if (selected.getName().equalsIgnoreCase("today")) {
                             selectedPeriod = new Period(0);
-                        } else if (selected.getName().equalsIgnoreCase("yesterday")){
+                        } else if (selected.getName().equalsIgnoreCase("yesterday")) {
                             selectedPeriod = new Period(1);
                         }
                     }
                 }
                 // Assignments menu
-                else if (selectedMenu.getName().equalsIgnoreCase("assignmentsMenu")){
-                    if (selected.getName().equalsIgnoreCase("back")){
+                else if (selectedMenu.getName().equalsIgnoreCase("assignmentsMenu")) {
+                    if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
                         GUI.clearSegment();
                         menus.setCurrentMenu("extraMenu");
 
-                    } else if (selected.getName().equalsIgnoreCase("assignment daan")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment daan")) {
                         GUI.clearSegment();
                         double difference = selectedPeriod.getDiffWindChillAndOutsideTemp();
                         LocalDate date = selectedPeriod.getDateBiggestDiff();
@@ -454,16 +455,16 @@ public class Main {
                         int pos1 = sDate.indexOf('-');
                         int pos2 = sDate.lastIndexOf('-');
                         GUI.segmentNumber(difference, 0, "0.0");
-                        GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1+1, pos2)), 2, "00");
-                        GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
+                        GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1 + 1, pos2)), 2, "00");
+                        GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2 + 1)), 1, "00");
 
-                    } else if (selected.getName().equalsIgnoreCase("assignment storm")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment storm")) {
                         GUI.clrDisplay();
                         boolean showText = true;
                         ArrayList<String> rainfall = selectedPeriod.longestRainFall();
                         String[] rainTime = rainfall.get(0).split(":");
-                        GUI.segmentNumber(Double.parseDouble(rainTime[0]),1,"   0");
-                        GUI.segmentNumber(Double.parseDouble(rainTime[1]),2,"0");
+                        GUI.segmentNumber(Double.parseDouble(rainTime[0]), 1, "   0");
+                        GUI.segmentNumber(Double.parseDouble(rainTime[1]), 2, "0");
                         GUI.showText("Langste rainfall");
                         GUI.showText("\n" + rainfall.get(1).replace("T", " "));
                         GUI.showText("\n" + rainfall.get(2).replace("T", " "));
@@ -475,19 +476,19 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("assignment melvin")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment melvin")) {
                         GUI.clearSegment();
                         GUI.segmentNumber(selectedPeriod.maxTemperatureDifference(), 0, "0.0");
                         GUI.segmentNumber(selectedPeriod.getLowestOutsideTemp(), 1, "0.0");
                         GUI.segmentNumber(selectedPeriod.getHighestOutsideTemp(), 2, "0.0");
 
-                    } else if (selected.getName().equalsIgnoreCase("assignment tiemen")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment tiemen")) {
                         GUI.clrDisplay();
                         boolean showText = true;
                         Period longestDrougth = selectedPeriod.longestDrougth();
                         GUI.showText("langste droogte");
                         GUI.showText("\n" + longestDrougth.getRawMeasurements().get(0).getDateStamp().toLocalDate().toString());
-                        GUI.showText("\n" + longestDrougth.getRawMeasurements().get(longestDrougth.getRawMeasurements().size()-1).getDateStamp().toLocalDate().toString());
+                        GUI.showText("\n" + longestDrougth.getRawMeasurements().get(longestDrougth.getRawMeasurements().size() - 1).getDateStamp().toLocalDate().toString());
                         while (showText) {
                             Button.updateButtons();
                             if (Button.anyButtonChanged()) {
@@ -496,16 +497,16 @@ public class Main {
                                 GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("assignment Erik")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment Erik")) {
                         GUI.clearSegment();
                         ArrayList<LocalDate> returnDays = selectedPeriod.getGoodDays();
                         int days = 0;
-                        for (int i = 1; i <= returnDays.size(); i++){
+                        for (int i = 1; i <= returnDays.size(); i++) {
                             days++;
                         }
                         GUI.segmentNumber(days, 0, "0");
 
-                    } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
+                    } else if (selected.getName().equalsIgnoreCase("assignment lucas")) {
                         GUI.clearSegment();
                         boolean Heatwave = selectedPeriod.Heatwave();
                         if (Heatwave) {
@@ -518,7 +519,7 @@ public class Main {
                 }
             }
             // Show icons
-            if(Button.anyButtonChanged()) {
+            if (Button.anyButtonChanged()) {
                 menus.getCurrentMenu().displayIcons(3, 3, 15);
             }
         }

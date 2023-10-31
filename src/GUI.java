@@ -22,12 +22,12 @@ public class GUI {
         }
     }
 
-    public static void matrixGraph(ArrayList<Double> input, double graphMin, double graphMax){
+    public static void matrixGraph(ArrayList<Double> input, double graphMin, double graphMax) {
         GUI.clrDisplay();
         double yRange = (graphMax - graphMin);
         int x = 0;
-        for (double i = 0; i < input.size(); i += input.size()/128.0) {
-            GUI.setPixel(x,(int) Math.round(31 - 31*(input.get((int) Math.round(i)) - graphMin) / yRange),true);
+        for (double i = 0; i < input.size(); i += input.size() / 128.0) {
+            GUI.setPixel(x, (int) Math.round(31 - 31 * (input.get((int) Math.round(i)) - graphMin) / yRange), true);
             x++;
         }
     }
@@ -41,6 +41,7 @@ public class GUI {
             }
         }
     }
+
     // displays inPrint in segment group
     public static void segmentNumber(double inPrint, int group, String format) {
         int[] segSize = new int[]{5, 3, 3};
@@ -49,14 +50,14 @@ public class GUI {
         DecimalFormat df = new DecimalFormat(format);
         String inputString = df.format(inPrint);
         char chr = ' ';
-        if(inputString.contains(".")) {
+        if (inputString.contains(".")) {
             chr = '.';
-        }else if(inputString.contains(",")) {
+        } else if (inputString.contains(",")) {
             chr = ',';
         }
         inputString = inputString.replace("-", "");
         int indexPoint = inputString.indexOf(chr);
-        inputString = inputString.replace(""+chr, "");
+        inputString = inputString.replace("" + chr, "");
         int addressShift = segSize[group] - inputString.length() - 1;
         for (int i = 0; i < inputString.length(); i++) {
             int chrInt = inputString.charAt(i) - '0';
@@ -75,20 +76,20 @@ public class GUI {
         }
     }
 
-    public static void showText(String text){
+    public static void showText(String text) {
         // Spaces / refreshing the screen
-        for (int p = 0; p <= text.length() / 21; p++){
-            if ((p%3) == 0){
+        for (int p = 0; p <= text.length() / 21; p++) {
+            if ((p % 3) == 0) {
                 continue;
             }
-            if (text.length() > (21 * p)){
+            if (text.length() > (21 * p)) {
                 text = text.substring(0, (21 * p)) + "\n" + text.substring((21 * p)).trim();
             }
         }
         // Placing text
         int charactersTyped = 0;
         int maxCharactersOnScreen = 63;
-        for (int j = 0;j < text.length();j++) {
+        for (int j = 0; j < text.length(); j++) {
             int pos = text.indexOf(' ');
             String first = "";
             if (pos < 1) {
@@ -98,7 +99,7 @@ public class GUI {
             }
             for (int i = 0; i < first.length(); i++) {
                 // Clear screen if it's full
-                if (charactersTyped == maxCharactersOnScreen){
+                if (charactersTyped == maxCharactersOnScreen) {
                     clrDisplay();
                     charactersTyped = 0;
                 }
