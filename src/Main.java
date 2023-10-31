@@ -402,8 +402,19 @@ public class Main {
                         GUI.segmentNumber(selectedPeriod.getHighestOutsideTemp(), 2, "0.0");
                         
                     } else if (selected.getName().equalsIgnoreCase("assignment tiemen")){
-                        GUI.clearSegment();
-                        //code...
+                        GUI.clrDisplay();
+                        boolean showText = true;
+                        Period longestDrougth = selectedPeriod.longestDrougth();
+                        GUI.showText("langste droogte");
+                        GUI.showText("\n" + longestDrougth.getRawMeasurements().get(0).getDateStamp().toLocalDate().toString());
+                        GUI.showText("\n" + longestDrougth.getRawMeasurements().get(longestDrougth.getRawMeasurements().size()-1).getDateStamp().toLocalDate().toString());
+                        while (showText) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                showText = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                         
                     } else if (selected.getName().equalsIgnoreCase("assignment Erik")){
                         GUI.clearSegment();
