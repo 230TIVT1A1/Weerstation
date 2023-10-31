@@ -155,4 +155,36 @@ public class DisplayGraph {
         GUI.segmentNumber(max, 2, "##.#");
         GUI.matrixGraph(windchill, min, max);
     }
+    public static void displayWindGraph(Period period) {
+        ArrayList<Double> windspeed = new ArrayList<>();
+        double min = Double.MAX_VALUE;
+        double max = 0;
+        for (Measurement measurement : period.getMeasurements()) {
+            double v = measurement.getWindSpeed();
+            windspeed.add(v);
+            if (v>max)
+                max = v;
+            if (v<min)
+                min = v;
+        }
+        GUI.segmentNumber(min, 1, "##.#");
+        GUI.segmentNumber(max, 2, "##.#");
+        GUI.matrixGraph(windspeed, min, max);
+    }
+    public static void displayRainrateGraph(Period period) {
+        ArrayList<Double> rainrate = new ArrayList<>();
+        double min = Double.MAX_VALUE;
+        double max = 0;
+        for (Measurement measurement : period.getMeasurements()) {
+            double v = measurement.getRainRate();
+            rainrate.add(v);
+            if (v>max)
+                max = v;
+            if (v<min)
+                min = v;
+        }
+        GUI.segmentNumber(min, 1, "##.#");
+        GUI.segmentNumber(max, 2, "##.#");
+        GUI.matrixGraph(rainrate, min, max);
+    }
 }
