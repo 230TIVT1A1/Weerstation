@@ -19,7 +19,6 @@ public class RawMeasurement implements Serializable
     private short solarRad;
     private short xmitBatt;
     private short battLevel;
-    private short foreIcon;
     private short sunrise;
     private short sunset;
 
@@ -103,11 +102,6 @@ public class RawMeasurement implements Serializable
 
     public short getBattLevel () { return battLevel; }
 
-    // foreIcon
-    public void setForeIcon (short val) { this.foreIcon = val;}
-
-    public short getForeIcon () { return foreIcon; }
-
     // sunrise
     public void setSunrise (short val) { this.sunrise = val;}
 
@@ -136,7 +130,6 @@ public class RawMeasurement implements Serializable
                 + "\nsolarRad = \t" + solarRad
                 + "\nxmitBatt = \t" + xmitBatt
                 + "\nbattLevel = \t" + battLevel
-                + "\nforeIcon = \t" + foreIcon
                 + "\nsunrise = \t" + sunrise
                 + "\nsunset = \t" + sunset;
         return s;

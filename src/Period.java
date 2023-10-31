@@ -1,9 +1,7 @@
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Collections;
 
 /**
@@ -78,7 +76,6 @@ public class Period {
         return ChronoUnit.DAYS.between(beginPeriod, endPeriod);
     }
 
-
     /**
      * gets all raw measurements of this period from the database
      *
@@ -104,8 +101,6 @@ public class Period {
         }
         return measurements;
     }
-
-
 
 	/**
 	InsideTemp
