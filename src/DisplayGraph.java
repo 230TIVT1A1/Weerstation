@@ -2,24 +2,24 @@ import java.util.ArrayList;
 
 public class DisplayGraph {
     public static void displayOutsideTempGraph(Period period) {
-        ArrayList<Double> tempuraturesOutside = new ArrayList<>();
+        ArrayList<Double> temperaturesOutside = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
-            tempuraturesOutside.add(measurement.getOutsideTemp());
+            temperaturesOutside.add(measurement.getOutsideTemp());
         }
         GUI.segmentNumber(period.getAverageOutsideTemp(), 0, "##.#");
         GUI.segmentNumber(period.getLowestOutsideTemp(), 1, "##.#");
         GUI.segmentNumber(period.getHighestOutsideTemp(), 2, "##.#");
-        GUI.matrixGraph(tempuraturesOutside,period.getLowestOutsideTemp(),period.getHighestOutsideTemp());
+        GUI.matrixGraph(temperaturesOutside,period.getLowestOutsideTemp(),period.getHighestOutsideTemp());
     }
     public static void displayInsideTempGraph(Period period) {
-        ArrayList<Double> tempuraturesInside = new ArrayList<>();
+        ArrayList<Double> temperaturesInside = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
-            tempuraturesInside.add(measurement.getInsideTemp());
+            temperaturesInside.add(measurement.getInsideTemp());
         }
         GUI.segmentNumber(period.getAverageInsideTemp(), 0, "##.#");
         GUI.segmentNumber(period.getLowestInsideTemp(), 1, "##.#");
         GUI.segmentNumber(period.getHighestInsideTemp(), 2, "##.#");
-        GUI.matrixGraph(tempuraturesInside,period.getLowestInsideTemp(),period.getHighestInsideTemp());
+        GUI.matrixGraph(temperaturesInside,period.getLowestInsideTemp(),period.getHighestInsideTemp());
     }
     public static void displayBarometerGraph(Period period) {
         ArrayList<Double> barometer = new ArrayList<>();

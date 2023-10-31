@@ -34,20 +34,27 @@ public class Menus {
     public Menu getCurrentMenu(){
         return this.currentMenu;
     }
+    public Menu getMenu(int index){
+        return this.menus.get(index);
+    }
 
     public int getIndexOfCurrentMenu(){
         return this.menus.indexOf(this.currentMenu);
     }
     public void nextMenu(){
-        int index = this.menus.indexOf(this.currentMenu)+1;
+        int index = getIndexOfCurrentMenu()+1;
         if(index < this.menus.size()) {
             this.currentMenu = this.menus.get(index);
+        } else {
+            this.currentMenu = this.menus.get(0);
         }
     }
     public void previousMenu(){
-        int index = this.menus.indexOf(this.currentMenu)-1;
+        int index = getIndexOfCurrentMenu()-1;
         if(index >= 0) {
             this.currentMenu = this.menus.get(index);
+        } else {
+            this.currentMenu = this.menus.get(menus.size()-1);
         }
     }
 }

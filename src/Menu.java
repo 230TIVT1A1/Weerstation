@@ -53,6 +53,9 @@ public class Menu {
     public void removeItem(String name){
         this.items.removeIf(item -> item.getName().equals(name));
     }
+    public MenuItem getItem(int index){
+        return this.items.get(index);
+    }
     public ArrayList<MenuItem> getItems(){
         return this.items;
     }
@@ -76,12 +79,16 @@ public class Menu {
         int index = this.items.indexOf(this.currentItem)+1;
         if(index < this.items.size()) {
             this.currentItem = this.items.get(index);
+        } else {
+          this.currentItem = this.items.get(0);
         }
     }
     public void previousItem(){
         int index = this.items.indexOf(this.currentItem)-1;
         if(index >= 0) {
             this.currentItem = this.items.get(index);
+        }else {
+            this.currentItem = this.items.get(items.size()-1);
         }
     }
 
