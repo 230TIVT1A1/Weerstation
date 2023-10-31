@@ -53,6 +53,14 @@ public class Menu {
     public void removeItem(String name){
         this.items.removeIf(item -> item.getName().equals(name));
     }
+    public MenuItem getItemString(String name){
+        for (MenuItem item:this.items) {
+            if(item.getName().equalsIgnoreCase(name)){
+                return item;
+            }
+        }
+        return null;
+    }
     public MenuItem getItem(int index){
         return this.items.get(index);
     }

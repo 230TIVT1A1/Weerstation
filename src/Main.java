@@ -34,19 +34,22 @@ public class Main {
         location.addItem(new MenuItem("outside", "icons/outside"));
         location.addItem(new MenuItem("inside", "icons/inside"));
 
+        Menu wind = new Menu("wind", 1,3);
+        wind.addItem(new MenuItem("back","icons/back"));
+        wind.addItem(new MenuItem("direction", "icons/windDirection"));
+        wind.addItem(new MenuItem("speed", "icons/windSpeed"));
+
         Menu extraMenu = new Menu("extraMenu", 1, 3);
         extraMenu.addItem(new MenuItem("back","icons/back"));
         extraMenu.addItem(new MenuItem("period", "icons/period"));
         extraMenu.addItem(new MenuItem("assignments", "icons/assignments"));
 
-        Menu subMenu = new Menu("subMenu", 1, 7);
+        Menu subMenu = new Menu("subMenu", 1, 5);
         subMenu.addItem(new MenuItem("back","icons/back"));
         subMenu.addItem(new MenuItem("mode","icons/mode"));
         subMenu.addItem(new MenuItem("median","icons/median"));
         subMenu.addItem(new MenuItem("standardDeviation","icons/standardDeviation"));
-        subMenu.addItem(new MenuItem("average","icons/average"));
-        subMenu.addItem(new MenuItem("minimum","icons/minimum"));
-        subMenu.addItem(new MenuItem("maximum","icons/maximum"));
+        subMenu.addItem(new MenuItem("chart","icons/chart"));
 
         Menu periodMenu = new Menu("periodMenu", 1, 7);
         periodMenu.addItem(new MenuItem("back","icons/back"));
@@ -69,6 +72,7 @@ public class Main {
         ArrayList<Menu> menuArray = new ArrayList<>();
         menuArray.add(mainMenu);
         menuArray.add(subMenu);
+        menuArray.add(wind);
         menuArray.add(location);
         menuArray.add(extraMenu);
         menuArray.add(periodMenu);
@@ -103,28 +107,21 @@ public class Main {
                         // Period
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
-                        
+
                     }else if (selected.getName().equalsIgnoreCase("temp")){
                         // Location
                         GUI.clrDisplay();
                         menus.setCurrentMenu("location");
-                        
+
                     }else if (selected.getName().equalsIgnoreCase("hum")){
                         // Location
                         GUI.clrDisplay();
                         menus.setCurrentMenu("location");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("wind")){
+                        // Wind sub menu
                         GUI.clrDisplay();
-                        boolean graph = true;
-                        DisplayGraph.displayWindGraph(selectedPeriod);
-                        while (graph) {
-                            Button.updateButtons();
-                            if (Button.anyButtonChanged()) {
-                                graph = false;
-                                GUI.clrDisplay();
-                            }
-                        }
+                        menus.setCurrentMenu("wind");
                     } else if (selected.getName().equalsIgnoreCase("dew")){
                         GUI.clrDisplay();
                         boolean graph = true;
@@ -134,6 +131,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("heat")){
@@ -145,6 +143,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("rain")){
@@ -156,6 +155,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("solar")){
@@ -167,6 +167,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("sunrise")){
@@ -178,6 +179,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("sunset")){
@@ -189,6 +191,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("uv")){
@@ -200,6 +203,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("chill")){
@@ -211,69 +215,72 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 graph = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else {
                         // subMenu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("subMenu");
-                        
+
                     }
                 }else if (selectedMenu.getName().equalsIgnoreCase("location")) {
                     if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         menus.setCurrentMenu("mainMenu");
 
                     } else if (selected.getName().equalsIgnoreCase("outside")) {
                         GUI.clrDisplay();
-                        if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
+                        menus.setCurrentMenu("submenu");
+                    } else if (selected.getName().equalsIgnoreCase("inside")) {
+                        if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                             GUI.clrDisplay();
                             boolean graph = true;
-                            DisplayGraph.displayOutsideTempGraph(selectedPeriod);
+                            DisplayGraph.displayInsideHumidityGraph(selectedPeriod);
                             while (graph) {
                                 Button.updateButtons();
                                 if (Button.anyButtonChanged()) {
                                     graph = false;
                                     GUI.clrDisplay();
+                                    GUI.clearSegment();
                                 }
                             }
-                        } else if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
+                        } else {
                             GUI.clrDisplay();
-                            boolean graph = true;
-                            DisplayGraph.displayOutsideHumidityGraph(selectedPeriod);
-                            while (graph) {
-                                Button.updateButtons();
-                                if (Button.anyButtonChanged()) {
-                                    graph = false;
-                                    GUI.clrDisplay();
-                                }
+                            menus.setCurrentMenu("submenu");
+                        }
+                    }
+                }
+                // wind sub menu
+                else if(selectedMenu.getName().equalsIgnoreCase("wind")){
+                    if (selected.getName().equalsIgnoreCase("back")) {
+                        // Main menu
+                        GUI.clrDisplay();
+                        menus.setCurrentMenu("mainMenu");
+                    } else if(selected.getName().equalsIgnoreCase("speed")) {
+                        GUI.clrDisplay();
+                        boolean graph = true;
+                        DisplayGraph.displayWindGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
-                    } else if (selected.getName().equalsIgnoreCase("inside")) {
+                    } else if(selected.getName().equalsIgnoreCase("direction")) {
                         GUI.clrDisplay();
-                        if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
-                            GUI.clrDisplay();
-                            boolean graph = true;
-                            DisplayGraph.displayInsideTempGraph(selectedPeriod);
-                            while (graph) {
-                                Button.updateButtons();
-                                if (Button.anyButtonChanged()) {
-                                    graph = false;
-                                    GUI.clrDisplay();
-                                }
-                            }
-                        } else if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
-                            GUI.clrDisplay();
-                            boolean graph = true;
-//                            DisplayGraph.displayInsideHumidityGraph(selectedPeriod);
-                            // TODO: 31/10/2023 add display inside temp graph to diplayGraph class
-                            while (graph) {
-                                Button.updateButtons();
-                                if (Button.anyButtonChanged()) {
-                                    graph = false;
-                                    GUI.clrDisplay();
-                                }
+                        boolean graph = true;
+                        DisplayGraph.displayWinddirectionGraph(selectedPeriod);
+                        while (graph) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                graph = false;
+                                GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     }
@@ -283,8 +290,8 @@ public class Main {
                     if (selected.getName().equalsIgnoreCase("back")){
                         // Main menu
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         menus.setCurrentMenu("mainMenu");
-                        
                     } else{
                         // Statistic selected
                         if (selected.getName().equalsIgnoreCase("mode")){
@@ -292,52 +299,101 @@ public class Main {
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumidityMode();
                                 GUI.segmentNumber(aHum, 0, "0.0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMode();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMode();
                                 GUI.segmentNumber(aBar, 0, "0.0");
-                                
+
                             }
                         } else if (selected.getName().equalsIgnoreCase("median")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 int aHum = selectedPeriod.getOutsideHumidityMedian();
                                 GUI.segmentNumber(aHum, 0, "0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempMedian();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerMedian();
                                 GUI.segmentNumber(aBar, 0, "0.0");
-                                
+
                             }
                         } else if (selected.getName().equalsIgnoreCase("standardDeviation")){
                             if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
                                 GUI.clearSegment();
                                 Double aHum = selectedPeriod.getOutsideHumiditySD();
                                 GUI.segmentNumber(aHum, 0, "0.0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
                                 GUI.clearSegment();
                                 Double aTemp = selectedPeriod.getOutsideTempSD();
                                 GUI.segmentNumber(aTemp, 0, "0.0");
-                                
+
                             } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
                                 GUI.clearSegment();
                                 Double aBar = selectedPeriod.getBarometerSD();
                                 GUI.segmentNumber(aBar, 0, "0.0");
-                                
+
                             }
+                        } else if (selected.getName().equalsIgnoreCase("chart")){
+                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
+                                boolean graph = true;
+                                DisplayGraph.displayOutsideHumidityGraph(selectedPeriod);
+                                while (graph) {
+                                    Button.updateButtons();
+                                    if (Button.anyButtonChanged()) {
+                                        graph = false;
+                                        GUI.clrDisplay();
+                                        GUI.clearSegment();
+                                    }
+                                }
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
+                                if (menus.getMenuString("location").getCurrentItem().getName().equalsIgnoreCase("outside")){
+                                    boolean graph = true;
+                                    DisplayGraph.displayOutsideTempGraph(selectedPeriod);
+                                    while (graph) {
+                                        Button.updateButtons();
+                                        if (Button.anyButtonChanged()) {
+                                            graph = false;
+                                            GUI.clrDisplay();
+                                            GUI.clearSegment();
+                                        }
+                                    }
+                                } else if (menus.getMenuString("location").getCurrentItem().getName().equalsIgnoreCase("inside")) {
+                                    boolean graph = true;
+                                    DisplayGraph.displayInsideTempGraph(selectedPeriod);
+                                    while (graph) {
+                                        Button.updateButtons();
+                                        if (Button.anyButtonChanged()) {
+                                            graph = false;
+                                            GUI.clrDisplay();
+                                            GUI.clearSegment();
+                                        }
+                                    }
+                                }
+                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
+                                boolean graph = true;
+                                DisplayGraph.displayBarometerGraph(selectedPeriod);
+                                while (graph) {
+                                    Button.updateButtons();
+                                    if (Button.anyButtonChanged()) {
+                                        graph = false;
+                                        GUI.clrDisplay();
+                                        GUI.clearSegment();
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }
@@ -346,13 +402,14 @@ public class Main {
                     if (selected.getName().equalsIgnoreCase("back")){
                         // Main menu
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         menus.setCurrentMenu("mainMenu");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("period")){
                         // Period menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("periodMenu");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("assignments")){
                         // Assignments menu
                         GUI.clrDisplay();
@@ -366,7 +423,7 @@ public class Main {
                         // Main menu
                         GUI.clrDisplay();
                         menus.setCurrentMenu("extraMenu");
-                        
+
                     } else {
                         if (selected.getName().equalsIgnoreCase("last year")){
                             selectedPeriod = new Period(365);
@@ -374,8 +431,6 @@ public class Main {
                             selectedPeriod = new Period(30);
                         } else if (selected.getName().equalsIgnoreCase("last week")){
                             selectedPeriod = new Period(7);
-                        } else if (selected.getName().equalsIgnoreCase("last hour")){
-                            selectedPeriod = new Period(0);
                         } else if (selected.getName().equalsIgnoreCase("today")){
                             selectedPeriod = new Period(0);
                         } else if (selected.getName().equalsIgnoreCase("yesterday")){
@@ -388,8 +443,9 @@ public class Main {
                     if (selected.getName().equalsIgnoreCase("back")){
                         // Main menu
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         menus.setCurrentMenu("extraMenu");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("assignment daan")){
                         GUI.clearSegment();
                         double difference = selectedPeriod.getDiffWindChillAndOutsideTemp();
@@ -400,7 +456,7 @@ public class Main {
                         GUI.segmentNumber(difference, 0, "0.0");
                         GUI.segmentNumber(Double.parseDouble(sDate.substring(pos1+1, pos2)), 2, "00");
                         GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("assignment storm")){
                         GUI.clrDisplay();
                         boolean showText = true;
@@ -416,6 +472,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 showText = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("assignment melvin")){
@@ -423,7 +480,7 @@ public class Main {
                         GUI.segmentNumber(selectedPeriod.maxTemperatureDifference(), 0, "0.0");
                         GUI.segmentNumber(selectedPeriod.getLowestOutsideTemp(), 1, "0.0");
                         GUI.segmentNumber(selectedPeriod.getHighestOutsideTemp(), 2, "0.0");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("assignment tiemen")){
                         GUI.clrDisplay();
                         boolean showText = true;
@@ -436,6 +493,7 @@ public class Main {
                             if (Button.anyButtonChanged()) {
                                 showText = false;
                                 GUI.clrDisplay();
+                                GUI.clearSegment();
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("assignment Erik")){
@@ -446,7 +504,7 @@ public class Main {
                             days++;
                         }
                         GUI.segmentNumber(days, 0, "0");
-                        
+
                     } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
                         GUI.clearSegment();
                         boolean Heatwave = selectedPeriod.Heatwave();
@@ -455,12 +513,14 @@ public class Main {
                         } else {
                             GUI.segmentNumber(0, 0, "0");
                         }
-                        
+
                     }
                 }
             }
             // Show icons
-            menus.getCurrentMenu().displayIcons(3, 3, 15);
+            if(Button.anyButtonChanged()) {
+                menus.getCurrentMenu().displayIcons(3, 3, 15);
+            }
         }
         // When quit, clear the entire display
         GUI.clearSegment();

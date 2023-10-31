@@ -37,7 +37,15 @@ public class Menus {
     public Menu getMenu(int index){
         return this.menus.get(index);
     }
+    public Menu getMenuString(String name){
+        for (Menu menu:this.menus) {
+            if(menu.getName().equalsIgnoreCase(name)){
+                return menu;
+            }
+        }
 
+        return null;
+    }
     public int getIndexOfCurrentMenu(){
         return this.menus.indexOf(this.currentMenu);
     }
