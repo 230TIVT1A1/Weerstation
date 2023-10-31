@@ -79,7 +79,7 @@ public class Main {
         menuArray.add(assignmentsMenu);
 
         Menus menus = new Menus(menuArray);
-
+        menus.getCurrentMenu().displayIcons(3, 3, 15);
         // Program code
         while (run) {
             // Read buttons states
