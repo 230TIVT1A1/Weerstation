@@ -253,7 +253,6 @@ public class Main {
                     } else if (selected.getName().equalsIgnoreCase("inside")) {
                         GUI.clrDisplay();
                         if (mainMenuSelected.getName().equalsIgnoreCase("temp")) {
-                            System.out.println("inside temp");
                             GUI.clrDisplay();
                             boolean graph = true;
                             DisplayGraph.displayInsideTempGraph(selectedPeriod);
@@ -369,7 +368,6 @@ public class Main {
                         menus.setCurrentMenu("extraMenu");
                         
                     } else {
-                        // TODO: 31/10/2023 Period selected (Nog te veranderen!)
                         if (selected.getName().equalsIgnoreCase("last year")){
                             selectedPeriod = new Period(365);
                         } else if (selected.getName().equalsIgnoreCase("last month")){
@@ -404,9 +402,22 @@ public class Main {
                         GUI.segmentNumber(Double.parseDouble(sDate.substring(pos2+1)), 1, "00");
                         
                     } else if (selected.getName().equalsIgnoreCase("assignment storm")){
-                        GUI.clearSegment();
-                        //code...
-                        
+                        GUI.clrDisplay();
+                        boolean showText = true;
+                        ArrayList<String> rainfall = selectedPeriod.longestRainFall();
+                        String[] rainTime = rainfall.get(0).split(":");
+                        GUI.segmentNumber(Double.parseDouble(rainTime[0]),1,"   0");
+                        GUI.segmentNumber(Double.parseDouble(rainTime[1]),2,"0");
+                        GUI.showText("Langste rainfall");
+                        GUI.showText("\n" + rainfall.get(1).replace("T", " "));
+                        GUI.showText("\n" + rainfall.get(2).replace("T", " "));
+                        while (showText) {
+                            Button.updateButtons();
+                            if (Button.anyButtonChanged()) {
+                                showText = false;
+                                GUI.clrDisplay();
+                            }
+                        }
                     } else if (selected.getName().equalsIgnoreCase("assignment melvin")){
                         GUI.clearSegment();
                         GUI.segmentNumber(selectedPeriod.maxTemperatureDifference(), 0, "0.0");
@@ -427,7 +438,6 @@ public class Main {
                                 GUI.clrDisplay();
                             }
                         }
-                        
                     } else if (selected.getName().equalsIgnoreCase("assignment Erik")){
                         GUI.clearSegment();
                         ArrayList<LocalDate> returnDays = selectedPeriod.getGoodDays();
