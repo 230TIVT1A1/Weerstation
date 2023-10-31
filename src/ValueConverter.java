@@ -63,6 +63,7 @@ public class ValueConverter {
         return "Incorrect Time";
     }
 
+    //Checks if there is a value greater than allowed in a Double
     public static double checkDoubleOverflow(short rawValue) {
         if (rawValue == Short.MIN_VALUE) {
             return Double.MIN_VALUE;
