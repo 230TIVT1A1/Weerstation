@@ -203,4 +203,20 @@ public class DisplayGraph {
         GUI.segmentNumber(max, 2, "##.#");
         GUI.matrixGraph(hum, min, max);
     }
+    public static void displayWinddirectionGraph(Period period) {
+        ArrayList<Double> winddirection = new ArrayList<>();
+        double min = Double.MAX_VALUE;
+        double max = 0;
+        for (Measurement measurement : period.getMeasurements()) {
+            double v = measurement.getWindDir();
+            winddirection.add(v);
+            if (v>max)
+                max = v;
+            if (v<min)
+                min = v;
+        }
+        GUI.segmentNumber(min, 1, "##.#");
+        GUI.segmentNumber(max, 2, "##.#");
+        GUI.matrixGraph(winddirection, min, max);
+    }
 }
