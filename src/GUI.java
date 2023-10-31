@@ -41,7 +41,7 @@ public class GUI {
             }
         }
     }
-
+    // displays inPrint in segment group
     public static void segmentNumber(double inPrint, int group, String format) {
         int[] segSize = new int[]{5, 3, 3};
         int[] chars = new int[]{0b00111111, 0b00000110, 0b01011011, 0b1001111, 0b1100110, 0b1101101, 0b1111101, 0b0000111, 0b1111111, 0b1101111};

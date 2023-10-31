@@ -23,7 +23,7 @@ public class Menu {
         this.items = items;
         this.currentItem = items.get(0);
     }
-    // TODO: 19/10/2023 add icon method to display menu items
+    //inBetweenRows is amount of pixels between rows
     public void displayIcons(int px, int py, int inBetweenRows){
         ArrayList<String> icons = new ArrayList<>();
         int row = 0;
