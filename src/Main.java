@@ -387,7 +387,9 @@ public class Main {
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("assignment melvin")){
                         GUI.clearSegment();
-                        //code...
+                        GUI.segmentNumber(selectedPeriod.maxTemperatureDifference(), 0, "0.0");
+                        GUI.segmentNumber(selectedPeriod.getLowestOutsideTemp(), 1, "0.0");
+                        GUI.segmentNumber(selectedPeriod.getHighestOutsideTemp(), 2, "0.0");
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("assignment tiemen")){
                         GUI.clearSegment();
