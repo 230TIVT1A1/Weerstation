@@ -199,6 +199,54 @@ public class Main {
                         double windSpeed = recent.getWindSpeed();
                         GUI.segmentNumber(windSpeed, 0, "00.0");
                         IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("dew")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getWindSpeed();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("heat")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getWindSpeed();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("rain")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getRainRate();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("solar")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getSolarRad();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("sunrise")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getSunrise();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("sunset")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getSunset();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("uv")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getUVLevel();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
+                    } else if (selected.getName().equalsIgnoreCase("chill")){
+                        // Show recent wind
+                        RawMeasurement recent = DatabaseConnection.getMostRecentMeasurement();
+                        double windSpeed = recent.getWindSpeed();
+                        GUI.segmentNumber(windSpeed, 0, "00.0");
+                        IO.delay(500);
                     } else {
                         // subMenu
                         GUI.clrDisplay();
@@ -400,7 +448,7 @@ public class Main {
                         for (LocalDate returnDay : returnDays) {
                             days++;
                         }
-                        GUI.segmentNumber(days, 0, "00");
+                        GUI.segmentNumber(days, 0, "000");
                         IO.delay(500);
                     } else if (selected.getName().equalsIgnoreCase("assignment lucas")){
                         GUI.clearSegment();
