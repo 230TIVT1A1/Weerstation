@@ -22,10 +22,13 @@ public class GUI {
         }
     }
 
-    public static void matrixGraph(ArrayList<Double> input){//todo deze vervangen door methode van tiemen
-        // only displays values between 0 and 32 correctly
-        for (int x = 0; x < input.size(); x++) {
-            IO.writeShort(0x42, 1 << 12 | x << 5 | 32 - ((int) Math.round(input.get(x))));
+    public static void matrixGraph(ArrayList<Double> input, double graphMin, double graphMax){
+        GUI.clrDisplay();
+        double yRange = (graphMax - graphMin);
+        int x = 0;
+        for (double i = 0; i < input.size(); i += input.size()/128.0) {
+            GUI.setPixel(x,(int) Math.round(31 - 31*(input.get((int) Math.round(i)) - graphMin) / yRange),true);
+            x++;
         }
     }
 
