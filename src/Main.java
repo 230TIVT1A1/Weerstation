@@ -47,9 +47,9 @@ public class Main {
         periodMenu.addItem(new MenuItem("Last year","icons/lastyear"));
         periodMenu.addItem(new MenuItem("Last month","icons/lastmonth"));
         periodMenu.addItem(new MenuItem("Last week","icons/lastweek"));
-        periodMenu.addItem(new MenuItem("Last Hour","icons/lasthour"));
         periodMenu.addItem(new MenuItem("This day","icons/thisday"));
         periodMenu.addItem(new MenuItem("Yesterday","icons/yesterday"));
+        periodMenu.addItem(new MenuItem("Last Hour","icons/Clearer - Copy (2)"));
 
         Menu assignmentsMenu = new Menu("assignmentsMenu",1,7);
         assignmentsMenu.addItem(new MenuItem("back","icons/back"));
