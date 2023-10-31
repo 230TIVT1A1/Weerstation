@@ -276,57 +276,6 @@ public class Main {
                                 GUI.segmentNumber(aBar, 0, "0.0");
                                 
                             }
-                        } else if (selected.getName().equalsIgnoreCase("average")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
-                                GUI.clearSegment();
-                                Double aHum = selectedPeriod.getAverageOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "0.0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
-                                GUI.clearSegment();
-                                Double aTemp = selectedPeriod.getAverageOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "0.0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
-                                GUI.clearSegment();
-                                Double aBar = selectedPeriod.getAverageBarometer();
-                                GUI.segmentNumber(aBar, 0, "0.0");
-                                
-                            }
-                        } else if (selected.getName().equalsIgnoreCase("minimum")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
-                                GUI.clearSegment();
-                                int aHum = selectedPeriod.getLowestOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
-                                GUI.clearSegment();
-                                Double aTemp = selectedPeriod.getLowestOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "0.0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
-                                GUI.clearSegment();
-                                Double aBar = selectedPeriod.getLowestBarometer();
-                                GUI.segmentNumber(aBar, 0, "0.0");
-                                
-                            }
-                        } else if (selected.getName().equalsIgnoreCase("maximum")){
-                            if (mainMenuSelected.getName().equalsIgnoreCase("hum")){
-                                GUI.clearSegment();
-                                int aHum = selectedPeriod.getHighestOutsideHumidity();
-                                GUI.segmentNumber(aHum, 0, "0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("temp")){
-                                GUI.clearSegment();
-                                Double aTemp = selectedPeriod.getHighestOutsideTemp();
-                                GUI.segmentNumber(aTemp, 0, "0.0");
-                                
-                            } else if (mainMenuSelected.getName().equalsIgnoreCase("bar")){
-                                GUI.clearSegment();
-                                Double aBar = selectedPeriod.getHighestBarometer();
-                                GUI.segmentNumber(aBar, 0, "0.0");
-                                
-                            }
                         }
                     }
                 }
