@@ -267,8 +267,7 @@ public class Main {
                         } else if (mainMenuSelected.getName().equalsIgnoreCase("hum")) {
                             GUI.clrDisplay();
                             boolean graph = true;
-//                            DisplayGraph.displayInsideHumidityGraph(selectedPeriod);
-                            // TODO: 31/10/2023 add display inside temp graph to diplayGraph class
+                            DisplayGraph.displayInsideHumidityGraph(selectedPeriod);
                             while (graph) {
                                 Button.updateButtons();
                                 if (Button.anyButtonChanged()) {
