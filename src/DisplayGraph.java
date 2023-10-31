@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class DisplayStatistics {
-    public static void displayOutsideTempStats1(Period period) {
+public class DisplayGraph {
+    public static void displayOutsideTempGraph(Period period) {
         ArrayList<Double> tempuraturesOutside = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
             tempuraturesOutside.add(measurement.getOutsideTemp());
@@ -11,13 +11,7 @@ public class DisplayStatistics {
         GUI.segmentNumber(period.getHighestOutsideTemp(), 2, "##.#");
         GUI.matrixGraph(tempuraturesOutside,period.getLowestOutsideTemp(),period.getHighestOutsideTemp());
     }
-    public static void displayOutsideTempStats2(Period period) {
-        GUI.clrDisplay();
-        GUI.showText(String.format("Modus: %s", period.getOutsideTempMode()));
-        GUI.showText(String.format("\nMediaan: %.2f", period.getOutsideTempMedian()).replace(",","."));
-        GUI.showText(String.format("\nsigma: %.2f", period.getOutsideTempSD()).replace(",","."));
-    }
-    public static void displayInsideTempStats1(Period period) {
+    public static void displayInsideTempGraph(Period period) {
         ArrayList<Double> tempuraturesInside = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
             tempuraturesInside.add(measurement.getInsideTemp());
@@ -27,13 +21,7 @@ public class DisplayStatistics {
         GUI.segmentNumber(period.getHighestInsideTemp(), 2, "##.#");
         GUI.matrixGraph(tempuraturesInside,period.getLowestInsideTemp(),period.getHighestInsideTemp());
     }
-    public static void displayInsideTempStats2(Period period) {
-        GUI.clrDisplay();
-        GUI.showText(String.format("Modus: %s", period.getInsideTempMode()));
-        GUI.showText(String.format("\nMediaan: %.2f", period.getInsideTempMedian()).replace(",","."));
-        GUI.showText(String.format("\nsigma: %.2f", period.getInsideTempSD()).replace(",","."));
-    }
-    public static void displayBarometerStats1(Period period) {
+    public static void displayBarometerGraph(Period period) {
         ArrayList<Double> barometer = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
             barometer.add(measurement.getBarometer());
@@ -43,13 +31,7 @@ public class DisplayStatistics {
         GUI.segmentNumber(Math.round(period.getHighestBarometer())/10, 2, "");
         GUI.matrixGraph(barometer,period.getLowestBarometer(),period.getHighestBarometer());
     }
-    public static void displayBarometerStats2(Period period) {
-        GUI.clrDisplay();
-        GUI.showText(String.format("Modus: %s", period.getBarometerMode()));
-        GUI.showText(String.format("\nMediaan: %.2f", period.getBarometerMedian()).replace(",","."));
-        GUI.showText(String.format("\nsigma: %.2f", period.getBarometerSD()).replace(",","."));
-    }
-    public static void displayOutsideHumidityStats1(Period period) {
+    public static void displayOutsideHumidityGraph(Period period) {
         ArrayList<Double> humidity = new ArrayList<>();
         for (Measurement measurement : period.getMeasurements()) {
             humidity.add((double) measurement.getOutsideHum());
@@ -58,11 +40,5 @@ public class DisplayStatistics {
         GUI.segmentNumber(period.getLowestOutsideHumidity(), 1, "");
         GUI.segmentNumber(period.getHighestOutsideHumidity(), 2, "");
         GUI.matrixGraph(humidity,period.getLowestOutsideHumidity(),period.getHighestOutsideHumidity());
-    }
-    public static void displayOutsideHumidityStats2(Period period) {
-        GUI.clrDisplay();
-        GUI.showText(String.format("Modus: %s", period.getOutsideHumidityMode()));
-        GUI.showText(String.format("\nMediaan: %s", period.getOutsideHumidityMedian()));
-        GUI.showText(String.format("\nsigma: %.2f", period.getOutsideHumiditySD()).replace(",","."));
     }
 }
