@@ -12,25 +12,25 @@ public class Main {
 
         // Declare menus
         Menu mainMenu = new Menu("mainMenu",2,7);
-        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
         mainMenu.addItem(new MenuItem("temp","icons/temp"));
-        mainMenu.addItem(new MenuItem("wind","icons/wind"));
-        mainMenu.addItem(new MenuItem("bar","icons/barometer"));
-        mainMenu.addItem(new MenuItem("dew","icons/dewpoint"));
-        mainMenu.addItem(new MenuItem("heat","icons/heatindex"));
-        mainMenu.addItem(new MenuItem("rain","icons/rainrate"));
-
-        mainMenu.addItem(new MenuItem("solar","icons/Solarrad"));
-        mainMenu.addItem(new MenuItem("sunrise","icons/sunrise"));
-        mainMenu.addItem(new MenuItem("sunset","icons/sunset"));
         mainMenu.addItem(new MenuItem("uv","icons/uv"));
+        mainMenu.addItem(new MenuItem("hum","icons/humidity"));
+        mainMenu.addItem(new MenuItem("rain","icons/rainrate"));
+        mainMenu.addItem(new MenuItem("wind","icons/wind"));
+        mainMenu.addItem(new MenuItem("sunrise","icons/sunrise"));
+        mainMenu.addItem(new MenuItem("extra","icons/Extra"));
+
+        mainMenu.addItem(new MenuItem("heat","icons/heatindex"));
+        mainMenu.addItem(new MenuItem("solar","icons/Solarrad"));
+        mainMenu.addItem(new MenuItem("dew","icons/dewpoint"));
+        mainMenu.addItem(new MenuItem("bar","icons/barometer"));
         mainMenu.addItem(new MenuItem("chill","icons/windchill"));
-        mainMenu.addItem(new MenuItem("extra","icons/period"));
+        mainMenu.addItem(new MenuItem("sunset","icons/sunset"));
         mainMenu.addItem(new MenuItem("exit","icons/quit"));
 
         Menu extraMenu = new Menu("extraMenu", 1, 3);
         extraMenu.addItem(new MenuItem("back","icons/back"));
-        extraMenu.addItem(new MenuItem("period", "icons/periode"));
+        extraMenu.addItem(new MenuItem("period", "icons/period"));
         extraMenu.addItem(new MenuItem("assignments", "icons/assignments"));
 
         Menu subMenu = new Menu("subMenu", 1, 7);
