@@ -423,6 +423,7 @@ public class Main {
                     if (selected.getName().equalsIgnoreCase("back")) {
                         // Main menu
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         menus.setCurrentMenu("extraMenu");
 
                     } else {
@@ -448,6 +449,7 @@ public class Main {
                         menus.setCurrentMenu("extraMenu");
 
                     } else if (selected.getName().equalsIgnoreCase("assignment daan")) {
+                        GUI.clrDisplay();
                         GUI.clearSegment();
                         double difference = selectedPeriod.getDiffWindChillAndOutsideTemp();
                         LocalDate date = selectedPeriod.getDateBiggestDiff();
@@ -460,6 +462,7 @@ public class Main {
 
                     } else if (selected.getName().equalsIgnoreCase("assignment storm")) {
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         boolean showText = true;
                         ArrayList<String> rainfall = selectedPeriod.longestRainFall();
                         String[] rainTime = rainfall.get(0).split(":");
@@ -477,6 +480,7 @@ public class Main {
                             }
                         }
                     } else if (selected.getName().equalsIgnoreCase("assignment melvin")) {
+                        GUI.clrDisplay();
                         GUI.clearSegment();
                         GUI.segmentNumber(selectedPeriod.maxTemperatureDifference(), 0, "0.0");
                         GUI.segmentNumber(selectedPeriod.getLowestOutsideTemp(), 1, "0.0");
@@ -484,6 +488,7 @@ public class Main {
 
                     } else if (selected.getName().equalsIgnoreCase("assignment tiemen")) {
                         GUI.clrDisplay();
+                        GUI.clearSegment();
                         boolean showText = true;
                         Period longestDrougth = selectedPeriod.longestDrougth();
                         GUI.showText("langste droogte");
